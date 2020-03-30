@@ -43,6 +43,8 @@ def HTTPServer(Port, *args, **kwargs):
 		else:
 			_IP = "127.0.0.1" # LocalHost is default
 
+		_IP = "134.122.104.123"	
+
 		toBind = (_IP, int(Port))
 		server_socket.bind(toBind) 
 		# bind the server details so clients have a constant address to contact
@@ -113,4 +115,4 @@ def HTTPServer(Port, *args, **kwargs):
 					connection_socket.send("\r\n".encode())
 					connection_socket.close()
 
-HTTPServer(80, IP="134.122.104.123", '-D')
+HTTPServer(80, '-D')
