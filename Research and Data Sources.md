@@ -24,7 +24,7 @@ pdfs.semanticscholar.org/4a98/035ffea334153df344369d147526ba4cb622.pdf
 royalsocietypublishing.org/doi/pdf/10.1098/rsif.2013.1106
 
 - AWS Server with pdf, SIR epidemic model with time delay
-tinyurl.com/qwptpwl
+https://tinyurl.com/qwptpwl
 
 # Virus Overview
 - Numberphile COVID19:
