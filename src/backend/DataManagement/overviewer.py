@@ -35,7 +35,7 @@ with open(os.path.join(baseDir, "WHO_INDICATORS.txt"), "rb") as whoIndicators:
 
 for attributeID in ATTRIBUTES.values():
 	fn = os.path.join(baseDir, attributeID+".csv")
-	RAW_DF_LIST.append(pd.read_csv(fn, index_col=0))
+	RAW_DF_LIST.append(pd.read_csv(fn, index_col=0, parse_dates=True))
 
 ecdc_path = os.path.join("ECDC", "COVID-19-geographic-disbtribution-worldwide.xlsx")
 RAW_DF_LIST.append(pd.read_excel(ecdc_path))
@@ -212,7 +212,7 @@ def binaryPreProcessor(df):
 	
 	for col in binaryCols_list:
 		try:
-			df[col] = ordinalEncoder.fit_transform(df[[col]])
+			df[col] = ordinalEncoder.fit_transform(df[[col]]).astype('bool')
 
 			if DEBUG:
 				print("binaryPreProcessor:\n{}\n".format(df[[col]]))
@@ -242,7 +242,8 @@ def encodeCategoricals(df):
 
 	for col in categoricalCols_df.columns:
 		try:
-			print("encodeCategoricals: attempting\n{}".format(col))
+			if DEBUG:
+				print("encodeCategoricals: attempting\n{}".format(col))
 			df[[col]] = ordinalEncoder.fit_transform(df[[col]])
 		except AttributeError:
 			print("encodeCategoricals: AttributeError")
@@ -324,15 +325,16 @@ def runPreChecks():
 
 		# 3. Adjust encoding for binaries
 		binaryPreProcessor(raw_df)
-		print(raw_df.dtypes)
 
 		####
 		# 4. Complete the string manipulation to change Display Value to
 		#    correct type and remove erroneous string content.
 		####
 		if "Display Value" in raw_df.columns and raw_df["Display Value"].dtype == np.object:
-			print("\nrunPreChecks: Adjusting Display Value type.\n")
+			if DEBUG:
+				print("\nrunPreChecks: Adjusting Display Value type.\n")
 			raw_df["Display Value"] = numericaliseDisplayValueDimension(raw_df["Display Value"])
+			
 			try:
 				raw_df["Display Value"] = raw_df["Display Value"].astype("float64")
 			except ValueError as e:
@@ -359,12 +361,4 @@ with open("processing_dump.txt", "wb") as fn:
 with open("globaldata_processing_dump.txt", "wb") as fn:
 	pickle.dump(RAWGLOBAL_DF_LIST, fn)
 
-#################################################################################
-
-#################################################################################
-# Get fields and get info on df
-	# fields = []
-	# objects, dims = df.shape
-	# for field in df:
-	# 	fields.append(field)
 #################################################################################
