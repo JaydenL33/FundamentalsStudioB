@@ -3,7 +3,7 @@ data schema. Guarantees correct typing and secure connection.
 """
 
 # core
-from core import environConfig, graphing, images
+from .. import environConfig
 
 # third party libs
 import pymysql
@@ -17,18 +17,12 @@ import os
 
 #################################################################################
 # Globals
-RAW_DATA_FIELDS = [
-]
+env = environConfig.safe_environ()
 
-ATTRIBUTES = {
-}
-
-DEBUG = False
-
+DEBUG = env("DEBUG")
 RAW_DF_LIST = []
 RAWGLOBAL_DF_LIST = []
-
-baseDir = "WHO"
+baseDir = env("BASE_DATA_DIR")
 
 #################################################################################
 
@@ -38,9 +32,9 @@ def dbConnect():
 	URI_str = env("DB_URI")
 	engine = create_engine(URI_str)
 
-	return True
+	return engine
 
-def pushFrame(df, con, name):
+def pushFrame(df, con, name, schema):
 	"""Write records stored in a DataFrame to a SQL database.
 
 	Databases supported by SQLAlchemy are supported.
@@ -50,10 +44,9 @@ def pushFrame(df, con, name):
 	"""
 
 	_con = connex
-	_flavour = "mysql"
 	_name = name
 	_overwrite_setting = 'replace'
-	_schema = "innodb"
+	_schema = schema
 	_index = False
 	_chunksize = 100
 	_method = "multi"
@@ -87,6 +80,18 @@ def pushFrame(df, con, name):
 		types_list = df.dtypes.tolist()
 
 		for i in range(len(types_list)):
-			types_list[i] = _switcher(types_list[i]):
+			types_list[i] = _switcher(types_list[i])
 
 		return dict(zip(cols_list, types_list))
+
+
+# public interface
+def push(df, name, schema):
+	"""Note, schema is the db to write to within our MySQL storage."""
+	return pushFrame(df, dbConnect(), name, schema)
+
+
+# test
+with open(os.path.join(baseDir, "processing_dump.txt"), "rb") as procData:
+	df_list = pickle.load(procData)
+push(df_list[0], "test", "test")

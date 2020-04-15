@@ -20,7 +20,7 @@ def safe_environ():
 	try:
 		# grab local environ settings and attempt to read settings file
 		env = Env()
-		env_file = os.path.join(os.getcwd(), "local.env")
+		env_file = os.path.join(os.pardir, ".env")
 		env.read_env(env_file)
 		return env
 	except FileNotFoundError:

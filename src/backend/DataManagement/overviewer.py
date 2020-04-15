@@ -1,7 +1,13 @@
+# core
+from .. import environConfig
+
+# third-party libs
 import pandas as pd
 import numpy as np
 from sklearn import preprocessing as pre
 from sklearn.impute import SimpleImputer
+
+# core python
 import math
 import time
 import pickle
@@ -9,18 +15,12 @@ import os
 
 #################################################################################
 # Globals
-RAW_DATA_FIELDS = [
-]
+env = environConfig.safe_environt()
 
-ATTRIBUTES = {
-}
-
-DEBUG = False
-
+DEBUG = env("DEBUG")
 RAW_DF_LIST = []
 RAWGLOBAL_DF_LIST = []
-
-baseDir = "WHO"
+baseDir = env("BASE_DATA_DIR")
 
 #################################################################################
 
@@ -130,7 +130,7 @@ def imputateNaNs(df):
 				df[col] = df[col].astype("float64")
 			except ValueError:
 				pass
-		
+
 	if DEBUG:
 		print("imputateNaNs: Constant adjustments completed")
 
@@ -139,13 +139,13 @@ def imputateNaNs(df):
 
 	# 2. setup a simple imputator for replacing values with their series mean/
 	nanImp = SimpleImputer(missing_values=np.nan, strategy="mean")
-	
+
 	# 3. Use integerNANCols_df for column-wise transforms/
 	for col in integerNANCols_df:
 		nanValCheck_boolarr = df.loc[:, col].isna()
 		if nanValCheck_boolarr.sum() > 0:
 			df[col] = nanImp.fit_transform(df[[col]])
-	
+
 	if DEBUG:
 		print("imputateNaNs: imputation completed")
 		print("imputateNaNs:\n{}".format(df.head()))
@@ -162,7 +162,7 @@ def splitGlobalStats(df):
 		if globalCheck_boolarr.sum() > 0:
 			# 2. retrieve indexes of GLOBAL stats
 			globals_df = df[globalCheck_boolarr]
-			
+
 			if DEBUG:
 				print("splitGlobalStats: dropped and added global dat\n")
 				print("\t###\n")
@@ -197,7 +197,7 @@ def binaryPreProcessor(df):
 	# 1. Determine number of unique values in a column, mask for 2
 	binaryCols_boolarr = df.nunique() == 2
 	binaryCols_list = df.columns[binaryCols_boolarr]
-	
+
 	if DEBUG:
 		print("binaryPreProcessor:\n{}\n".format(df.nunique()))
 		print("binaryPreProcessor: binary columns to adjust\n{}\n\n".format(binaryCols_boolarr))
@@ -209,7 +209,7 @@ def binaryPreProcessor(df):
 	# encode on the discrete range [0, 1, ..., n - 1, n]
 	ordinalEncoder = pre.OrdinalEncoder()
 	binaryDimensions_df = df[binaryCols_list]
-	
+
 	for col in binaryCols_list:
 		try:
 			df[col] = ordinalEncoder.fit_transform(df[[col]]).astype('bool')
@@ -272,10 +272,10 @@ def numericaliseDisplayValueDimension(displayValueColumn):
 
 def runPreChecks():
 	# TODO: return as bool for eval checks
-	
+
 	global RAW_DF_LIST
 	global RAWGLOBAL_DF_LIST
-	
+
 	if DEBUG:
 		i = 1
 
@@ -301,7 +301,7 @@ def runPreChecks():
 
 		if "PUBLISHSTATE" in raw_df.columns:
 			raw_df.drop(columns=["PUBLISHSTATE"], inplace=True, axis=1)
-		
+
 		dropIndex(raw_df)
 		dropConstantColumns(raw_df)
 		raw_df.drop_duplicates(ignore_index=True, inplace=True)
@@ -311,9 +311,9 @@ def runPreChecks():
 			# add the global data to its own list
 			if DEBUG:
 				print("runPreChecks: GLOBAL DF DESCRIBE:\n{}\n".format(globalDataRes.head()))
-			
+
 			RAWGLOBAL_DF_LIST.append(globalDataRes)
-		
+
 		dropHighNaNCols(raw_df)
 
 		####
@@ -334,16 +334,16 @@ def runPreChecks():
 			if DEBUG:
 				print("\nrunPreChecks: Adjusting Display Value type.\n")
 			raw_df["Display Value"] = numericaliseDisplayValueDimension(raw_df["Display Value"])
-			
+
 			try:
 				raw_df["Display Value"] = raw_df["Display Value"].astype("float64")
 			except ValueError as e:
 				if DEBUG:
 					print("\n###\nrunPreChecks:", e, "\n###\n")
-		
+
 		# 5. Adjust labelling on categoricals, imputating values
 		encodeCategoricals(raw_df)
-		
+
 		# Counter for debug printing
 		if DEBUG:
 			i += 1
