@@ -5,11 +5,13 @@
 from src import create_app
 
 app = create_app()
-app.run(debug=True, host='134.122.104.123')
+
+Local = False
+
 import sys
 
-if "everywhere" in sys.argv:
+if Local == False:
 # if __name__ == "__main__":
-    pass
+    app.run(debug=True, host='134.122.104.123')
 else:
-    pass
+    app.run(debug=True, host='localhost')
