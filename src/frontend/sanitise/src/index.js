@@ -1,21 +1,35 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
+import * as apis from './APILoader.js';
 
-class Message extends React.Component {
+apis.ghibliapi();
+
+let skiData = {
+	total: 2,
+	powder: 20,
+	backCountry: 10,
+	goal: 100
+}
+
+class SkiDayCounter extends React.Component {
 	render() {
-		console.log(this.props.msg);
 		return (
-			<div>
-				<h1 style={{color: this.props.color}}>
-					{this.props.msg}</h1>
-				<p> I'll check back in {this.props.minutes} minutes</p>
-			</div>
+			<section>
+				<div>
+
+				</div>
+			</section>
 		)
 	}
 }
 
-
-ReactDOM.render(<Message msg="How are you?" color="Blue" minutes={5}/>, 
+ReactDOM.render(
+	<SkiDayCounter
+		total={skiData.total}
+		powder={skiData.powder}
+		backCountry={skiData.backCountry}
+			/>, 
 	document.getElementById('root')
 )
+
 
