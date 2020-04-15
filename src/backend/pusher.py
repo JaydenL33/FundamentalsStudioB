@@ -3,7 +3,7 @@ data schema. Guarantees correct typing and secure connection.
 """
 
 # core
-from .. import environConfig
+from core import environConfig
 
 # third party libs
 import pymysql

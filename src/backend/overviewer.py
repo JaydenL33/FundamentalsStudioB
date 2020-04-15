@@ -1,5 +1,5 @@
 # core
-from .. import environConfig
+from core import environConfig
 
 # third-party libs
 import pandas as pd
