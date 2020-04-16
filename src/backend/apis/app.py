@@ -6,11 +6,9 @@ from src import create_app
 
 app = create_app()
 
-Local = True
-
+Local = False
+print("Is it reaching this error?")
 if Local == False:
     app.run(debug=True, host='134.122.104.123')
 else:
     app.run(debug=True, host='localhost')
-
-print("Is it reaching this error?")
