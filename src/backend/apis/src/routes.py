@@ -284,14 +284,26 @@ api = Blueprint("api", __name__)
 #         return Response(res, status=400, mimetype="application/json")
 
 
-@api.route("/test", methods=["POST"])
+@api.route("/test", methods=["GET", "POST"])
 def testFunction():
-    req = request.json
-    res = {}
 
-    res = json.dumps(res)
+	req = request.json
+	res = {
+	"successful": True,
+	"date": str(datetime.now()),
+	"text": [],
+	}
 
-    return Response(res, status=200, mimetype="application/json")
+	for i in range(10):
+		res["text"].append(
+		{
+		"name": "Jayden",
+		"count": i,
+		}
+		)
+
+	res = json.dumps(res)
+	return Response(res, status=200, mimetype="application/json")
 
 
 @api.route("/")
