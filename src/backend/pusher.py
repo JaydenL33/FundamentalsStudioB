@@ -103,4 +103,4 @@ for df in RAW_DF_LIST:
 
 for df in RAWGLOBAL_DF_LIST:
 	print(df["schema"].iloc[0])
-	push(df, df["schema"].iloc[0],  "rawdata")
+	push(df, df["schema"].iloc[0]+"_GLOBAL",  "rawdata")
