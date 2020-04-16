@@ -9,6 +9,7 @@ from core import environConfig
 import pandas as pd
 import sqlalchemy
 from sqlalchemy.types import Integer, Text, String, DateTime, Numeric, Float, Boolean
+import numpy as np
 
 # python core
 import pickle
@@ -37,8 +38,6 @@ def dbConnect(rawORprocessed):
 		return False;
 
 	engine = sqlalchemy.create_engine(URI_str)
-	print(engine)
-
 	return engine
 
 def pushFrame(df, connex, name, schema):
@@ -51,21 +50,19 @@ def pushFrame(df, connex, name, schema):
 	"""
 
 	def _convertDtypes(df):
-
-		def _switcher(arg):
-			switcher = {
-				"int64": Integer,
-				"float64": Float,
-				"object": String,
-				"datetime": DateTime,
-				"bool": Boolean,
-			}
+		switcher = {
+			np.dtype("int64"): Integer,
+			np.dtype("float64"): Float,
+			np.dtype("object"): String,
+			np.dtype("datetime64"): DateTime,
+			np.dtype("bool"): Boolean,
+		}
 
 		cols_list = df.columns.tolist()
 		types_list = df.dtypes.tolist()
 
 		for i in range(len(types_list)):
-			types_list[i] = _switcher(types_list[i])
+			types_list[i] = switcher.get(types_list[i], "TEXT")
 
 		return dict(zip(cols_list, types_list))
 
@@ -80,28 +77,34 @@ def pushFrame(df, connex, name, schema):
 	_dtype = _convertDtypes(df) # dictionary returned
 
 	try:
-		#df.to_sql(name, con=_con, schema=_schema, if_exists=_overwrite_setting,
-                #          index=_index, chunksize=_chunksize, dtype=_dtype,
-                #          method=_method)
-		df.to_sql(name, con=_con, dtype=_dtype)
+		df.to_sql(name, con=_con, schema=_schema, if_exists=_overwrite_setting,
+                          index=_index, chunksize=_chunksize, dtype=_dtype,
+                          method=_method)
+		#df.to_sql(name, con=_con, dtype=_dtype)
 		connex.execute("SELECT * FROM {}".format(name)).fetchall
 		print()
+		return True
 
 	except ValueError as e:
 		print(e)
 		return False
-
-		return True
+	return False
 
 
 # public interface
-def push(df, name):
+def push(df, name, opt):
 	"""Note, schema is the db to write to within our MySQL storage."""
-	return pushFrame(df, dbConnect("raw"), name, "rawdata")
+	return pushFrame(df, dbConnect(opt), name, opt)
 
 
 # test
 with open(os.path.join(baseDir, "processing_dump.txt"), "rb") as procData:
-	df_list = pickle.load(procData)
+	RAWDF_LIST = pickle.load(procData)
+with open(os.path.join(baseDir, "globaldata_processing_dump.txt"), "rb") as globData:
+	RAWGLOBAL_DF_LIST = pickle.load(globData)
 
-push(df_list[0], "test")
+for df in RAW_DF_LIST:
+	push(df, df["schema"], "raw")
+
+for df in RAWGLOBAL_DF_LIST:
+	push(df, df["schema"],  "raw")
