@@ -4,11 +4,11 @@
 
 from src import create_app
 
-app = create_app()
+server = create_app()
 
-Local = False
+Local = True
 print("Is it reaching this error?")
 if Local == False:
-    app.run(debug=True, host='134.122.104.123')
+    server.run(debug=True, host='134.122.104.123')
 else:
-    app.run(debug=True, host='localhost')
+    server.run(debug=True, host='localhost')
