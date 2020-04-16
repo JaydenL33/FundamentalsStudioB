@@ -26,17 +26,10 @@ baseDir = env.str("BASE_DATA_DIR")
 
 #################################################################################
 
-def dbConnect(rawORprocessed):
+def dbConnect():
 	# pull sensitive settings from local.env for database login
 	env = environConfig.safe_environ()
 	URI_str = env("DB_URI")
-	if rawORprocessed == "raw":
-		URI_str += "/rawdata"
-	elif rawORprocessed == "processed":
-		URI_str += "/processeddata"
-	else:
-		return False;
-
 	engine = sqlalchemy.create_engine(URI_str)
 	return engine
 
@@ -53,7 +46,7 @@ def pushFrame(df, connex, name, schema):
 		switcher = {
 			np.dtype("int64"): Integer,
 			np.dtype("float64"): Float,
-			np.dtype("object"): String,
+			np.dtype("object"): String(32),
 			np.dtype("datetime64"): DateTime,
 			np.dtype("bool"): Boolean,
 		}
@@ -81,12 +74,11 @@ def pushFrame(df, connex, name, schema):
                           index=_index, chunksize=_chunksize, dtype=_dtype,
                           method=_method)
 		#df.to_sql(name, con=_con, dtype=_dtype)
-		connex.execute("SELECT * FROM {}".format(name)).fetchall
-		print()
+		print(connex.execute("SELECT * FROM {}.{}".format(schema, name)).fetchall()[:10])
 		return True
 
 	except ValueError as e:
-		print(e)
+#		print(e)
 		return False
 	return False
 
@@ -94,17 +86,21 @@ def pushFrame(df, connex, name, schema):
 # public interface
 def push(df, name, opt):
 	"""Note, schema is the db to write to within our MySQL storage."""
-	return pushFrame(df, dbConnect(opt), name, opt)
-
+	return pushFrame(df, dbConnect(), name, opt)
 
 # test
 with open(os.path.join(baseDir, "processing_dump.txt"), "rb") as procData:
-	RAWDF_LIST = pickle.load(procData)
+	RAW_DF_LIST = pickle.load(procData)
 with open(os.path.join(baseDir, "globaldata_processing_dump.txt"), "rb") as globData:
 	RAWGLOBAL_DF_LIST = pickle.load(globData)
 
+print("\n\nDF INFO\n{}\t{}\n".format(len(RAW_DF_LIST), len(RAWGLOBAL_DF_LIST)))
+input()
+
 for df in RAW_DF_LIST:
-	push(df, df["schema"], "raw")
+	print(df["schema"].iloc[0])
+	push(df, df["schema"].iloc[0], "rawdata")
 
 for df in RAWGLOBAL_DF_LIST:
-	push(df, df["schema"],  "raw")
+	print(df["schema"].iloc[0])
+	push(df, df["schema"].iloc[0],  "rawdata")
