@@ -6,9 +6,7 @@ data schema. Guarantees correct typing and secure connection.
 from core import environConfig
 
 # third party libs
-import pymysql
 import pandas as pd
-from pandas.io import to_sql
 from sqlalchemy.types import Integer, Text, String, DateTime, Numeric, Float, Boolean
 
 # python core
@@ -19,10 +17,10 @@ import os
 # Globals
 env = environConfig.safe_environ()
 
-DEBUG = env("DEBUG")
+DEBUG = env.bool("DEBUG")
 RAW_DF_LIST = []
 RAWGLOBAL_DF_LIST = []
-baseDir = env("BASE_DATA_DIR")
+baseDir = env.str("BASE_DATA_DIR")
 
 #################################################################################
 
@@ -30,7 +28,7 @@ def dbConnect():
 	# pull sensitive settings from local.env for database login
 	env = environConfig.safe_environ()
 	URI_str = env("DB_URI")
-	engine = create_engine(URI_str)
+	engine = sqlalchemy.create_engine(URI_str)
 
 	return engine
 
