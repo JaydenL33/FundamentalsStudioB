@@ -109,6 +109,9 @@ ENV/
 env.bak/
 venv.bak/
 .DS_STORE
+ENV_DIR/
+version/
+
 
 # Spyder project settings
 .spyderproject
