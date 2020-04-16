@@ -109,8 +109,6 @@ ENV/
 env.bak/
 venv.bak/
 .DS_STORE
-ENV_DIR/
-version/
 
 
 # Spyder project settings
@@ -197,6 +195,8 @@ Include/
 Scripts/
 tcl/
 pip*
+ENV_DIR/
+version/
 
 # raw data and todos
 *.csv
