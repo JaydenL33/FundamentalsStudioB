@@ -17,7 +17,7 @@ export function ghibliapi() {
         }
     }
     // The request actually gets executed here.
-    request.open('GET', 'http://localhost:5000/test', true)
+    request.open('GET', 'http://134.122.104.123:5000/test', true)
     
     request.send()
     return(data)
