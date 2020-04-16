@@ -9,6 +9,6 @@ server = create_app()
 Local = True
 print("Is it reaching this error?")
 if Local == False:
-    server.run(debug=True, host='134.122.104.123')
+    server.run(debug=False, host='134.122.104.123')
 else:
-    server.run(debug=True, host='localhost')
+    server.run(debug=False, host='localhost')
