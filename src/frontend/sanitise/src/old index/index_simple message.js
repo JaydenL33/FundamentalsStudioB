@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as apis from './APILoader.js';
 
-var sampledata = apis.objectLoader("http://134.122.104.123:5000/test");
-console.log(typeof(sampledata));
+var sampledata = apis.objectLoader(sampledata);
+console.log(sampledata)
 
 
 class Message extends React.Component {
@@ -20,7 +20,7 @@ class Message extends React.Component {
 }
 
 ReactDOM.render(
-		<Message color="Blue" msg="how are you?" minutes={sampledata.date} />,
+		<Message color="Blue" msg="how are you?" minutes="10" />,
 	document.getElementById('root')
 )
 
