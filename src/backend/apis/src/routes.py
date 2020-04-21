@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, Response, current_app
 from datetime import datetime
 import json
 import math
+import environConfig
 
 api = Blueprint("api", __name__)
 
@@ -304,6 +305,40 @@ def testFunction():
 
 	res = json.dumps(res)
 	return Response(res, status=200, mimetype="application/json")
+
+ 
+@api.route("/data", methods=["GET"])
+def dataCall(constructedData):
+    # req = request.json
+ 
+    res = {
+    "successful": True,
+    "data": [],
+    }
+ 
+    res["data"] = puller()
+ 
+    # for i in range(len(constructedData)):
+    #   res["data"].append(constructedData[i])
+ 
+    res = json.dumps(res) # json serializer
+    return Response(res, status=200, mimetype="application/json")
+ 
+ 
+def puller():
+    def dbConnect():
+        # pull sensitive settings from local.env for database login
+        env = environConfig.safe_environ()
+        URI_str = env("DB_URI")
+        engine = sqlalchemy.create_engine(URI_str)
+        return engine
+ 
+    engine = dbConnect()
+    BP_06 = db.Table("BP_06", db.Metadata(), autoload=True, autoload_with=engine)
+    queryset = db.select([BP_06]).limit(100)
+    ResultProxy = connection.execute(queryset)
+ 
+    return ResultProxy.fetchall()
 
 
 @api.route("/")
