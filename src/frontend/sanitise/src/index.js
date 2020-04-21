@@ -2,8 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import * as apis from './APILoader.js';
 
-var testData = apis.objectLoader("http://localhost:5000/test");
-console.log(testData);
 
 let bookList = [
 	{"title": "Hunger", "author": "Roxane Gay", "pages": 320},
