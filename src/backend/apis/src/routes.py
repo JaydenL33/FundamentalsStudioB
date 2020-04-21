@@ -3,6 +3,7 @@ from datetime import datetime
 import json
 import math
 import environConfig
+import sqlalchemy as db
 
 api = Blueprint("api", __name__)
 
@@ -308,7 +309,7 @@ def testFunction():
 
  
 @api.route("/data", methods=["GET"])
-def dataCall(constructedData):
+def dataCall():
     # req = request.json
  
     res = {
@@ -330,7 +331,7 @@ def puller():
         # pull sensitive settings from local.env for database login
         env = environConfig.safe_environ()
         URI_str = env("DB_URI")
-        engine = sqlalchemy.create_engine(URI_str)
+        engine = db.create_engine(URI_str)
         return engine
  
     engine = dbConnect()
