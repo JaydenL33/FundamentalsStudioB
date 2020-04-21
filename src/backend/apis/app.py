@@ -6,7 +6,7 @@ from src import create_app
 
 server = create_app()
 
-Local = True
+Local = False
 if Local == False:
     server.run(debug=False, host='134.122.104.123')
 else:
