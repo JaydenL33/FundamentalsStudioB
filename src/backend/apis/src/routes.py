@@ -65,8 +65,8 @@ def puller():
     connection = engine.connect()
     # create a query with the current session
     # Create a definition of the existing table for sqlalchemy
-    BP_06 = db.Table("BP_06", db.MetaData(), autoload=True, autoload_with=engine)
-    queryset = session.query(BP_06).limit(100).all()
+    COVID19 = db.Table("COVID19", db.MetaData(), autoload=True, autoload_with=engine)
+    queryset = session.query(COVID19).limit(100).all()
     # queryset = db.select([BP_06]).limit(100)
     # ResultProxy = connection.execute(queryset)
 
