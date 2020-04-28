@@ -1,3 +1,7 @@
+__doc__="""This is the routes python modules, 
+"""
+
+
 from flask import Blueprint, jsonify, request, Response, current_app
 from datetime import datetime
 import json
@@ -6,7 +10,46 @@ import environConfig
 import sqlalchemy as db
 from sqlalchemy.orm import sessionmaker
 
+# The API Route when api:// is localhost:5000/ or 134.122.104.123:5000/
+
 api = Blueprint("api", __name__)
+
+"""
+Route: ("IPADDR:3000/test")
+Function: The function first takes the request from request.json to process the GETREQUEST, which should be null.
+
+
+## Test Function
+
+```
+POST api://test
+
+
+body        application/json
+-----------------------
+{
+    NULL
+}
+
+
+returns     application/json
+-----------------------
+{
+    successful: bool,
+    totalhits: int,
+    date: str,
+    text: [
+        {
+            name: str,
+            count: int,
+
+        }
+    ]
+    
+}
+
+
+"""
 
 @api.route("/test", methods=["GET", "POST"])
 def testFunction():
@@ -30,6 +73,44 @@ def testFunction():
 	return Response(res, status=200, mimetype="application/json")
 
  
+"""
+Route: ("IPADDR:3000/data")
+Function: The function is able to draw information from a specific table in the SQL data and pass it out
+as a json object. 
+
+## Test Function
+
+```
+POST api://data
+
+
+body        application/json
+-----------------------
+{
+    NULL
+}
+
+
+returns     application/json
+-----------------------
+{
+    successful: bool,
+    totalhits: int,
+    date: str,
+    text: [
+        {
+            name: str,
+            count: int,
+
+        }
+    ]
+    
+}
+
+
+"""
+
+
 @api.route("/data", methods=["GET"])
 def dataCall():
     # req = request.json
@@ -48,7 +129,16 @@ def dataCall():
     return Response(res, status=200, mimetype="application/json")
  
  
+
+
 def puller():
+    """Write records stored in a DataFrame to a SQL database.
+
+    Databases supported by SQLAlchemy are supported.
+    Tables can be newly created, appended to, or overwritten.
+
+    see: pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html
+    """
     def dbConnect():
         # pull sensitive settings from local.env for database login
         env = environConfig.safe_environ()
