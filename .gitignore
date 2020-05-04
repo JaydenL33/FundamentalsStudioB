@@ -294,4 +294,4 @@ todo.*
 todo.md
 
 # node stff
-src\santise\node_modules\*
+src/sanitise/node_modules/*
