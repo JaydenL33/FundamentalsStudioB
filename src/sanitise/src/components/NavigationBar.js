@@ -6,39 +6,60 @@
 import React from 'react';
 import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 // Albert: styles definition for Navbar hover, branding, spannig and general
+// note: use spacing and flex utilities to size and position content
+// https://react-bootstrap.github.io/components/navbar/
 const Styles = styled.div`
-  .navbar { background-color: #222; }
+  .navbar { background-color: #101010; }
   a, .navbar-nav, .navbar-light .nav-link {
-    color: #9FFFCB;
-    &:hover { color: white; }
+    font-size: 1.2em;
+    color: #FFFFFF;
+    &:hover { color: #1D7CFF; }
   }
   .navbar-brand {
-    font-size: 1.4em;
-    color: #9FFFCB;
-    &:hover { color: white; }
+    font-size: 2.2em;
+    color: #FFFFFF;
+    &:hover { color: #EF1C45; }
+    padding-left: 2em;
   }
-  .form-center {
-    position: absolute !important;
-    left: 25%;
-    right: 25%;
+
+  .vl {
+    content: "";
+    background-color: #FFFFFF;
+    width: 2px;
+    height: 1.5em;
+    margin-right: 3em;
+    margin-left: 1.5em;
+    display: inline-block;
+    vertical-align: middle;
   }
 `;
 
 // The navbar component, takes the style and creates a dynamic "object" for UX
 export const NavigationBar = () => (
   <Styles>
-    <Navbar expand="lg">
-      <Navbar.Brand href="/">Tutorial</Navbar.Brand>
+    <Navbar expand="lg" sticky="top">
+      <Navbar.Brand href="/">SANITISE.MEDIA</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
-      <Form className="form-center">
-        <FormControl type="text" placeholder="Search" className="" />
-      </Form>
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="ml-auto">
-          <Nav.Item><Nav.Link href="/">Home</Nav.Link></Nav.Item> 
-          <Nav.Item><Nav.Link href="/about">About</Nav.Link></Nav.Item>
+        <Nav className="mx-auto">
+            <Nav.Item>
+                <Nav.Link href="/Indicators"><div class="vl"/>Indicators</Nav.Link>
+            </Nav.Item>
+
+            <Nav.Item>
+                <Nav.Link href="/Story"><div class="vl"/>Story</Nav.Link>
+            </Nav.Item>
+            
+            <Nav.Item>
+                <Nav.Link href="/AboutUs"><div class="vl"/>About Us</Nav.Link>
+            </Nav.Item>
+            
+            <Nav.Item>
+                <Nav.Link href="/ContactUs"><div class="vl"/>Contact Us</Nav.Link>
+            </Nav.Item>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
