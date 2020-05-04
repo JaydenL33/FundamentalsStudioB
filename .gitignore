@@ -282,7 +282,6 @@ dmypy.json
 
 # raw data and todos
 *.csv
-*.pdf
 todo.md
 
 # node stff
