@@ -25,17 +25,10 @@ baseDir = env.str("BASE_DATA_DIR")
 
 #################################################################################
 
-def dbConnect(rawORprocessed):
+def dbConnect():
 	# pull sensitive settings from local.env for database login
 	env = environConfig.safe_environ()
 	URI_str = env("DB_URI")
-	if rawORprocessed == "raw":
-		URI_str += "/rawdata"
-	elif rawORprocessed == "processed":
-		URI_str += "/processeddata"
-	else:
-		return False;
-
 	engine = sqlalchemy.create_engine(URI_str)
 	print(engine)
 
@@ -56,7 +49,7 @@ def pushFrame(df, connex, name, schema):
 			switcher = {
 				"int64": Integer,
 				"float64": Float,
-				"object": String,
+				"object": String(32),
 				"datetime": DateTime,
 				"bool": Boolean,
 			}
@@ -73,7 +66,7 @@ def pushFrame(df, connex, name, schema):
 	_name = name
 	_overwrite_setting = 'replace'
 	_schema = schema
-	_index = False
+	_index = True
 	_chunksize = 100
 	_method = "multi"
 
@@ -95,13 +88,18 @@ def pushFrame(df, connex, name, schema):
 
 
 # public interface
-def push(df, name):
-	"""Note, schema is the db to write to within our MySQL storage."""
-	return pushFrame(df, dbConnect("raw"), name, "rawdata")
-
+def push(df, name, opt):
+        """Note, schema is the db to write to within our MySQL storage."""
+        return pushFrame(df, dbConnect(), name, opt)
 
 # test
 with open(os.path.join(baseDir, "processing_dump.txt"), "rb") as procData:
-	df_list = pickle.load(procData)
+        RAWDF_LIST = pickle.load(procData)
+with open(os.path.join(baseDir, "globaldata_processing_dump.txt"), "rb") as globData:
+        RAWGLOBAL_DF_LIST = pickle.load(globData)
 
-push(df_list[0], "test")
+for df in RAW_DF_LIST:
+        push(df, df["schema"].iloc[0], "rawdata")
+
+for df in RAWGLOBAL_DF_LIST:
+        push(df, df["schema"].iloc[0],  "rawdata")
