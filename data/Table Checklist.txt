@@ -1,0 +1,17 @@
+WHO Indicator Data
+
+SDGIHR:		Average of 13 International Health Regulations core capacity scores
+cci:		Composite coverage index (%)
+FINPROTECTION_CATA_TOT_10_POP:		Population with household expenditures on health greater than 10% of total household expenditure or income
+FINPROTECTION_CATA_TOT_25_POP:		Population with household expenditures on health greater than 25% of total household expenditure or income
+NCD_CCS_rheumreg:		Existence of a register of patients who had rheumatic fever and rheumatic heart disease
+BP_06:		Mean systolic blood pressure (age-standardized estimate)
+HWF_0002:		Medical doctors (number)
+SA_0000001807:		Cancer, age-standardized death rates (15+), per 100,000 population
+GHED_CHEGDP_SHA2011:		Current health expenditure (CHE) as percentage of gross domestic product (GDP) (%)
+GHED_CHE_pc_PPP_SHA2011:		Current health expenditure (CHE) per capita in PPP int$
+IHRSPAR_CAPACITY03:		Zoonotic Events and the Human-animal Interface
+
+ECDC Sars-Cov2 Data (AKA COVID19)
+
+COVID19:		COVID-19-geographic-disbtribution-worldwide

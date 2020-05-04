@@ -1,13 +1,18 @@
-# core
-from core import environConfig
+__doc__="""Overviewer runs the prechecks and initial import of any data sources
+we pull. This includes NaN, duplicate, missing data, erroneous strings checks as
+well as label encoding for binary and categorical data.
+"""
 
-# third-party libs
+# core
+# from core import environConfig
+
+# third party libs
 import pandas as pd
 import numpy as np
 from sklearn import preprocessing as pre
 from sklearn.impute import SimpleImputer
 
-# core python
+# python core
 import math
 import time
 import pickle
@@ -17,9 +22,14 @@ import os
 # Globals
 env = environConfig.safe_environt()
 
-DEBUG = env("DEBUG")
+ATTRIBUTES = {
+}
+
 RAW_DF_LIST = []
 RAWGLOBAL_DF_LIST = []
+
+DEBUG = env("DEBUG")
+
 baseDir = env("BASE_DATA_DIR")
 
 #################################################################################
@@ -29,7 +39,7 @@ baseDir = env("BASE_DATA_DIR")
 #################################################################################
 # Load up the raw data
 
-# retrieve the WHO Indicator Data
+# retrieve the WHO Indicator Data and create a HDF (human data format) checklist
 with open(os.path.join(baseDir, "WHO_INDICATORS.txt"), "rb") as whoIndicators:
 	ATTRIBUTES = pickle.load(whoIndicators)
 
@@ -52,6 +62,7 @@ RAW_DF_LIST.append(pd.read_excel(ecdc_path))
 def dropConstantColumns(df):
 	# 1. Determine number of unique values in a column, mask for 1
 	dataUnique_boolarr = df.nunique().isin([1])
+
 
 	if True not in dataUnique_boolarr:
 		return False
@@ -130,7 +141,7 @@ def imputateNaNs(df):
 				df[col] = df[col].astype("float64")
 			except ValueError:
 				pass
-
+		
 	if DEBUG:
 		print("imputateNaNs: Constant adjustments completed")
 
@@ -139,13 +150,13 @@ def imputateNaNs(df):
 
 	# 2. setup a simple imputator for replacing values with their series mean/
 	nanImp = SimpleImputer(missing_values=np.nan, strategy="mean")
-
+	
 	# 3. Use integerNANCols_df for column-wise transforms/
 	for col in integerNANCols_df:
 		nanValCheck_boolarr = df.loc[:, col].isna()
 		if nanValCheck_boolarr.sum() > 0:
 			df[col] = nanImp.fit_transform(df[[col]])
-
+	
 	if DEBUG:
 		print("imputateNaNs: imputation completed")
 		print("imputateNaNs:\n{}".format(df.head()))
@@ -162,7 +173,7 @@ def splitGlobalStats(df):
 		if globalCheck_boolarr.sum() > 0:
 			# 2. retrieve indexes of GLOBAL stats
 			globals_df = df[globalCheck_boolarr]
-
+			
 			if DEBUG:
 				print("splitGlobalStats: dropped and added global dat\n")
 				print("\t###\n")
@@ -197,7 +208,7 @@ def binaryPreProcessor(df):
 	# 1. Determine number of unique values in a column, mask for 2
 	binaryCols_boolarr = df.nunique() == 2
 	binaryCols_list = df.columns[binaryCols_boolarr]
-
+	
 	if DEBUG:
 		print("binaryPreProcessor:\n{}\n".format(df.nunique()))
 		print("binaryPreProcessor: binary columns to adjust\n{}\n\n".format(binaryCols_boolarr))
@@ -209,10 +220,13 @@ def binaryPreProcessor(df):
 	# encode on the discrete range [0, 1, ..., n - 1, n]
 	ordinalEncoder = pre.OrdinalEncoder()
 	binaryDimensions_df = df[binaryCols_list]
-
+	
 	for col in binaryCols_list:
 		try:
-			df[col] = ordinalEncoder.fit_transform(df[[col]]).astype('bool')
+			# df[col] = ordinalEncoder.fit_transform(df[[col]]).astype('bool')
+			# Append the encoded rather than over writing
+			new_col = col + '_binary_encoding'
+			df[new_col] = ordinalEncoder.fit_transform(df[[col]]).astype('bool')
 
 			if DEBUG:
 				print("binaryPreProcessor:\n{}\n".format(df[[col]]))
@@ -241,12 +255,22 @@ def encodeCategoricals(df):
 		print("encodeCategoricals: categorical columns\n{}".format(categoricalCols_df.head()))
 
 	for col in categoricalCols_df.columns:
+		if col == "schema":
+			continue
+
 		try:
 			if DEBUG:
 				print("encodeCategoricals: attempting\n{}".format(col))
-			df[[col]] = ordinalEncoder.fit_transform(df[[col]])
+			# df[[col]] = ordinalEncoder.fit_transform(df[[col]])
+			# Append the encoded rather than over writing
+			new_col = col + '_encoding'
+			df[new_col] = ordinalEncoder.fit_transform(df[[col]])
+
 		except AttributeError:
 			print("encodeCategoricals: AttributeError")
+			pass
+		except TypeError:
+			print("encodeCategoricals: TypeError")
 			pass
 
 	return True
@@ -272,13 +296,11 @@ def numericaliseDisplayValueDimension(displayValueColumn):
 
 def runPreChecks():
 	# TODO: return as bool for eval checks
-
+	
 	global RAW_DF_LIST
 	global RAWGLOBAL_DF_LIST
-
-	if DEBUG:
-		i = 1
-
+	
+	i = 1
 	for raw_df in RAW_DF_LIST:
 		if DEBUG:
 			print("\n\n#################################################################################")
@@ -288,19 +310,33 @@ def runPreChecks():
 
 		#####
 		# 1. Drop any immediately irrelevant columns here.
-		#    Then drop any duplicate rows, constnat columns, 
+		#    Then drop any duplicate rows, constant columns, 
 		#    index if it exists, global data and any high Nan content.
+		#	 Apply database normalisation rules: if a col depends on
+		#	 calc's from another, drop it.
 		#####
 
-		# if Comments in the frame, drop them
-		if "Comments" in raw_df.columns:
-			raw_df.drop(columns=["Comments"], inplace=True, axis=1)
+		drops_list = [
+		"Comments", "PUBLISHSTATE","Display Value",
+		"High", "Low", "DATASOURCE", "DHSMICSGEOREGION",
+		"REGION", "geoId", "countryterritoryCode",
+		]
+
 		# if from GHO, drop the "GHO" column
 		if "GHO" in raw_df.columns:
-			raw_df.drop(columns=["GHO"], inplace=True, axis=1)
+			raw_df.rename(columns={"GHO":"schema"}, inplace=True)
+		else:
+			# add a name identifier for indexing in our db later
+			raw_df["schema"] = "COVID19"
 
-		if "PUBLISHSTATE" in raw_df.columns:
-			raw_df.drop(columns=["PUBLISHSTATE"], inplace=True, axis=1)
+		for col in drops_list:
+			try:
+				if col in raw_df.columns:
+					raw_df.drop(columns=col, inplace=True, axis=1)
+				else:
+					pass
+			except KeyError:
+				pass
 
 		dropIndex(raw_df)
 		dropConstantColumns(raw_df)
@@ -311,9 +347,9 @@ def runPreChecks():
 			# add the global data to its own list
 			if DEBUG:
 				print("runPreChecks: GLOBAL DF DESCRIBE:\n{}\n".format(globalDataRes.head()))
-
+			
 			RAWGLOBAL_DF_LIST.append(globalDataRes)
-
+		
 		dropHighNaNCols(raw_df)
 
 		####
@@ -323,7 +359,9 @@ def runPreChecks():
 		# drop any remaining rows with NaN data (usually WHO regions)
 		raw_df.dropna(inplace=True)
 
+		####
 		# 3. Adjust encoding for binaries
+		####
 		binaryPreProcessor(raw_df)
 
 		####
@@ -334,19 +372,24 @@ def runPreChecks():
 			if DEBUG:
 				print("\nrunPreChecks: Adjusting Display Value type.\n")
 			raw_df["Display Value"] = numericaliseDisplayValueDimension(raw_df["Display Value"])
-
+			
 			try:
 				raw_df["Display Value"] = raw_df["Display Value"].astype("float64")
 			except ValueError as e:
 				if DEBUG:
 					print("\n###\nrunPreChecks:", e, "\n###\n")
 
+		####
 		# 5. Adjust labelling on categoricals, imputating values
+		####
 		encodeCategoricals(raw_df)
 
-		# Counter for debug printing
+		# debug prints and counter update
 		if DEBUG:
-			i += 1
+			print(raw_df.head())
+			input()
+
+		i += 1
 
 # run prechecks
 runPreChecks()
@@ -355,6 +398,24 @@ if DEBUG:
 	print("\t###\n")
 	print("\tWRITING TO BINARY DUMP...")
 	print("\t###\n")
+
+# assert we actually completed the data prechecks correctly
+k = os.system("cls")
+
+for df in RAW_DF_LIST:
+	print(df.head())
+
+# write output to file dumps
+with open(os.path.join(baseDir, "Table Checklist.txt"), 'w+') as hdf_checklist:
+	hdf_checklist.write("WHO Indicator Data\n\n")
+
+	for key in ATTRIBUTES:
+		hdf_checklist.write(ATTRIBUTES[key] + ":\t\t" + key)
+		hdf_checklist.write("\n")
+
+	hdf_checklist.write("\nECDC Sars-Cov2 Data (AKA COVID19)\n\n")
+	hdf_checklist.write("COVID19:\t\tCOVID-19-geographic-disbtribution-worldwide")
+
 
 with open("processing_dump.txt", "wb") as fn:
 	pickle.dump(RAW_DF_LIST, fn)
