@@ -203,3 +203,6 @@ version/
 *.pdf
 # todo files
 todo.*
+
+# ignore the docs folder locally, should only be affected on the server
+docs/*
