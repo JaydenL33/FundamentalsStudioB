@@ -1,16 +1,22 @@
-import matplotlib.pyplot as plt
-import pandas as pd
-import pickle
-import numpy as np
-import seaborn as sn
+# Python CORE
 import os
+import pickle
 
+# DATA MANIP: PANDAS AND NUMPY
+import pandas as pd
+import numpy as np
+
+# SEABORN
+import seaborn as sns
+
+# MATPLOTLIB
+import matplotlib.gridspec as gridspec
+import matplotlib.pyplot as plt
+# SKLEARN
 from sklearn.preprocessing import (MinMaxScaler, StandardScaler)
 from sklearn.impute import SimpleImputer
 
-fn = os.path.join(os.pardir, "processing_dump.txt")
-
-def splicer():
+def splicer(df_list):
 	# get max index size of df in list
 	max_idx = 0
 	for df in df_list:
@@ -19,10 +25,8 @@ def splicer():
 
 	# compute the new df's col names and index size
 	index = df_list[0].index
-	columns = [df.schema[0] for df in df_list]
+	columns = [df["schema"][0] for df in df_list]
 	columns = columns[:-1]
-	columns.remove("SA_0000001807")
-	columns.remove("NCD_CCS_rheumreg")
 	columns.append("cases")
 	columns.append("deaths") 
 
@@ -38,20 +42,56 @@ def splicer():
 			pass
 	
 	# attach the covid data
-	cov_df = df_list[-1]
-	new_df["cases"] = cov_df["cases"]
-	new_df["deaths"] = cov_df["deaths"]
+	new_df["cases"] = df_list[-1]["cases"]
+	new_df["deaths"] = df_list[-1]["deaths"]
+	# drop any NaNs
+	new_df.dropna()
+
 	return new_df
 
 def groupbyMonthlyCovid(df):
+	"""
+	Author: Albert Ferguson
+	Reindex for time by retyping and applying a PeriodIndex selecting the M (mnonthly) opt.
+	Use the groupby function of a dataframe and the column we want to groupby, return a sum
+	"""
+
 	# convert to PeriodIndexing
 	df.dateRep = pd.to_datetime(df.dateRep)
 	# aggregate for monthly data
 	df = df.groupby(pd.PeriodIndex(df.dateRep, freq = "M"), axis = 0).sum()
 	# re add the schema
 	df["schema"] = "COVID19"
-	print(df.shape)
 	return df.reset_index()
+
+def groupbyCountry(df):
+	"""
+	Author: Albert Ferguson
+	Use the groupby function of a dataframe and the column we want to groupby, return a sum
+	Note: this differs from df to df as schema may change and the field for countries is labelled
+		differently.
+	"""
+
+	# aggregate for countriesAndTerritories data
+
+	# save the schema for re adding later..TODO: figure out non destructive method
+	schema_str = df.schema[0]
+
+	try:
+		df = df.groupby(df.countriesAndTerritories, axis = 0).sum()
+		df = df.reset_index()
+
+	except AttributeError:
+		try:
+			df = df.groupby(df.COUNTRY, axis = 0).sum()
+			df = df.reset_index()
+
+		except AttributeError:
+			pass
+
+	# re add the schema
+	df["schema"] = schema_str
+	return df
 
 def imputateMonthlyOther(df):
 	try:
@@ -73,22 +113,3 @@ def imputateMonthlyOther(df):
 	except KeyError:
 		return df[:5]
 	return df[:5].reset_index()
-
-def corr_plot(df):
-	df.corr(method ='kendall') 
-	corrMatrix = df.head(1000).corr()
-	sn.heatmap(corrMatrix, annot=True)
-	plt.savefig("corrMatrix.png")
-
-with open(fn, "rb") as f:
-	df_list = pickle.load(f)
-
-df_list[-1] = groupbyMonthlyCovid(df_list[-1])
-
-for i in range(len(df_list) - 1):
-	df_list[i] = imputateMonthlyOther(df_list[i])
-
-
-working_df = splicer()
-working_df.dropna()
-corr_plot(working_df)
