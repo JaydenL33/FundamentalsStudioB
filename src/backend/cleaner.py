@@ -1,10 +1,16 @@
-__doc__="""Overviewer runs the prechecks and initial import of any data sources
+__doc__="""Cleaner runs the prechecks and initial import of any data sources
 we pull. This includes NaN, duplicate, missing data, erroneous strings checks as
 well as label encoding for binary and categorical data.
 """
 
-# core
-# from core import environConfig
+# core user lib
+from core import environConfig
+
+# Python core
+import math
+import time
+import pickle
+import os
 
 # third party libs
 import pandas as pd
@@ -12,52 +18,67 @@ import numpy as np
 from sklearn import preprocessing as pre
 from sklearn.impute import SimpleImputer
 
-# python core
-import math
-import time
-import pickle
-import os
-
-#################################################################################
+################################################################################
 # Globals
-env = environConfig.safe_environt()
+# Some defaults in case env var fails.
+################################################################################
 
-ATTRIBUTES = {
-}
-
+ATTRIBUTES = {}
 RAW_DF_LIST = []
 RAWGLOBAL_DF_LIST = []
+DEBUG = False                                                      # verbose debug prints
+baseDir = os.path.join(os.path.join(os.pardir, os.pardir), "data") # file name for Raw Data (defaults to my local machine as ../../data)
 
-DEBUG = env("DEBUG")
+################################################################################
+# Utilities
+################################################################################
 
-baseDir = env("BASE_DATA_DIR")
+def _runStartup():
+	"""
+	Author: Albert Ferguson
+	Explicit startup function. Runs any necessary preloads for data and Globals updates.
+	Retrieves raw data and assigns Globals to env vars, runs default ones gracefully otherwise.
+	"""
+	# env = environConfig.safe_environ()
 
-#################################################################################
+	global RAW_DF_LIST
+	global DEBUG
+	global RAWGLOBAL_DF_LIST
+	global ATTRIBUTES
 
+	# update with the env config
+	# DEBUG = env("DEBUG")
+	# baseDir = env("BASE_DATA_DIR")
 
+	# env = environConfig.safe_environ()
 
-#################################################################################
-# Load up the raw data
+	# retrieve the WHO Indicator Data and create a HDF (human data format) checklist
+	try:
+		# data/WHO_INDICATORS.txt
+		with open(os.path.join(os.path.join(baseDir, "WHO"), "WHO_INDICATORS.txt"), "rb") as whoIndicators:
+			ATTRIBUTES = pickle.load(whoIndicators)
 
-# retrieve the WHO Indicator Data and create a HDF (human data format) checklist
-with open(os.path.join(baseDir, "WHO_INDICATORS.txt"), "rb") as whoIndicators:
-	ATTRIBUTES = pickle.load(whoIndicators)
+		for attributeID in ATTRIBUTES.values():
+			# data/WHO/*.csv
+			fn = os.path.join(os.path.join(baseDir, "WHO"), attributeID+".csv")
+			RAW_DF_LIST.append(pd.read_csv(fn, index_col=0, parse_dates=True))
 
-for attributeID in ATTRIBUTES.values():
-	fn = os.path.join(baseDir, attributeID+".csv")
-	RAW_DF_LIST.append(pd.read_csv(fn, index_col=0, parse_dates=True))
+		# data/ECDC/COVID-19-geographic-disbtribution-worldwide.xlsx
+		ecdc_path = os.path.join(os.path.join(baseDir, "ECDC"), "COVID-19-geographic-disbtribution-worldwide.xlsx")
+		RAW_DF_LIST.append(pd.read_excel(ecdc_path))
+	
+	except FileNotFoundError:
+		return False
 
-ecdc_path = os.path.join("ECDC", "COVID-19-geographic-disbtribution-worldwide.xlsx")
-RAW_DF_LIST.append(pd.read_excel(ecdc_path))
+	# TODO: add 1point3acres stuff here once granted access
 
-# TODO: add 1point3acres stuff here once granted access
+	# TODO: add Economic data stuff here once data sourced
 
-# TODO: add Economic data stuff here once data sourced
+	return True
 
-#################################################################################
-
-#################################################################################
-# Sanity, NaN, Null, zero dev checks
+################################################################################
+# Cleaners (NaNs, dups, imputators...)
+################################################################################
 
 def dropConstantColumns(df):
 	# 1. Determine number of unique values in a column, mask for 1
@@ -289,11 +310,7 @@ def numericaliseDisplayValueDimension(displayValueColumn):
 		# CASE: an int was passed instead of str, skip the subscript
 		return displayValueColumn
 
-#################################################################################
-
-#################################################################################
-# Runner code
-
+# implements all of the above
 def runPreChecks():
 	# TODO: return as bool for eval checks
 	
@@ -391,35 +408,55 @@ def runPreChecks():
 
 		i += 1
 
-# run prechecks
-runPreChecks()
+def output():
+	global ATTRIBUTES
+	global RAWGLOBAL_DF_LIST
+	global RAW_DF_LIST
+
+	try:
+		with open(os.path.join(baseDir, "Table Checklist.txt"), 'w+') as hdf_checklist:
+			hdf_checklist.write("WHO Indicator Data\n\n")
+
+			for key in ATTRIBUTES:
+				hdf_checklist.write(ATTRIBUTES[key] + ":\t\t" + key)
+				hdf_checklist.write("\n")
+
+			hdf_checklist.write("\nECDC Sars-Cov2 Data (AKA COVID19)\n\n")
+			hdf_checklist.write("COVID19:\t\tCOVID-19-geographic-disbtribution-worldwide")
+
+		with open(os.path.join(baseDir,"processing_dump.txt"), "wb") as fn:
+			pickle.dump(RAW_DF_LIST, fn)
+
+		with open(os.path.join(baseDir, "globaldata_processing_dump.txt"), "wb") as fn:
+			pickle.dump(RAWGLOBAL_DF_LIST, fn)
+	
+	except FileExistsError:
+		return False
+
+	except AttributeError:
+		return False
+
+	return True
+
+################################################################################
+# Main
+################################################################################
+
+if not _runStartup():
+	print("THERE WAS AN UNCAUGHT STARTUP ERROR")
+
+runPreChecks() # run prechecks
 
 if DEBUG:
 	print("\t###\n")
 	print("\tWRITING TO BINARY DUMP...")
 	print("\t###\n")
 
-# assert we actually completed the data prechecks correctly
-k = os.system("cls")
+	for df in RAW_DF_LIST:
+		print(df.head())
 
-for df in RAW_DF_LIST:
-	print(df.head())
-
-# write output to file dumps
-with open(os.path.join(baseDir, "Table Checklist.txt"), 'w+') as hdf_checklist:
-	hdf_checklist.write("WHO Indicator Data\n\n")
-
-	for key in ATTRIBUTES:
-		hdf_checklist.write(ATTRIBUTES[key] + ":\t\t" + key)
-		hdf_checklist.write("\n")
-
-	hdf_checklist.write("\nECDC Sars-Cov2 Data (AKA COVID19)\n\n")
-	hdf_checklist.write("COVID19:\t\tCOVID-19-geographic-disbtribution-worldwide")
+output() # write output to file dumps
 
 
-with open("processing_dump.txt", "wb") as fn:
-	pickle.dump(RAW_DF_LIST, fn)
-with open("globaldata_processing_dump.txt", "wb") as fn:
-	pickle.dump(RAWGLOBAL_DF_LIST, fn)
 
-#################################################################################
+
