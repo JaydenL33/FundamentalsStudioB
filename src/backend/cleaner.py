@@ -442,20 +442,21 @@ def output():
 # Main
 ################################################################################
 
-if not _runStartup():
-	print("THERE WAS AN UNCAUGHT STARTUP ERROR")
+def main():
+	if not _runStartup():
+		print("THERE WAS AN UNCAUGHT STARTUP ERROR")
 
-runPreChecks() # run prechecks
+	runPreChecks() # run prechecks
 
-if DEBUG:
-	print("\t###\n")
-	print("\tWRITING TO BINARY DUMP...")
-	print("\t###\n")
+	if DEBUG:
+		print("\t###\n")
+		print("\tWRITING TO BINARY DUMP...")
+		print("\t###\n")
 
-	for df in RAW_DF_LIST:
-		print(df.head())
+		for df in RAW_DF_LIST:
+			print(df.head())
 
-output() # write output to file dumps
+	output() # write output to file dumps
 
 
 

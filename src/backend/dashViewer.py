@@ -315,5 +315,6 @@ def makeAllThePlots():
 		plt.show()
 
 # Calling functions
-runStartup()
-makeAllThePlots()
+def main():
+	runStartup()
+	makeAllThePlots()

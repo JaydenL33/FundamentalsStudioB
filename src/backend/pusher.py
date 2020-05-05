@@ -159,10 +159,11 @@ def pushAll():
 # Main
 ################################################################################
 
-if not _runStartup():
-	print("UNCAUGHT STARTUP ERROR.")
+def main():
+	if not _runStartup():
+		print("UNCAUGHT STARTUP ERROR.")
 
-if DEBUG:
-	print("\n\nDF INFO\n{}\t{}\n".format(len(RAW_DF_LIST), len(RAWGLOBAL_DF_LIST)))
+	if DEBUG:
+		print("\n\nDF INFO\n{}\t{}\n".format(len(RAW_DF_LIST), len(RAWGLOBAL_DF_LIST)))
 
-pushAll() # atm just push all, this script isn't called otherwise
+	pushAll() # atm just push all, this script isn't called otherwise
