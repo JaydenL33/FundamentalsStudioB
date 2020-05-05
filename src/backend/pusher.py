@@ -21,10 +21,11 @@ import numpy as np
 # Some defaults in case env var fails.
 ################################################################################
 
+env = os.system("echo 'NO ENV SET'")                                # default echo if nothing set and it gets called
 RAW_DF_LIST = []
 RAWGLOBAL_DF_LIST = []
 baseDir =  os.path.join(os.path.join(os.pardir, os.pardir), "data") # file name for Raw Data (defaults to my local machine as ../../data)
-DEBUG = False                                                      # verbose debug prints
+DEBUG = False                                                       # verbose debug prints
 URI_str = ''
 
 ################################################################################
@@ -42,6 +43,7 @@ def _runStartup():
 	global RAW_DF_LIST
 	global RAWGLOBAL_DF_LIST
 	global baseDir
+	global env
 
 	# update with the env config
 	# DEBUG = env("DEBUG")
@@ -74,6 +76,8 @@ def dbConnect():
 	"""
 
 	global URI_str
+	global env
+
 	URI_str = env("DB_URI")
 	
 	engine = sqlalchemy.create_engine(URI_str)

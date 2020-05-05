@@ -32,7 +32,11 @@ baseDir = os.path.join(os.path.join(os.pardir, os.pardir), "data")
 # global for the figure sizing
 FIGSIZE = (20, 10)
 
-def runStartup():
+################################################################################
+# Utilities
+################################################################################
+
+def _runStartup():
 	"""
 	Author: Albert Ferguson
 	Explicit startup function. Runs any necessary preloads for data and Globals updates.
@@ -48,10 +52,22 @@ def runStartup():
 	# baseDir = env("BASE_DATA_DIR")
 
 	# call the read binary to read-in the data frames RAW
-	with open(os.path.join(baseDir, "processing_dump.txt"), "rb") as f:
-		df_list = pickle.load(f)
+	try:
+		with open(os.path.join(baseDir, "processing_dump.txt"), "rb") as f:
+			df_list = pickle.load(f)
+
+	except FileNotFoundError:
+		return False
 
 	return True
+
+################################################################################
+# Plots and scaling
+################################################################################
+
+# TODO: add scaling
+def scaler():
+	pass
 
 def makeAllThePlots():
 	"""
@@ -314,7 +330,12 @@ def makeAllThePlots():
 	if DEBUG:
 		plt.show()
 
-# Calling functions
+################################################################################
+# Main
+################################################################################
+
 def main():
-	runStartup()
+	if not _runStartup():
+		return False
+
 	makeAllThePlots()
