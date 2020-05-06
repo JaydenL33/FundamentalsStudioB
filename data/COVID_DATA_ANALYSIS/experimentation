@@ -1,6 +1,0 @@
-fn = "D:\Fund_studio_B\development\Raw_data\processing_dump.txt"
-import matplotlib as plt
-import matplotlib.pyplot as plt
-import pandas as pds
-import pandas as pd
-import pickle
