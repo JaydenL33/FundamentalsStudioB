@@ -28,3 +28,4 @@ def safe_environ():
 		return env
 	except FileNotFoundError:
 		return sys.exit(default_warn)
+

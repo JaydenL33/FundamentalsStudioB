@@ -110,6 +110,7 @@ env.bak/
 venv.bak/
 .DS_STORE
 
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -194,9 +195,14 @@ Include/
 Scripts/
 tcl/
 pip*
+ENV_DIR/
+version/
 
 # raw data and todos
 *.csv
 *.pdf
 # todo files
 todo.*
+
+# ignore the docs folder locally, should only be affected on the server
+docs/*
