@@ -26,10 +26,10 @@ class Header extends Component {
                 <img src="/SANITISE_LOGO.png" style={imagestyle} alt=""/>
                 <ul className="nav_links">
                     <li>
-                        <Link to="/Indicators">Indicators</Link>
+                        <Link to="/">Story</Link>
                     </li>
                     <li>
-                        <Link to="/Story">Story</Link>
+                        <Link to="/Indicators">Indicators</Link>
                     </li>
                     <li>
                         <Link to="/AboutUs">About Us</Link>
