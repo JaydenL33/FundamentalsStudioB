@@ -3,6 +3,7 @@ import ScrollOut from "scroll-out";
 
 import "./display.css"
 
+
 ScrollOut({
     
 });
