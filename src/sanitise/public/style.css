@@ -42,27 +42,10 @@ html {
 /* Header
 ----------------------------------------------- */
 
-li, a, button {
-    font-family: Montserrat, sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: #101010;
-    background-color: white;
-    text-decoration: none;
-}
-
-header h1, header span {
-    font-family: Montserrat, sans-serif;
-    font-weight: 450;
-    font-size: 14px;
-    color: #101010;
-    background-color: white;
-    cursor: pointer;
-}
 
 header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     padding: 30px 10%;
     color: #101010;
@@ -93,6 +76,26 @@ header {
     color: paleturquoise;
 }
 
+li, a, button {
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #101010;
+    background-color: white;
+    text-decoration: none;
+}
+
+header h1, header span {
+    font-family: Montserrat, sans-serif;
+    font-weight: 450;
+    font-size: 14px;
+    color: #101010;
+    background-color: white;
+    cursor: none;
+    justify-content: start;
+}
+
+
 button {
     border: none;
     border-radius: 50px;
@@ -118,7 +121,7 @@ button:hover {
     font-size: 16px
 } */
 
-.intro {
+/* .intro {
     float: right;
     text-align: left;
     width: 50%;
@@ -131,7 +134,7 @@ button:hover {
     
 } */
 
-.intro .content-wrapper {
+/* .intro .content-wrapper {
     width: 75%;
     padding-top: 3rem;
     padding-left: 3rem;
@@ -149,4 +152,4 @@ p.highlight {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 16px;
 }
-
+ */ 

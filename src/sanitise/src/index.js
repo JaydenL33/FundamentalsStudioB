@@ -1,5 +1,8 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.js';
+import * as apis from './APILoader.js';
+import Header from './Header'
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+ReactDOM.render(<Header />, document.getElementById("nav"))
