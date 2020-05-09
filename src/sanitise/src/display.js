@@ -16,7 +16,7 @@ class Display extends Component {
                     ScrollOut();
                 </script>
                 <div className="media-wrapper">
-                    <img src="/SampleDisplay.png" alt="Just a sample img"/>
+                    <img src={this.props.img} alt="Just a sample img"/>
                 </div>
                 <div className="content-wrapper">
                     <div C>

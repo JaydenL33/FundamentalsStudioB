@@ -14,11 +14,13 @@ ReactDOM.render(<Display
     title={"SANITISE.MEDIA @ UTS"}
     title2={"(Showing and Naming Integral Tools in Slowing Epidemics)"}
     paragraph1={"Our Mission is to educate the generation population about the risks and real issues around SARS-CoV-2"}
+    img={"/SampleDisplay.png"}
  />, document.getElementById('intro'));
 
- ReactDOM.render(<Display 
-    title={"SANITISE.MEDIA @ UTS"}
-    title2={"(Showing and Naming Integral Tools in Slowing Epidemics)"}
-    paragraph1={"Our Mission is to educate the generation population about the risks and real issues around SARS-CoV-2"}
+ReactDOM.render(<Display 
+   title={"SANITISE.MEDIA @ UTS"}
+   title2={"(Showing and Naming Integral Tools in Slowing Epidemics)"}
+   paragraph1={"Our Mission is to educate the generation population about the risks and real issues around SARS-CoV-2"}
+   img={"/SampleDisplay.png"}
  />, document.getElementById('main-body'));
 
