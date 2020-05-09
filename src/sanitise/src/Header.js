@@ -23,7 +23,7 @@ class Header extends Component {
         return (
             <Router>
                 <h1>SANITISE.<span>MEDIA</span></h1>
-                <img src="/SANITISE_LOGO.png" style={imagestyle}/>
+                <img src="/SANITISE_LOGO.png" style={imagestyle} alt=""/>
                 <ul className="nav_links">
                     <li>
                         <Link to="/Indicators">Indicators</Link>
