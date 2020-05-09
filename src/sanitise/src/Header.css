@@ -19,12 +19,12 @@ header {
 }
 
 .nav_links a {
-    transition: all 0.3s ease 0;
     background-color: white;
 }
 
 .nav_links a:active {
     transition: all 0.3s ease 0;
+    color: paleturquoise;
 }
 
 .nav_links li a:hover {
