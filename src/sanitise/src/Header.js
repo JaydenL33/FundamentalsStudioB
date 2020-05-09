@@ -11,7 +11,10 @@ import {
   } 
 from "react-router-dom";
 
-
+const imagestyle = {
+    height: "50px",
+    width: "25px"
+}
 
 // a in style.css has now become <link> so remember to replace that in the CSS. 
 
@@ -20,7 +23,8 @@ class Header extends Component {
         return (
             <Router>
                 <h1>SANITISE.<span>MEDIA</span></h1>
-                <ul class="nav_links">
+                <img src="/SANITISE_LOGO.png" style={imagestyle}/>
+                <ul className="nav_links">
                     <li>
                         <Link to="/Indicators">Indicators</Link>
                     </li>

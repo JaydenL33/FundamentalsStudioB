@@ -45,7 +45,7 @@ html {
 
 header {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     padding: 30px 10%;
     color: #101010;
@@ -85,7 +85,7 @@ li, a, button {
     text-decoration: none;
 }
 
-header h1, header span {
+header h1, header span, header img{
     font-family: Montserrat, sans-serif;
     font-weight: 450;
     font-size: 14px;
@@ -94,23 +94,14 @@ header h1, header span {
     cursor: none;
     justify-content: start;
 }
-
-
-button {
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0;
-}
-
-button:hover {
-    background: rgba(16,16,16,0.4);
+header img {
+    margin-left: -930px;
 }
 
 /* Body
---------------------------------------------- */
+----------------------------------------------- */
 
-/* .intro {
+.intro {
     float: right;
     width: 600px;
     color: whitesmoke;
@@ -119,9 +110,9 @@ button:hover {
     padding-right: 30px;
     font-family: Montserrat, sans-serif;
     font-size: 16px
-} */
+} 
 
-/* .intro {
+.intro {
     float: right;
     text-align: left;
     width: 50%;
@@ -132,9 +123,9 @@ button:hover {
     padding-top: 3rem;
     padding-left: 3rem;
     
-} */
+} 
 
-/* .intro .content-wrapper {
+.intro .content-wrapper {
     width: 75%;
     padding-top: 3rem;
     padding-left: 3rem;
@@ -152,4 +143,3 @@ p.highlight {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 16px;
 }
- */ 
