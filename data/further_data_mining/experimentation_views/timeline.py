@@ -14,6 +14,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.dates as mdates
 from datetime import datetime
+import sklearn
 
 try:
     # Try to fetch a list of Matplotlib releases and their dates
