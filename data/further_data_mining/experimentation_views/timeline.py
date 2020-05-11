@@ -63,7 +63,6 @@ except Exception:
 #
 # Note that Matplotlib will automatically plot datetime inputs.
 
-
 # Choose some nice levels
 levels = np.tile([-5, 5, -3, 3, -1, 1],
                  int(np.ceil(len(dates)/6)))[:len(dates)]
