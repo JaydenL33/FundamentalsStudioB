@@ -117,7 +117,6 @@ def plot(df):
 
 df = df_list[11]
 df = groupbyCountry(df)
-
 df = groupbyMonthlyCovid(df)
 
 	

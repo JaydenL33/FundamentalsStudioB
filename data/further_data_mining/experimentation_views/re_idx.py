@@ -23,14 +23,18 @@ import matplotlib.pyplot as plt
 def main():
 	with open(os.path.join(os.pardir, "processing_dump.txt"), "rb") as f:
 		df_list = pickle.load(f)
-	df9_reidx = df_list[9].reindex(columns=['COUNTRY', 'Numeric'])
+		df = df_list
 
+	df6 = df_list[6]
 	
-	df9_reidx_grp = df9_reidx.groupby('COUNTRY')
-	df9_reidx_grp.first()
+	df6_reidx = df6.reindex(columns=['COUNTRY', 'Numeric'])
+
+	df6_reidx.index
+	df6_reidx_grp = df6_reidx.groupby('COUNTRY').Numeric.mean()
+	#df6_reidx_grp.first(offset)
 	
-	df9_reidx_grp.plot(kind='scatter',x='Numeric['AFG']',y='Numeric',color='red')
+	df6_reidx_grp.plot(kind='bar',x='COUNTRY',y='Numeric',color='red')
 	plt.show()
 
-if __name__ == '__main__':
-	main()
+
+main()
