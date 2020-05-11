@@ -17,6 +17,7 @@ $color2: #ffffffff; White
 $color3: #101010ff; Black
 $color4: #ef1c45ff; Red
 $color5: #1d7cffff; Blue
+color6: #A9ADB0; Silver Challice
 
 */
 
@@ -28,6 +29,7 @@ html {
 
 *, *:before, *:after {
     box-sizing: inherit;
+    position: relative;
 }
 
 * {
@@ -36,7 +38,7 @@ html {
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
-    background-color: #101010;
+    background-color: #A9ADB0;
 }
 
 /* Animation
@@ -49,4 +51,3 @@ html {
     75%  {opacity: 75;}
     100% {opacity: 100;}
   }
-

@@ -19,6 +19,27 @@ const imagestyle = {
 // a in style.css has now become <link> so remember to replace that in the CSS. 
 
 class Header extends Component {
+
+    componentWillMount () {
+
+        window.onscroll = function() {myFunction()};
+
+        // Get the header
+        var header = document.getElementById("nav");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        function myFunction() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        } 
+        else {
+            header.classList.remove("sticky");
+        }
+        }
+    }
+    
     render() {
         return (
             <Router>

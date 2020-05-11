@@ -3,7 +3,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 30px 10%;
-    color: #101010;
+    color: #A9ADB0;
     background-color: white;
 }
 
@@ -54,3 +54,13 @@ header h1, header span, header img{
 header img {
     margin-left: -910px;
 }
+
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%
+  }
+  
+  
