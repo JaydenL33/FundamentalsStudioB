@@ -29,7 +29,7 @@ def dateconv(df11):
 
 def setupTL(df11):
 	levels = np.tile([-5, 5, -3, 3, -1, 1],
-	                int(np.ceil(len(df11.dateRep)/6)))[:len(df11.dateRep)]
+	                int(np.ceil(len(df11.dateRep))))[:len(df11.dateRep)]
 	fig, ax = plt.subplots(figsize=(8.8, 4), constrained_layout=True)
 	ax.set(title="COVID19 dates")
 
