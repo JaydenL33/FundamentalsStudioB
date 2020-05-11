@@ -69,13 +69,13 @@ def dateconv(df11):
 	df11.dateRep = [datetime.strptime(d, "%Y-%m-%d") for d in df11.dateRep]
 
 def setupTL(df11):
+	
 	numPoints = int(len(df11.cases)/7)
 	# y_repeatMat = [-7, 7, -5, 5, -3, 3, -1, 1]
 	y_cases = df11.cases
 	# levels = np.tile(y_repeatMat, numPoints)
 	# index the levels list
 	# levels = levels[:len(df11.dateRep)]
-
 	fig, ax = plt.subplots(figsize=(8.8, 4), constrained_layout=True)
 	
 	markerline, stemline, baseline = ax.stem(df11.dateRep, y_cases,
