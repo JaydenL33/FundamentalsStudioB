@@ -36,6 +36,22 @@ def groupbyMonthlyCovid(df):
 	df["schema"] = "COVID19"
 	return df.reset_index()
 
+
+def groupbyDailyCovid(df):
+	"""
+	Author: Albert Ferguson
+	Reindex for time by retyping and applying a PeriodIndex selecting the D (daily) opt.
+	Use the groupby function of a dataframe and the column we want to groupby, return a sum
+	"""
+
+	# convert to PeriodIndexing
+	df.dateRep = pd.to_datetime(df.dateRep)
+	# aggregate for monthly data
+	df = df.groupby(pd.PeriodIndex(df.dateRep, freq = "D"), axis = 0).sum()
+	# re add the schema
+	df["schema"] = "COVID19"
+	return df.reset_index()
+
 def groupbyCountry(df):
 	"""
 	Author: Albert Ferguson
@@ -69,7 +85,7 @@ def dateconv(df11):
 	df11.dateRep = [datetime.strptime(d, "%Y-%m-%d") for d in df11.dateRep]
 
 def setupTL(df11):
-	
+
 	numPoints = int(len(df11.cases)/7)
 	# y_repeatMat = [-7, 7, -5, 5, -3, 3, -1, 1]
 	y_cases = df11.cases
@@ -107,13 +123,47 @@ def setupTL(df11):
 
 	plt.show()
 
-# first 10
+def setupTLGlobal(df11):
+	y_cases = df11.cases
+	fig, ax = plt.subplots(figsize=(8.8, 4), constrained_layout=True)
+	
+	markerline, stemline, baseline = ax.stem(df11.dateRep, y_cases,
+                                         linefmt="C3-", basefmt="k-",
+                                         use_line_collection=True)
+
+	plt.setp(markerline, mec="k", mfc="w", zorder=3)
+
+	markerline.set_ydata(np.zeros(len(df11.dateRep)))
+
+	# annotate lines
+	vert = np.array(['top', 'bottom'])[(y_cases > 0).astype(int)]
+	for d, l, r, va in zip(df11.dateRep, y_cases, df11.countriesAndTerritories, vert):
+	    ax.annotate(r, xy=(d, l), xytext=(-3, np.sign(l)*3),
+	                textcoords="offset points", va=va, ha="right")
+
+	# format xaxis with 4 month intervals
+	ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%b %Y"))
+	plt.setp(ax.get_xticklabels(), rotation=40, ha="right")
+	
+	# formatting
+	ax.set(title="COVID19 dates")
+	ax.margins(y=0.1)
+	# remove y axis and spines
+	ax.get_yaxis().set_visible(False)
+	for spine in ["left", "top", "right"]:
+	    ax.spines[spine].set_visible(False)
+
+	plt.show()
+
 
 with open(os.path.join(os.pardir, "processing_dump.txt"), "rb") as f:
 		df_list = pickle.load(f)
 		df = df_list
 
-df11 = df_list[11]
+df11 = df_list[-1]
+
+# first 10?? Cool idea
 
 dateconv(df11)
-setupTL(df11)
+#setupTL(df11)
+setupTLGlobal(groupbyDailyCovid(df11))
