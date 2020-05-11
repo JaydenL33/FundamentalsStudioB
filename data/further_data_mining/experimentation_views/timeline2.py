@@ -29,28 +29,49 @@ def groupbyMonthlyCovid(df):
 	"""
 
 	# convert to PeriodIndexing
-	df.dateRep = pd.to_datetime(df.dateRep)
-	# aggregate for monthly data
-	df = df.groupby(pd.PeriodIndex(df.dateRep, freq = "M"), axis = 0).sum()
+	try:
+		df.dateRep = pd.to_datetime(df.dateRep)
+		df = df.groupby(pd.PeriodIndex(df.dateRep, freq = "M"), axis = 0).sum()
+
+	except AttributeError:
+		df.index = pd.to_datetime(df.index)
+		df = df.groupby(pd.PeriodIndex(df.index, freq = "M"), axis = 0).sum()
+
+
+		# DOESN'T WORK
 	# re add the schema
 	df["schema"] = "COVID19"
-	return df.reset_index()
 
+	return df.reset_index()
 
 def groupbyDailyCovid(df):
 	"""
 	Author: Albert Ferguson
-	Reindex for time by retyping and applying a PeriodIndex selecting the D (daily) opt.
+	Reindex for time by retyping and applying a PeriodIndex selecting the M (mnonthly) opt.
 	Use the groupby function of a dataframe and the column we want to groupby, return a sum
 	"""
-
 	# convert to PeriodIndexing
-	df.dateRep = pd.to_datetime(df.dateRep)
-	# aggregate for monthly data
-	df = df.groupby(pd.PeriodIndex(df.dateRep, freq = "D"), axis = 0).sum()
-	# re add the schema
-	df["schema"] = "COVID19"
-	return df.reset_index()
+	try:
+		df.dateRep = pd.to_datetime(df.dateRep)
+		df = df.groupby(pd.PeriodIndex(df.dateRep, freq = "D"), axis = 0).sum()
+		df = df.to_timestamp() # convert from PeriodIndex to DatetimeIndex
+
+	except AttributeError:
+		df.index = pd.to_datetime(df.index)
+		df = df.groupby(pd.PeriodIndex(df.index, freq = "D"), axis = 0).sum()
+		df = df.to_timestamp()
+	
+	else:
+		# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.dt.html?highlight=dt#pandas.Series.dt
+		# series objects of datetime can use dt accessor, see link above.
+		# add a string rep for graphing labels
+		df["dateRep_str"] = df.index.strftime("%Y-%m-%d")
+		# df.dateRep_str = [datetime.strptime(d, "%Y-%m-%d") for d in df.dateRep_str]
+		# re add the schema
+		df["schema"] = "COVID19"
+		df = df.reset_index()
+		
+	return df
 
 def groupbyCountry(df):
 	"""
@@ -81,7 +102,9 @@ def groupbyCountry(df):
 	return df
 
 def dateconv(df11):
-	df11.dateRep = df11.dateRep.dt.strftime('%Y-%m-%d')
+	# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.dt.html?highlight=dt#pandas.Series.dt
+	# series objects of datetime can use dt accessor, see link above.
+	df11.dateRep = df11.dateRep.dt.strftime("%Y-%m-%d")
 	df11.dateRep = [datetime.strptime(d, "%Y-%m-%d") for d in df11.dateRep]
 
 def setupTL(df11):
@@ -125,6 +148,7 @@ def setupTL(df11):
 
 def setupTLGlobal(df11):
 	y_cases = df11.cases
+	y_deaths = df11.deaths
 	fig, ax = plt.subplots(figsize=(8.8, 4), constrained_layout=True)
 	
 	markerline, stemline, baseline = ax.stem(df11.dateRep, y_cases,
@@ -137,16 +161,16 @@ def setupTLGlobal(df11):
 
 	# annotate lines
 	vert = np.array(['top', 'bottom'])[(y_cases > 0).astype(int)]
-	for d, l, r, va in zip(df11.dateRep, y_cases, df11.countriesAndTerritories, vert):
+	for d, l, r, va in zip(df11.dateRep, y_cases, df11.dateRep_str, vert):
 	    ax.annotate(r, xy=(d, l), xytext=(-3, np.sign(l)*3),
 	                textcoords="offset points", va=va, ha="right")
 
 	# format xaxis with 4 month intervals
-	ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%b %Y"))
+	#ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%b %Y"))
 	plt.setp(ax.get_xticklabels(), rotation=40, ha="right")
 	
 	# formatting
-	ax.set(title="COVID19 dates")
+	ax.set(title="COVID19 New Cases Global vs. Time")
 	ax.margins(y=0.1)
 	# remove y axis and spines
 	ax.get_yaxis().set_visible(False)
@@ -160,10 +184,8 @@ with open(os.path.join(os.pardir, "processing_dump.txt"), "rb") as f:
 		df_list = pickle.load(f)
 		df = df_list
 
-df11 = df_list[-1]
-
 # first 10?? Cool idea
-
-dateconv(df11)
-#setupTL(df11)
-setupTLGlobal(groupbyDailyCovid(df11))
+df11 = df_list[-1]
+dfDailyGlobal = groupbyDailyCovid(df11)
+setupTL(df11)
+setupTLGlobal(dfDailyGlobal)
