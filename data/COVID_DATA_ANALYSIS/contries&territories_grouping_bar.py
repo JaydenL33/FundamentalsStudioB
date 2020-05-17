@@ -23,4 +23,4 @@ def geoId_cases(df):
 	df.groupby('geoId')['cases'].plot(kind='bar')
 	plt.show()
 	
-
+cT_cases(df)

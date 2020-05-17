@@ -31,6 +31,7 @@ def main():
 
 	df6_reidx.index
 	df6_reidx_grp = df6_reidx.groupby('COUNTRY').Numeric.mean()
+	print(df6_reidx_grp)
 	#df6_reidx_grp.first(offset)
 	
 	df6_reidx_grp.plot(kind='bar',x='COUNTRY',y='Numeric',color='red')

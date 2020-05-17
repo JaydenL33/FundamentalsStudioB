@@ -41,8 +41,11 @@ def groupbyCountry(newdf11):
 	#schema_str = newdf11.schema[0]
 
 	#try:
-	newdf11 = newdf11.groupby(newdf11.countriesAndTerritories, axis = 0).get_group('Afghanistan')
-	newdf11 = newdf11.reset_index()
+	newdf11 = newdf11.groupby(newdf11.countriesAndTerritories, axis = 0).get_group('China') 
+	print(newdf11)
+	agg_newdf11 = newdf11.groupby(newdf11.countriesAndTerritories).mean()
+	# newdf11 = newdf11.reset_index()
+	agg_newdf11 = agg_newdf11.reset_index()
 
 	# except AttributeError:
 	# 	try:
@@ -54,10 +57,17 @@ def groupbyCountry(newdf11):
 
 	# re add the schema
 	# newdf11.schema = schema_str
-	return newdf11
+	print(agg_newdf11)
+	return agg_newdf11
 
-def lp(newdf11):
-	newdf11.plot(kind='line',x='countriesAndTerritories',y='cases',color='red')
+# def mean_cases(newdf11):
+# 	agg_newdf11 = newdf11.groupby('cases').mean()
+# 	return agg_newdf11
+# 	print(agg_newdf11)
+
+def lp(agg_newdf11):
+	agg_newdf11.plot(kind='bar',x='countriesAndTerritories',y='cases',color='red')
+	plt.axhline(y= 1000, color='green', linestyle='--', label='(to be medical cap) test')
 	plt.show()
 
 
@@ -67,7 +77,9 @@ with open(os.path.join(os.pardir, "processing_dump.txt"), "rb") as f:
 		df = df_list
 
 df11 = df_list[11]
-newdf11 = df11.loc[:,['countriesAndTerritories', 'cases']]
+newdf11 = df11.loc[:,['countriesAndTerritories', 'cases', 'dateRep']]
 #sel(df11)
 newdf11 = groupbyCountry(newdf11)
-lp(newdf11)
+agg_newdf11 = lp(newdf11)
+# mean_cases(newdf11)
+lp(agg_newdf11)
