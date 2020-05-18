@@ -1,0 +1,65 @@
+  
+.title 
+{
+    color:  white;
+    font-family: Arial;
+    text-align: center;
+    /*border: 1px solid red;*/
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-right: 25%;
+    margin-left: 25%;
+    /*background-color: lightblue;*/
+
+}
+
+img {
+    display: block;
+    width: 100%;
+  }
+  
+  
+.textStyle  
+{
+    color:  white;
+    font-family: Arial;
+    text-align: justify;
+    float: center;
+    /*border: 1px solid red;*/
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-right: 25%;
+    margin-left: 25%;
+    /*background-color: lightblue;*/
+}
+  
+  
+.slideStyle 
+{
+    color: white;
+    text-align: center;
+    /*border: 1px solid red;*/
+    margin-top: 10%;
+    margin-right: 25%;
+    margin-left: 25%;
+    /*background-color: lightblue;*/
+    width: auto;
+    height: auto;
+  
+}
+
+.Cardstyle 
+{
+    color:  white;
+    font-family: Arial;
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
