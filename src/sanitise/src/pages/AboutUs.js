@@ -3,7 +3,6 @@ import Navbar from '../components/navbar';
 import Display from '../components/display';
 
 
-
 class Story extends Component {
     render () {
         return (

@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Navbar.css';
+import './navbar.css';
 
+const imagestyle = {
+    height: "50px",
+    width: "25px"
+}
 
 class Navbar extends Component {
     render () {

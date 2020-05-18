@@ -1,24 +1,20 @@
 
 import React, { Component } from 'react';
 
-import "./App.css"
-import AboutUs from './pages/AboutUs'
-import Indicators from './pages/Indicators'
-import Story from './pages/Story'
+import "./App.css";
+import AboutUs from './pages/AboutUs';
+import Indicators from './pages/Indicators';
+import Story from './pages/Story';
+import ContactUs from './pages/ContactUs';
 
 
 import {
 	BrowserRouter as Router,
 	Switch,
 	Route,
-	Link
   } 
 from "react-router-dom";
 
-const imagestyle = {
-    height: "50px",
-    width: "25px"
-}
 
 
 // a in style.css has now become <link> so remember to replace that in the CSS. 
