@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-import ScrollOut from "scroll-out";
 
-import "./display.css"
-
-
-ScrollOut({
-    
-});
+import './display.css'
 
 class Display extends Component {
     render () {
@@ -37,7 +31,3 @@ class Display extends Component {
         )
     }
 }
-
-
-
-export default Display;
