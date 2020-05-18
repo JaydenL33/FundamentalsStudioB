@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import './navbar.css';
 
 const imagestyle = {
-    height: "50px",
-    width: "25px"
+    height: "36px",
+    width: "120px"
 }
 
 class Navbar extends Component {
     render () {
         return (
         <header id ="nav">
-            <h1>SANITISE.<span>MEDIA</span></h1>
+            <h1> </h1>
             <img src="/SANITISE_LOGO.png" style={imagestyle} alt=""/>
             <ul className="nav_links">
                 <li>
