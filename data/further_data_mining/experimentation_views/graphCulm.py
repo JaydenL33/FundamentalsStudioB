@@ -1,3 +1,5 @@
+__doc__="""Note, this now works. Requires integration and fixup."""
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import pickle
@@ -19,6 +21,7 @@ import seaborn as sns
 # MATPLOTLIB
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
+
 
 def groupbyMonthlyCovid(df):
 	"""
@@ -74,7 +77,7 @@ def groupbyCountry(df):
 
 
 
-with open(os.path.join(os.pardir, "processing_dump.txt"), "rb") as f:
+with open("processing_dump.txt", "rb") as f:
 		df_list = pickle.load(f)
 
 
@@ -87,19 +90,18 @@ df = groupbyCountry(df)
 
 df = groupbyMonthlyCovid(df)
 
-print(df.columns)
-print(df.head())
-print(df.countriesAndTerritories)
-print(df.cases)
-input()
+df['Deaths_culm'] = df.groupby('month')['deaths'].head(1)
+df['Deaths_culm'].cumsum().ffill()
 
-#df['Deaths_cum'] = df.groupby('month')['deaths'].head(1)
-# df['Deaths_cum'].cumsum().ffill()
+df.plot(x='month', y='Deaths_culm', kind='line', 
+     	figsize=(10, 8), legend=False, style='yo-', label="Cumulative Frequencty - Cases, Deaths")
 
-# df.plot(x='month', y='Deaths_cum', kind='line', 
-#      	figsize=(10, 8), legend=False, style='yo-', label="Cumulative frequency graph deaths")
-# plt.legend();
-# plt.show()
+plt.legend();
+
+plt.show()
+
+fig = plt.figure()
+ax = plt.axes()
 
 #def cases(df):
 # df = df_list[11]
@@ -113,12 +115,10 @@ input()
 ax.plot(df.index, df['cases'], 'bo-')
 ax.plot(df.index, df['deaths'], 'ro-')
 
-#plt.axhline(y=count_students_at_class_start, color='green', linestyle='--', label='count students at initial start')
-#plt.title("Running Total of Students Who Graduated in $X$ Years\nFrom Same Start Class", y=1.01, fontsize=20)
-# plt.ylabel("running total of students graduated", labelpad=15)
-# plt.xlabel("years after starting college", labelpad=15)
-# fig.legend();
 plt.show()
+
+fig = plt.figure()
+ax = plt.axes()
 
 # #def deaths(df):
 # df = df_list[11]
