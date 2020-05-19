@@ -199,6 +199,15 @@ instance/
 # Sphinx documentation
 docs/_build/
 
+# Scrapy stuff:
+.scrapy
+
+instance/
+.webassets-cache
+
+# Sphinx documentation
+docs/_build/
+
 # Environments
 *.env
 .venv
@@ -249,3 +258,5 @@ scripts/flow/*/.flowconfig
 
 # todo files
 todo.*
+todo.md
+
