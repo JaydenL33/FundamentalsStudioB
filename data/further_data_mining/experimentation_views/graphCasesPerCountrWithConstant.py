@@ -22,6 +22,7 @@ import seaborn as sns
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 
+
 def groupbyMonthlyCovid(df):
 	"""
 	Author: Albert Ferguson
@@ -74,63 +75,31 @@ def groupbyCountry(df):
 	df["schema"] = schema_str
 	return df
 
+def barPlotComp(x, y, ax, constantComp, labels):
+	"""Note: generates a bar plot using countries and territories.
+	Uses constant comp to compare to a constant value on y-axis."""
+
+	# note the len conversion for y in ax.plot, matching dimensions
+	ax.bar(x, y, color='red', label=labels) # plot the y data
+	ax.plot(x, [constantComp]*len(x), label="Medical constant") # plot a constant across the chart
+	# this is just generating a green bar of value 1000. 
+	# https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.pyplot.axhline.html
+	# effect if used on top of df.plot as kind="bar" is a bar of h=1000 at every point...
+	# plt.axhline(y= 1000, color='green', linestyle='--', label='(to be medical cap) test')
+	ax.legend(["Some constant", "Cases per Country"])
+	
+
 with open("processing_dump.txt", "rb") as f:
 		df_list = pickle.load(f)
 
-
 fig = plt.figure()
 ax = plt.axes()
 
-#def deaths(df):
-df = df_list[11]
-df = groupbyCountry(df)
+# perform a grouping, avoids 10 instances of each country (time measurment replication)
+df = groupbyCountry(df_list[-1])
+someVal = 10000
 
-df = groupbyMonthlyCovid(df)
-
-df['Deaths_culm'] = df.groupby('month')['deaths'].head(1)
-df['Deaths_culm'].cumsum().ffill()
-
-df.plot(x='month', y='Deaths_culm', kind='line', 
-     	figsize=(10, 8), legend=False, style='yo-', label="Cumulative Frequencty - Cases, Deaths")
-
-plt.legend();
-
+# this essentialy compares every country to a constant value, with the independent axis showing number of cases
+barPlotComp(df.countriesAndTerritories, df.cases, ax, someVal, df.countriesAndTerritories)
+plt.xticks(rotation=90)
 plt.show()
-
-fig = plt.figure()
-ax = plt.axes()
-
-#def cases(df):
-# df = df_list[11]
-# df['cases_cum'] = df.groupby('cases')['dateRep'].head(1)
-# df['cases_cum'].cumsum()
-# df['cumcase_perc'] = 100*df['cases']/df['cases_cum'].sum()
-
-####
-# Index is now the date time values!!!
-###
-ax.plot(df.index, df['cases'], 'bo-')
-ax.plot(df.index, df['deaths'], 'ro-')
-
-plt.show()
-
-fig = plt.figure()
-ax = plt.axes()
-
-# #def deaths(df):
-# df = df_list[11]
-# df['cases_death_cum'] = df.groupby('deaths')['cases'].head(1)
-# df['cases_death_cum'].cumsum()
-# df.plot(x='deaths', y='cases_death_cum', kind='line', 
-#      	figsize=(10, 8), legend=False, style='yo-', label="Cumulative frequency graph cases_deaths")
-# plt.legend();
-# plt.show()
-# # mu = 200
-# sigma = 25
-# n_bins = 50
-# x = df[['Deaths_cum']]( size=100)
-
-
-
-
-
