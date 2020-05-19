@@ -80,12 +80,14 @@ function ParagraphOne() {
 
         <Zoom>
           <h3>About Us!</h3>
-          <h2> Covid-19 Visualisation</h2>
+          <h2> Covid-19 Visualisation - Purpose</h2>
         </Zoom>
 
         <Reveal ssrFadein>
           <p>
-           Lorem ipsum dolor sit amet, consunc neque, dapibus id consequat vitae, imperdiet sit amet nisl. Mauris ac ultrices lectus, et sagittis mauris. Nunc et vestibulum augue. Fusce eget facilisis libero. Maecenas ullamcorper condimentum lorem nec ultricies.
+          The purpose behind this web application is to compare and visualises complex and dynamic data of the SARS-COV-2 
+          (a.k.a. COVID or Coronavirus) outbreak promptly. The aim of the website is to hopefully effectively deliver and 
+          convey this data in an easily understandable format.
           </p>
         </Reveal>
 
@@ -98,13 +100,17 @@ function ParagraphTwo() {
   return (
     <div className = "textStyle">
           <Zoom>
-            <h2> What is this? </h2>
+            <h2> What is This? </h2>
           </Zoom>
         
           <br></br>
           <Reveal ssrFadein>
             <p>
-              Sed efficitur venenatis libero non fringilla. Fusce euismod volutpat ullamcorper. Curabitur non consectetur nisi. Curabitur varius tempor finibus. In eget eleifend diam, at auctor sapien. Proin at dui et nisi venenatis ultrices. Fusce sit amet libero sollicitudin, efficitur nulla in, consequat orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a dignissim urna. Quisque a congue ligula. Nunc scelerisque, metus non pulvinar sagittis, sem mauris ultricies lacus, eget interdum odio lorem in libero. Praesent eget tortor nisi.
+              
+            This website application has been created by four university students, with the aim to not only educate
+            those who view the site, but also provide an opportunity for mention students to develop the skills needed in 
+            order be able to present important and current data in an effective and rememberable way as studying data engineers.
+
          	  </p>
           </Reveal>
 
@@ -124,18 +130,17 @@ function ParagraphThree() {
   return (
     <div className = "textStyle">
       <Zoom>
-        <h2> Why is this a problem?</h2>
+        <h2>The Problem at Hand?</h2>
       </Zoom>
       <br></br>
 
       <Reveal ssrFadein>
         <p>
-          Sed efficitur venenatis libero non fringilla. Fusce euismod volutpat ullamcorper. 
-          Curabitur non consectetur nisi. Curabitur varius tempor finibus. In eget eleifend diam,
-          at auctor sapien. Proin at dui et nisi venenatis ultrices. Fusce sit amet libero sollicitudin, 
-          efficitur nulla in, consequat orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-           a dignissim urna. Quisque a congue ligula. Nunc scelerisque, metus non pulvinar sagittis, sem mauris
-          ultricies lacus, eget interdum odio lorem in libero. Praesent eget tortor nisi.
+        The inspiration behind why this site has been developed was as the world is currently in the age of 
+        information there is a widespread problem of the publishing misinformation as seen currently in the 
+        non-factual spread of ‘rumours’ on the origins and effects of COVID-19 with conspiring theorist are running 
+        rampant with ideas that SARS-CoV-2 may be a US Government bioterrorism plan or was created in a Biosecurity Lab 
+        in Wuhan or was a result of 5G network towers. 
         </p>
       </Reveal>
 
@@ -157,7 +162,9 @@ function ParagraphFour() {
 
       <Reveal ssrFadein>
         <p>
-          Sed efficitur venenatis libero non fringilla. Fusce euismod volutpat ullamcorper. Curabitur non consectetur nisi. Curabitur varius tempor finibus. In eget eleifend diam, at auctor sapien. Proin at dui et nisi venenatis ultrices. Fusce sit amet libero sollicitudin, efficitur nulla in, consequat orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a dignissim urna. Quisque a congue ligula. Nunc scelerisque, metus non pulvinar sagittis, sem mauris ultricies lacus, eget interdum odio lorem in libero. Praesent eget tortor nisi.
+        The site addresses this problem through the simplification of the mass amounts of data that is published daily in 
+        relation to the COVID-19 virus. This simplification has been done though the development of story that has been 
+        illustrated in the provided detailed and graphical models, graphs and maps of the spread of the coronavirus. 
         </p>
       </Reveal>
                 
