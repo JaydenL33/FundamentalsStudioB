@@ -63,7 +63,7 @@ function Title() {
          <Fade>
           <h1>About Us</h1>
         </Fade>
-
+        <br></br>
         <Fade up>
             <img src={UtsCrest} alt="Uts Crest" height={620}/>
             
@@ -81,6 +81,7 @@ function ParagraphOne() {
         <Zoom>
           <h3>About Us!</h3>
           <h2> Covid-19 Visualisation - Purpose</h2>
+          <br></br>
         </Zoom>
 
         <Reveal ssrFadein>
