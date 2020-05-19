@@ -182,6 +182,32 @@ instance/
 # Sphinx documentation
 docs/_build/
 
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Sphinx documentation
+docs/_build/
+
+# Scrapy stuff:
+.scrapy
+
+instance/
+.webassets-cache
+
+# Sphinx documentation
+docs/_build/
+
 # Environments
 *.env
 .venv
@@ -204,6 +230,25 @@ build/
 remote-repo/
 coverage/
 .module-cache
+scripts/flow/*/.flowconfig
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
 node_modules
 scripts/flow/*/.flowconfig
 
@@ -213,6 +258,5 @@ scripts/flow/*/.flowconfig
 
 # todo files
 todo.*
+todo.md
 
-# ignore the docs folder locally, should only be affected on the server
-docs/*
