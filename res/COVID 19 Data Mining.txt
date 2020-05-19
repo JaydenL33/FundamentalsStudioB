@@ -1,3 +1,5 @@
+Author: Albert Ferguson
+
 COVID 19 Data Mining,
 
 - Find relvant data sources
