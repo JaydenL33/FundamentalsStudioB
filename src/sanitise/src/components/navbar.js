@@ -11,7 +11,6 @@ class Navbar extends Component {
     render () {
         return (
         <header id ="nav">
-            <h1> </h1>
             <img src="/SANITISE_LOGO.png" style={imagestyle} alt=""/>
             <ul className="nav_links">
                 <li>

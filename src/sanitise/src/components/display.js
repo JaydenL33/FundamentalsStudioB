@@ -13,7 +13,7 @@ class Display extends Component {
                     <img src={this.props.img} alt="Just a sample img"/>
                 </div>
                 <div className="content-wrapper">
-                    <div C>
+                    <div>
                         <h1>{this.props.title}</h1> 
                             <h2>{this.props.title2}</h2> 
                             <div className="paragraph1"> 

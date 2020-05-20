@@ -53,8 +53,7 @@ header h1, header span{
 
 header img {
     background-color: white;
-    position: relative;
-    margin-left: -50em;
+    margin-left: -2rem;
 }
 
 
