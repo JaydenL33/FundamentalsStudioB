@@ -40,19 +40,21 @@ li, a, button {
     text-decoration: none;
 }
 
-header h1, header span, header img{
+header h1, header span{
     font-family: Montserrat, sans-serif;
     font-weight: 450;
     font-size: 14px;
     color: #101010;
-    background-color: white;
     cursor: none;
+    background-color: white;
     justify-content: start;
 }
 
 
 header img {
-    margin-left: -1200px;
+    background-color: white;
+    position: relative;
+    margin-left: -50em;
 }
 
 
