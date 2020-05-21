@@ -1,3 +1,5 @@
+__doc__="""Note, this now works. Requires integration and fixup."""
+
 import matplotlib.pyplot as plt
 import pandas as pd
 import pickle
@@ -20,56 +22,27 @@ import seaborn as sns
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 
-with open(os.path.join(os.pardir, "processing_dump.txt"), "rb") as f:
-
-	def splicer():
-	# get max index size of df in list
-		max_idx = 0
-		for df in df_list:
-			if max_idx < df.shape[0]:
-				max_idx = df.shape[0]
-
-		# compute the new df's col names and index size
-		index = df_list[0].index
-		columns = [df.schema[0] for df in df_list]
-		columns = columns[:-1]
-		columns.remove("SA_0000001807")
-		columns.remove("NCD_CCS_rheumreg")
-		columns.remove("FINPROTECTION_CATA_TOT_10_POP")
-		columns.remove("FINPROTECTION_CATA_TOT_25_POP")
-		columns.remove("BP_06")
-		columns.remove("GHED_CHEGDP_SHA2011")
-		columns.remove("GHED_CHE_pc_PPP_SHA2011")
-		columns.remove("IHRSPAR_CAPACITY03")
-		columns.append("cases")
-		columns.append("deaths") 
-
-		new_df = pd.DataFrame(index=index, columns=columns)
-		
-		for df in df_list:
-			if df.schema[0] not in columns:
-				continue
-			try:
-				schema = df.schema[0]
-				new_df[schema] = pd.Series(df["Numeric"], index=new_df.index)
-			except KeyError:
-				pass
-		
-		# attach the covid data
-		cov_df = df_list[-1]
-		new_df["cases"] = cov_df["cases"]
-		new_df["deaths"] = cov_df["deaths"]
-		return new_df
-
-
 def groupbyMonthlyCovid(df):
+	"""
+	Author: Albert Ferguson
+	Reindex for time by retyping and applying a PeriodIndex selecting the M (mnonthly) opt.
+	Use the groupby function of a dataframe and the column we want to groupby, return a sum
+	"""
+
 	# convert to PeriodIndexing
-	df.dateRep = pd.to_datetime(df.dateRep)
-	# aggregate for monthly data
-	df = df.groupby(pd.PeriodIndex(df.dateRep, freq = "M"), axis = 0).sum()
+	try:
+		df.dateRep = pd.to_datetime(df.dateRep)
+		df = df.groupby(pd.PeriodIndex(df.dateRep, freq = "M"), axis = 0).sum()
+
+	except AttributeError:
+		df.index = pd.to_datetime(df.index)
+		df = df.groupby(pd.PeriodIndex(df.index, freq = "M"), axis = 0).sum()
+
+
+		# DOESN'T WORK
 	# re add the schema
 	df["schema"] = "COVID19"
-	print(df.shape)
+
 	return df.reset_index()
 
 def groupbyCountry(df):
@@ -86,7 +59,7 @@ def groupbyCountry(df):
 	schema_str = df.schema[0]
 
 	try:
-		df = df.groupby(df.countriesAndTerritories, axis = 0).sum()
+		df = df.groupby(df.countriesterritoriesCode, axis = 0).sum()
 		df = df.reset_index()
 
 	except AttributeError:
@@ -101,25 +74,43 @@ def groupbyCountry(df):
 	df["schema"] = schema_str
 	return df
 
-with open(os.path.join(os.pardir, "processing_dump.txt"), "rb") as f:
-		df_list = pickle.load(f)
+with open("data/processing_dump.txt", "rb") as f:
+	df_list = pickle.load(f)
 
-def plot(df):
-	df.plot(x='dateRep', y='Months', kind='line', 
-	        figsize=(10, 8), legend=False, style='yo-')
-	plt.axhline(y='Numeric', color='green', linestyle='--', label='Capacity of healthcare system')
-	plt.title("Capacity of a given healthcare system against number of COVID19 cases", y=1.01, fontsize=20)
-	plt.ylabel("cases", labelpad=15)
-	plt.xlabel("Months of COVID19 cases", labelpad=15)
-	plt.legend();	
-	plt.show() 
+# idea, get a constant per country, pair it with the country and show cases/deaths
+# filter the data by country indexing (use countryterritoryCode as it's the common dimension we want to match).
+covidDataTotal = groupbyCountry(df_list[-1]) # returns a total for every country.
+covidData      = df_list[-1]                 # a series of country is contained in this frame.
+healthCapConst = groupbyCountry(df_list[6])  # returns a list of constants.
 
+# create a plot of cases/deaths per country vs equiv numeric val in healthCap
+# i.e. index both by country (done) then match the indexes (countriesAndTerritories and COUNTRY)
+# note the len conversion for values in ax.plot, matching dimensions
+def barPlotComp(category, values, ax, constantComp, country):
+	"""Note: generates a bar plot using countries and territories.
+	Uses constant comp to compare to a constant value on y-axis."""
 
-df = df_list[11]
-df = groupbyCountry(df)
-df = groupbyMonthlyCovid(df)
+	ax.bar(category, values, color="red", label=("Cases per date in: " + country)) # plot the values
+	ax.plot(category, [constantComp]*len(category), label="Doctors Per 100K Pop.", color="green") # plot a constant across the chart
+	ax.legend()
 
+# filter a df for one country with isin (pd.Series) and boolean indexing.
+countries_list = covidData.countryterritoryCode.unique()
+fig = plt.figure(); 
+for i in range(len(countries_list)):
+	ax = plt.axes()
 	
-working_df = splicer()
-working_df.dropna()
-plot(working_df)
+	covidCountry = covidData[covidData.countryterritoryCode.isin([countries_list[i]])]
+	drs100_series = healthCapConst[healthCapConst.COUNTRY.isin([countries_list[i]])].Numeric
+	country_series = covidCountry.countriesAndTerritories
+	# note: series returns the original df index, no reindex occurs. Use keys accesor to correctly index
+	country_str = country_series[country_series.keys()[0]]
+	
+	try:
+		drs100_num  = drs100_series[drs100_series.keys()[0]]
+	except IndexError:
+		drs100_num = 0
+	
+	barPlotComp(covidCountry.dateRep, covidCountry.cases, ax, drs100_num, country_str)
+	plt.xticks(rotation=30);
+	plt.savefig(str(i)+".png")
