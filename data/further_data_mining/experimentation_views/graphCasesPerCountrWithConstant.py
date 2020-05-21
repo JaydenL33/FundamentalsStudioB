@@ -88,7 +88,6 @@ def barPlotComp(x, y, ax, constantComp, labels):
 	# plt.axhline(y= 1000, color='green', linestyle='--', label='(to be medical cap) test')
 	ax.legend(["Some constant", "Cases per Country"])
 	
-
 with open("processing_dump.txt", "rb") as f:
 		df_list = pickle.load(f)
 
