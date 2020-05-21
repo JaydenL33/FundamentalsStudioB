@@ -337,7 +337,7 @@ def runPreChecks():
 		drops_list = [
 		"Comments", "PUBLISHSTATE","Display Value",
 		"High", "Low", "DATASOURCE", "DHSMICSGEOREGION",
-		"REGION", "geoId", "countryterritoryCode",
+		"REGION", "geoId",
 		]
 
 		# if from GHO, drop the "GHO" column

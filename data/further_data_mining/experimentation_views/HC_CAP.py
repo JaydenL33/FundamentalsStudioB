@@ -96,9 +96,8 @@ def barPlotComp(category, values, ax, constantComp, country):
 
 # filter a df for one country with isin (pd.Series) and boolean indexing.
 countries_list = covidData.countryterritoryCode.unique()
-fig = plt.figure(); 
 for i in range(len(countries_list)):
-	ax = plt.axes()
+	fig = plt.figure(); ax = plt.axes()
 	
 	covidCountry = covidData[covidData.countryterritoryCode.isin([countries_list[i]])]
 	drs100_series = healthCapConst[healthCapConst.COUNTRY.isin([countries_list[i]])].Numeric
