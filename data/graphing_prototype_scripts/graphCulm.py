@@ -22,6 +22,9 @@ import seaborn as sns
 import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 
+# SKLEARN
+from sklearn import preprocessing
+
 def groupbyMonthlyCovid(df):
 	"""
 	Author: Albert Ferguson
@@ -74,62 +77,47 @@ def groupbyCountry(df):
 	df["schema"] = schema_str
 	return df
 
-with open("processing_dump.txt", "rb") as f:
+with open("data/processing_dump.txt", "rb") as f:
 		df_list = pickle.load(f)
 
-
 fig = plt.figure()
 ax = plt.axes()
 
-#def deaths(df):
-df = df_list[11]
-df = groupbyCountry(df)
+# df = groupbyCountry(df_list[-1]); 
+# df = groupbyMonthlyCovid(df_list[-1])
+# df = df_list[-1]
+# ax.plot(df.dateRep, df.cases, 'yo-')
+# plt.show(); plt.legend()
+# input()
 
-df = groupbyMonthlyCovid(df)
+# df['Deaths_culm'] = df.groupby('month')['deaths'].head(1)
+# df['Deaths_culm'].cumsum().ffill()
 
-df['Deaths_culm'] = df.groupby('month')['deaths'].head(1)
-df['Deaths_culm'].cumsum().ffill()
+# ax.plot(df['month'], df['Deaths_culm'], 'yo-', label="Cumulative Frequencty - Cases, Deaths")
 
-df.plot(x='month', y='Deaths_culm', kind='line', 
-     	figsize=(10, 8), legend=False, style='yo-', label="Cumulative Frequencty - Cases, Deaths")
+df = groupbyCountry(df_list[-1])
+sd_sp   = df.cases.std(); mean_sp = df.cases.mean() # stat values for graphing the bell curve.
+bins_int = 100
+cases = df[df["countriesAndTerritories"].isin(["Afghanistan"])].cases
+# group by country, otherwise we get a clusterfuck of graphing.
 
-plt.legend();
+# normalise the data
+# norm_scaler = preprocessing.StandardScaler()
+# norm_ndarray = norm_scaler.fit_transform(df[["cases"]])
 
-plt.show()
+# current curve, use the bins value for our curve approx. later.
+n, bins, patches = ax.hist(cases, bins=bins_int, density=True, histtype="step",
+						   cumulative=True, label="Emperical - confirmed cases")
 
-fig = plt.figure()
-ax = plt.axes()
+# flattened curve approx. to calculate the bell curve of our pandemic
+y = (( 1 / (np.sqrt(2 * np.pi) * sd_sp)) *
+	 np.exp( -0.5 * ( 1 / sd_sp * (bins - mean_sp))**2))
+y = y.cumsum(); y /= y[-1] # convert to cumulative sum then calc average at all points (last val in cumulative is total)
 
-#def cases(df):
-# df = df_list[11]
-# df['cases_cum'] = df.groupby('cases')['dateRep'].head(1)
-# df['cases_cum'].cumsum()
-# df['cumcase_perc'] = 100*df['cases']/df['cases_cum'].sum()
+ax.plot(bins, y, 'k--', linewidth=1.5, label="Project Exp. Curve")
 
-####
-# Index is now the date time values!!!
-###
-ax.plot(df.index, df['cases'], 'bo-')
-ax.plot(df.index, df['deaths'], 'ro-')
-
-plt.show()
-
-fig = plt.figure()
-ax = plt.axes()
-
-# #def deaths(df):
-# df = df_list[11]
-# df['cases_death_cum'] = df.groupby('deaths')['cases'].head(1)
-# df['cases_death_cum'].cumsum()
-# df.plot(x='deaths', y='cases_death_cum', kind='line', 
-#      	figsize=(10, 8), legend=False, style='yo-', label="Cumulative frequency graph cases_deaths")
-# plt.legend();
-# plt.show()
-# # mu = 200
-# sigma = 25
-# n_bins = 50
-# x = df[['Deaths_cum']]( size=100)
-
+plt.xticks(rotation=30)
+ax.legend(loc="right"); plt.show()
 
 
 
