@@ -1,4 +1,36 @@
+/* 
+$color1: hsla(301%, 89%, 76%, 1); Pink
+$color2: hsla(0%, 0%, 100%, 1); White
+$color3: hsla(0%, 0%, 6%, 1); Black
+$color4: hsla(348%, 88%, 94%, 1); Red
+$color5: hsla(215%, 89%, 100%, 1); Blue
+/* RGB 
+$color1: rgba(193, 22, 190, 1); Pink
+$color2: rgba(255, 255, 255, 1); White
+$color3: rgba(16, 16, 16, 1); Black
+$color4: rgba(239, 28, 69, 1); Red
+$color5: rgba(29, 124, 255, 1); Blue
+
+/* HEX 
+$color1: #c116beff; Pink
+$color2: #ffffffff; White
+$color3: #101010ff; Black
+$color4: #ef1c45ff; Red
+$color5: #1d7cffff; Blue
+color6: #A9ADB0; Silver Challice
+
+*/
+
 @import url('https://fonts.googleapis.com/css?family=Montserrat:500');
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    position: relative;
+}
 
 * {
     margin: 0;
@@ -6,66 +38,16 @@
     list-style: none;
     text-decoration: none;
     box-sizing: border-box;
-    background-color: #101010;
+    background-color: #A9ADB0;
 }
 
-li, a, button {
-    font-family: Montserrat, sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: whitesmoke;
-    text-decoration: none;
-}
+/* Animation
+----------------------------------------------- */
 
-h1, span {
-    font-family: Montserrat, sans-serif;
-    font-weight: 450;
-    font-size: 14px;
-    color: whitesmoke;
-    cursor: pointer;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px 10%;
-    color: whitesmoke;
-}
-
-.nav_links {
-    list-style: none;
-}
-
-.nav_links li {
-    display: inline-block;
-    padding: 0 20px;
-}
-
-.nav_links a {
-    transition: all 0.3s ease 0;
-}
-
-.nav_links li a:hover {
-    color: paleturquoise;
-}
-
-button {
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s ease 0;
-}
-
-button:hover {
-    background: rgba(16,16,16,0.4);
-}
-
-.intro {
-    position: absolute;
-    right: 0px;
-    width: 300px;
-    color: whitesmoke;
-    padding: 10px;
+@keyframes hover-change {
+    0%   {opacity: 0;}
+    25%  {opacity: 25;}
+    50%  {opacity: 50}
+    75%  {opacity: 75;}
+    100% {opacity: 100;}
   }
-

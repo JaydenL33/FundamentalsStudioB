@@ -1,0 +1,60 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+    color: #A9ADB0;
+    background-color: white;
+}
+
+.nav_links {
+    list-style: none;
+    background-color: white;
+}
+
+.nav_links li {
+    display: inline-block;
+    padding: 0 20px;
+    background-color: white;
+}
+
+.nav_links a {
+    background-color: white;
+}
+
+.nav_links a:active {
+    transition: all 0.3s ease 0;
+    color: paleturquoise;
+}
+
+.nav_links li a:hover {
+    color: paleturquoise;
+}
+
+li, a, button {
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: #101010;
+    background-color: white;
+    text-decoration: none;
+}
+
+header h1, header span{
+    font-family: Montserrat, sans-serif;
+    font-weight: 450;
+    font-size: 14px;
+    color: #101010;
+    cursor: none;
+    background-color: white;
+    justify-content: start;
+}
+
+
+header img {
+    background-color: white;
+    margin-left: -2rem;
+}
+
+
+  

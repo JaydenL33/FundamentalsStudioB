@@ -1,14 +1,22 @@
+from selenium.webdriver import Chrome
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.common import exceptions
+
 import pandas as pd
 import numpy as np
 import os
 import requests
 import pickle
 
+
 ATTRIBUTES = {
 'Average of 13 International Health Regulations core capacity scores':None,
 'Composite coverage index (%)':None,
 'Population with household expenditures on health greater than 10% of total household expenditure or income':None,
 'Population with household expenditures on health greater than 25% of total household expenditure or income':None,
+'Children aged < 5 years with pneumonia symptoms taken to a health facility (%)':None,
 'Existence of a register of patients who had rheumatic fever and rheumatic heart disease':None,
 'Mean systolic blood pressure (age-standardized estimate)':None,
 'Medical doctors (number)':None,
