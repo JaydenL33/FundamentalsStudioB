@@ -85,7 +85,7 @@ def deltaTimeLine():
         if not grapher.plotTimlineDelta(_df, _df.cases, ax, "COVID 19 Cases Delta against Time"):
             print("Error")
             return False
-        plt.savefig("res/graph protos/prototype deltaTimeline/"+country+"_cases.png")
+        plt.savefig("res/graph protos/prototype deltaTimeline/"+country+"_cases.png"); plt.close(fig)
 
     for country in countries_list:
         fig, ax = plt.subplots(1,1)
@@ -94,17 +94,17 @@ def deltaTimeLine():
         if not grapher.plotTimlineDelta(_df, _df.deaths, ax, "COVID 19 Deaths Delta against Time"):
             print("Error")
             return False
-        plt.savefig("res/graph protos/prototype deltaTimeline/"+country+"_deaths.png")
+        plt.savefig("res/graph protos/prototype deltaTimeline/"+country+"_deaths.png"); plt.close(fig)
 
     for country in countries_list:
         fig, ax = plt.subplots(1,1)
-        fatalityRatio = (_df.cases / _df.deaths)
-        
+
         _df = df_time[df_time.countriesAndTerritories.isin([country])]
+        fatalityRatio = (_df.cases / _df.deaths)
         if not grapher.plotTimlineDelta(_df, fatalityRatio, ax, "COVID 19 Fatality Ratio Delta against Time"):
             print("Error")
             return False
-        plt.savefig("res/graph protos/prototype deltaTimeline/"+country+"_fatalityRatio.png")
+        plt.savefig("res/graph protos/prototype deltaTimeline/"+country+"_fatalityRatio.png"); plt.close(fig)
     return
 
 deltaTimeLine()

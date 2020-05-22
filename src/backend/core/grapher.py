@@ -168,7 +168,7 @@ def plotTimlineDelta(data: pd.DataFrame, y_vals: pd.Series, ax, title: str) -> b
     try:
         dates_axis = data.dateRep
         cases_axis = y_vals.diff()
-        dayMonth_vals = [str(t.day) + '-' + str(t.month) for t in dates_axis]
+        # dayMonth_vals = [str(t.day) + '-' + str(t.month) for t in dates_axis]
     except AttributeError:
         return False
 
@@ -180,10 +180,12 @@ def plotTimlineDelta(data: pd.DataFrame, y_vals: pd.Series, ax, title: str) -> b
 
     # annotate lines
     vert = np.array(['top', 'bottom'])[(cases_axis > 0).astype(int)]
-    for d, l, r, va in zip(dates_axis, cases_axis, dayMonth_vals, vert):
+    for d, l, r, va in zip(dates_axis, list(cases_axis), cases_axis, vert):
+        if not (l > 0 or l < 0):
+            continue
         text = ax.annotate(r, xy=(d, l), xytext=(-3, np.sign(l)*3),
                 textcoords="offset points", va=va, ha="right")
-        text.set_rotation(-90)
+        text.set_rotation(-45)
     
     # formatting, add title, rotate date labels and remove y axis and spines
     ax.set(title="COVID19" + title)
