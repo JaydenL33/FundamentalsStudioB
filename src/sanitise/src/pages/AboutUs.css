@@ -10,14 +10,36 @@
     margin-right: 25%;
     margin-left: 25%;
     font-size: 35px;
-    /*background-color: lightblue;*/
+        /*background-color: lightblue;*/
+
 
 }
 
-img {
-    display: block;
-    width: 100%;
+
+.imgStyle {
+    display: flex;
+    flex-direction:row;
+    justify-content: space-evenly;
+    object-fit: scale-down;
+
+    padding-left: 5%;
+    padding-right: 2%;
+/*
+    width: auto;
+    height: auto;
+   */
+    
+
+  
+
+  
+
+    /*resize-mode='stretch';*/
+  
+
+
   }
+
   
   
 .textStyle  
@@ -26,9 +48,9 @@ img {
     font-family: Arial;
     text-align: justify;
     float: center;
-    /*border: 1px solid red;*/
-    margin-top: 2%;
-    margin-bottom: 2%;
+   /* border: 1px solid red;*/
+    margin-top: 10%;
+    margin-bottom: 10%;
     margin-right: 25%;
     margin-left: 25%;
     font-size: 18px;
@@ -54,9 +76,16 @@ img {
 {
     color:  white;
     font-family: Arial;
+    text-align: justify;
+    float: center;
+    /*border: 1px solid red;*/
+    margin-right: 25%;
+    margin-left: 25%;
+    font-size: 18px;
+  
 }
-  
-  
+
+
   
   
   

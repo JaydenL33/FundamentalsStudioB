@@ -59,16 +59,24 @@ const Carousel = makeCarousel(CarouselUI);
  
 function Title() {
   return (
+    <div>
     <div className = "title">
          <Fade>
           <h1>About Us</h1>
         </Fade>
-        <br></br>
+      
+    </div>
+
+        <div className = "imgStyle">
         <Fade up>
-            <img src={UtsCrest} alt="Uts Crest" height={620}/>
+      
+            <img src={UtsCrest} alt="Uts Crest"  />
+            <img src={B11} alt="Uts Building 11" />
+     
             
         </Fade>
 
+      </div>
       </div>
       
   );
@@ -78,19 +86,23 @@ function ParagraphOne() {
   return (
     <div className = "textStyle">
 
-        <Zoom>
-          <h3>About Us!</h3>
-          <h2> Covid-19 Visualisation - Purpose</h2>
+    
+          <h1> Covid-19 Visualisation - Purpose</h1>
           <br></br>
-        </Zoom>
+   
+        <Card>
 
         <Reveal ssrFadein>
+      
           <p>
           The purpose behind this web application is to compare and visualises complex and dynamic data of the SARS-COV-2 
           (a.k.a. COVID or Coronavirus) outbreak promptly. The aim of the website is to hopefully effectively deliver and 
           convey this data in an easily understandable format.
           </p>
+          
         </Reveal>
+
+        </Card>
 
     </div>
       
@@ -100,11 +112,11 @@ function ParagraphOne() {
 function ParagraphTwo() {
   return (
     <div className = "textStyle">
-          <Zoom>
-            <h2> What is This? </h2>
-          </Zoom>
-        
-          <br></br>
+     
+            <h1> What is This? </h1>
+            <br></br>
+          <Card>
+
           <Reveal ssrFadein>
             <p>
               
@@ -115,10 +127,11 @@ function ParagraphTwo() {
          	  </p>
           </Reveal>
 
+          </Card>
+
         <br></br>
      
-        <img src={B11} alt="Uts Building 11" height={420} />
-     
+   
 
         
     </div>
@@ -130,10 +143,13 @@ function ParagraphTwo() {
 function ParagraphThree() {
   return (
     <div className = "textStyle">
-      <Zoom>
-        <h2>The Problem at Hand?</h2>
-      </Zoom>
+    
+        <h1> The Problem at Hand?</h1>
+   
       <br></br>
+        <Card>
+
+
 
       <Reveal ssrFadein>
         <p>
@@ -144,6 +160,7 @@ function ParagraphThree() {
         in Wuhan or was a result of 5G network towers. 
         </p>
       </Reveal>
+      </Card>
 
 
        
@@ -155,11 +172,13 @@ function ParagraphThree() {
 function ParagraphFour() {
   return (
     <div className = "textStyle">
-      <Zoom>
-        <h2> How are we addressing the problem?</h2>
-      </Zoom>
-        
+       
+        <h1> How are we addressing the problem?</h1>
+   
       <br></br>
+
+    <Card>
+      
 
       <Reveal ssrFadein>
         <p>
@@ -168,8 +187,32 @@ function ParagraphFour() {
         illustrated in the provided detailed and graphical models, graphs and maps of the spread of the coronavirus. 
         </p>
       </Reveal>
+      </Card>
                 
     </div>
+      
+  );
+}
+
+function Resources() {
+  return (
+    <div className = "Cardstyle">
+    <Card>
+      
+        <h2> Resources</h2>
+     
+        <br></br>
+
+        <p>
+        Website References...
+        </p>
+
+    
+      </Card>
+      <br></br>
+                
+    </div>
+      
       
   );
 }
@@ -222,23 +265,7 @@ function SlideText() {
 }
 
 
-function Cardbox() {
-  return (
-    <div>
-        <Card>
-          <div className = "Cardstyle">
-            <h3>Resources</h3>
-            <br></br>
-            <p>
-               Sed efficitur venenatis libero non fringilla. Fusce euismod volutpat ullamcorper. 
-               Curabitur non consectetur nisi. 
-            </p>
-           </div>
-        </Card>
-      </div>
-      
-  );
-}
+
 
 
 class AboutUs extends Component {
@@ -254,12 +281,13 @@ class AboutUs extends Component {
       <div>
         <Navbar></Navbar>
         <Title></Title>
+        <SlideText></SlideText>
         <ParagraphOne></ParagraphOne>
         <ParagraphTwo></ParagraphTwo>
         <ParagraphThree></ParagraphThree>
         <ParagraphFour></ParagraphFour>
-        <SlideText></SlideText>
-        <Cardbox></Cardbox>
+    
+        <Resources></Resources>
       </div>
     );
     }
