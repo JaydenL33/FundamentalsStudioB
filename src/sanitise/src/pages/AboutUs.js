@@ -21,7 +21,7 @@ import UtsCrest from '../images/UtsCrest.jpg'
 import B11 from '../images/building11.png'
 
 
-const width = '500px', height='250px';
+const width = '500px', height='100px';
 // Styled Components Syntax
 const Container = styled.div`  
   border: rgba(0,0,0, 0.5);
@@ -70,8 +70,8 @@ function Title() {
         <div className = "imgStyle">
         <Fade up>
       
-            <img src={UtsCrest} alt="Uts Crest"  />
-            <img src={B11} alt="Uts Building 11" />
+            <img src={UtsCrest} alt="Uts Crest"/>
+            <img src={B11} alt="Uts Building 11" width='auto' height='auto'/>
      
             
         </Fade>
@@ -225,6 +225,8 @@ function SlideText() {
         <Reveal ssrFadein>
         <h2> Team Members</h2>
           </Reveal>
+
+        <br></br>
 
         <div>
         <Carousel>

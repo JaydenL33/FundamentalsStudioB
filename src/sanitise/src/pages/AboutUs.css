@@ -5,7 +5,7 @@
     font-family: Arial;
     text-align: center;
     /*border: 1px solid red;*/
-    margin-top: 5%;
+    margin-top: 15%;
     margin-bottom: 5%;
     margin-right: 25%;
     margin-left: 25%;
@@ -21,18 +21,11 @@
     flex-direction:row;
     justify-content: space-evenly;
     object-fit: scale-down;
-
     padding-left: 5%;
     padding-right: 2%;
-/*
-    width: auto;
-    height: auto;
-   */
-    
 
-  
 
-  
+
 
     /*resize-mode='stretch';*/
   
@@ -67,8 +60,8 @@
     margin-right: 25%;
     margin-left: 25%;
     /*background-color: lightblue;*/
-    width: auto;
-    height: auto;
+   /* width: auto;
+    height: auto;*/
   
 }
 
