@@ -21,7 +21,7 @@ import UtsCrest from '../images/UtsCrest.jpg'
 import B11 from '../images/building11.png'
 
 
-const width = '500px', height='250px';
+const width = '500px', height='100px';
 // Styled Components Syntax
 const Container = styled.div`  
   border: rgba(0,0,0, 0.5);
@@ -59,16 +59,24 @@ const Carousel = makeCarousel(CarouselUI);
  
 function Title() {
   return (
+    <div>
     <div className = "title">
          <Fade>
           <h1>About Us</h1>
         </Fade>
+      
+    </div>
 
+        <div className = "imgStyle">
         <Fade up>
-            <img src={UtsCrest} alt="Uts Crest" height={620}/>
+      
+            <img src={UtsCrest} alt="Uts Crest"/>
+            <img src={B11} alt="Uts Building 11" width='auto' height='auto'/>
+     
             
         </Fade>
 
+      </div>
       </div>
       
   );
@@ -78,16 +86,23 @@ function ParagraphOne() {
   return (
     <div className = "textStyle">
 
-        <Zoom>
-          <h3>About Us!</h3>
-          <h2> Covid-19 Visualisation</h2>
-        </Zoom>
+    
+          <h1> Covid-19 Visualisation - Purpose</h1>
+          <br></br>
+   
+        <Card>
 
         <Reveal ssrFadein>
+      
           <p>
-           Lorem ipsum dolor sit amet, consunc neque, dapibus id consequat vitae, imperdiet sit amet nisl. Mauris ac ultrices lectus, et sagittis mauris. Nunc et vestibulum augue. Fusce eget facilisis libero. Maecenas ullamcorper condimentum lorem nec ultricies.
+          The purpose behind this web application is to compare and visualises complex and dynamic data of the SARS-COV-2 
+          (a.k.a. COVID or Coronavirus) outbreak promptly. The aim of the website is to hopefully effectively deliver and 
+          convey this data in an easily understandable format.
           </p>
+          
         </Reveal>
+
+        </Card>
 
     </div>
       
@@ -97,21 +112,26 @@ function ParagraphOne() {
 function ParagraphTwo() {
   return (
     <div className = "textStyle">
-          <Zoom>
-            <h2> What is this? </h2>
-          </Zoom>
-        
-          <br></br>
+     
+            <h1> What is This? </h1>
+            <br></br>
+          <Card>
+
           <Reveal ssrFadein>
             <p>
-              Sed efficitur venenatis libero non fringilla. Fusce euismod volutpat ullamcorper. Curabitur non consectetur nisi. Curabitur varius tempor finibus. In eget eleifend diam, at auctor sapien. Proin at dui et nisi venenatis ultrices. Fusce sit amet libero sollicitudin, efficitur nulla in, consequat orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a dignissim urna. Quisque a congue ligula. Nunc scelerisque, metus non pulvinar sagittis, sem mauris ultricies lacus, eget interdum odio lorem in libero. Praesent eget tortor nisi.
+              
+            This website application has been created by four university students, with the aim to not only educate
+            those who view the site, but also provide an opportunity for mention students to develop the skills needed in 
+            order be able to present important and current data in an effective and rememberable way as studying data engineers.
+
          	  </p>
           </Reveal>
 
+          </Card>
+
         <br></br>
      
-        <img src={B11} alt="Uts Building 11" height={420} />
-     
+   
 
         
     </div>
@@ -123,21 +143,24 @@ function ParagraphTwo() {
 function ParagraphThree() {
   return (
     <div className = "textStyle">
-      <Zoom>
-        <h2> Why is this a problem?</h2>
-      </Zoom>
+    
+        <h1> The Problem at Hand?</h1>
+   
       <br></br>
+        <Card>
+
+
 
       <Reveal ssrFadein>
         <p>
-          Sed efficitur venenatis libero non fringilla. Fusce euismod volutpat ullamcorper. 
-          Curabitur non consectetur nisi. Curabitur varius tempor finibus. In eget eleifend diam,
-          at auctor sapien. Proin at dui et nisi venenatis ultrices. Fusce sit amet libero sollicitudin, 
-          efficitur nulla in, consequat orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-           a dignissim urna. Quisque a congue ligula. Nunc scelerisque, metus non pulvinar sagittis, sem mauris
-          ultricies lacus, eget interdum odio lorem in libero. Praesent eget tortor nisi.
+        The inspiration behind why this site has been developed was as the world is currently in the age of 
+        information there is a widespread problem of the publishing misinformation as seen currently in the 
+        non-factual spread of ‘rumours’ on the origins and effects of COVID-19 with conspiring theorist are running 
+        rampant with ideas that SARS-CoV-2 may be a US Government bioterrorism plan or was created in a Biosecurity Lab 
+        in Wuhan or was a result of 5G network towers. 
         </p>
       </Reveal>
+      </Card>
 
 
        
@@ -149,19 +172,47 @@ function ParagraphThree() {
 function ParagraphFour() {
   return (
     <div className = "textStyle">
-      <Zoom>
-        <h2> How are we addressing the problem?</h2>
-      </Zoom>
-        
+       
+        <h1> How are we addressing the problem?</h1>
+   
       <br></br>
+
+    <Card>
+      
 
       <Reveal ssrFadein>
         <p>
-          Sed efficitur venenatis libero non fringilla. Fusce euismod volutpat ullamcorper. Curabitur non consectetur nisi. Curabitur varius tempor finibus. In eget eleifend diam, at auctor sapien. Proin at dui et nisi venenatis ultrices. Fusce sit amet libero sollicitudin, efficitur nulla in, consequat orci. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a dignissim urna. Quisque a congue ligula. Nunc scelerisque, metus non pulvinar sagittis, sem mauris ultricies lacus, eget interdum odio lorem in libero. Praesent eget tortor nisi.
+        The site addresses this problem through the simplification of the mass amounts of data that is published daily in 
+        relation to the COVID-19 virus. This simplification has been done though the development of story that has been 
+        illustrated in the provided detailed and graphical models, graphs and maps of the spread of the coronavirus. 
         </p>
       </Reveal>
+      </Card>
                 
     </div>
+      
+  );
+}
+
+function Resources() {
+  return (
+    <div className = "Cardstyle">
+    <Card>
+      
+        <h2> Resources</h2>
+     
+        <br></br>
+
+        <p>
+        Website References...
+        </p>
+
+    
+      </Card>
+      <br></br>
+                
+    </div>
+      
       
   );
 }
@@ -174,6 +225,8 @@ function SlideText() {
         <Reveal ssrFadein>
         <h2> Team Members</h2>
           </Reveal>
+
+        <br></br>
 
         <div>
         <Carousel>
@@ -214,23 +267,7 @@ function SlideText() {
 }
 
 
-function Cardbox() {
-  return (
-    <div>
-        <Card>
-          <div className = "Cardstyle">
-            <h3>Resources</h3>
-            <br></br>
-            <p>
-               Sed efficitur venenatis libero non fringilla. Fusce euismod volutpat ullamcorper. 
-               Curabitur non consectetur nisi. 
-            </p>
-           </div>
-        </Card>
-      </div>
-      
-  );
-}
+
 
 
 class AboutUs extends Component {
@@ -246,12 +283,13 @@ class AboutUs extends Component {
       <div>
         <Navbar></Navbar>
         <Title></Title>
+        <SlideText></SlideText>
         <ParagraphOne></ParagraphOne>
         <ParagraphTwo></ParagraphTwo>
         <ParagraphThree></ParagraphThree>
         <ParagraphFour></ParagraphFour>
-        <SlideText></SlideText>
-        <Cardbox></Cardbox>
+    
+        <Resources></Resources>
       </div>
     );
     }
