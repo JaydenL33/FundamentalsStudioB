@@ -110,7 +110,6 @@ env.bak/
 venv.bak/
 .DS_STORE
 
-
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -120,10 +119,14 @@ venv.bak/
 .dmypy.json
 dmypy.json
 
-
+# vs code
 .vscode
 *.db
 */.ipynb_checkpoints
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -172,12 +175,35 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 
- Flask stuff:
+# Flask
 instance/
 .webassets-cache
 
+# Sphinx documentation
+docs/_build/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Sphinx documentation
+docs/_build/
+
 # Scrapy stuff:
 .scrapy
+
+instance/
+.webassets-cache
 
 # Sphinx documentation
 docs/_build/
@@ -198,8 +224,44 @@ pip*
 ENV_DIR/
 version/
 
+# Node packages
+packages/*
+build/
+remote-repo/
+coverage/
+.module-cache
+scripts/flow/*/.flowconfig
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+node_modules
+scripts/flow/*/.flowconfig
+
 # raw data and todos
 *.csv
 *.pdf
+
 # todo files
 todo.*
+todo.md
+
+# ignore the docs folder locally, should only be affected on the server
+docs/*
+*.cfg
+requirements
+src/frontend/commit file

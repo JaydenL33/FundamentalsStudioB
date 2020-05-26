@@ -1,0 +1,100 @@
+COVID 19 Data Mining,
+
+- Find relvant data sources
+- compile pre-db info
+- compile the orig. data sources
+
+FIPS and GNIS codes for US
+
+ECDC data contains heavy NAN territory by territory
+
+WHO case based reporting form
+	person-by-person report
+	data dictionary for form
+WHO aggregated weekly reporting form
+
+Confirmed cases include presumptive positive cases.
+
+Recovered cases outside China are estimates based on local media reports, and may be substantially lower than the true number.
+
+Active cases = total confirmed - total recovered - total deaths.
+
+Incidence Rate = confirmed cases per 100,000 persons.
+
+Case-Fatality Ratio (%) = Number recorded deaths / Number confirmed cases.
+
+US Testing Rate = total tested per 100,000 persons.
+
+US Hospitalization Rate (%) = Total number hospitalized / Number confirmed cases.
+
+
+### DATABASES TO USE ###
+
+# INDICATORS
+WHO - GHO API ODATA
+	- manual API calls (string embedding)
+	- https://ghoapi.azureedge.net/api/Indicator
+	- asthma, high blood pressure, heart disease, lung disease, cancer or diabetes
+
+# COVID DATA
+ECDC - COVID-19 CASE DATA (CONTAINS US)
+	- https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide
+	- CSV ENDPOINT: https://www.ecdc.europa.eu/covid19/casedistribution/csv,
+	- file encodoing: UTF-8-BOM
+
+# SKIP THIS FOR NOW
+US NYTIMES REPO - COVID19 CASE DATA (24HR UPDATE WINDOW FROM 5AM EST OR 7PM UTC)
+	- https://github.com/nytimes/covid-19-data/blob/master/us-states.csv
+	- https://github.com/nytimes/covid-19-data/blob/master/us-counties.csv
+
+# LAGGING INDICATORS INEFFICIENT FOR THIS ANALYSIS
+# ECONOMIC FACTORS
+QUANDLE - API INTERFACE TO LOTS OF ECONOMIC DB'S
+	- requires api key
+	- has python module (quandle) with get, api and set submodules
+	- NOTHING UP TO DATE, LATEST IS 2018 DEC ON ALL DPs
+
+
+ALT DOMAIN MACROS
+- ECONOMIC MARKET INDICATOR MACROS (LEADING, COINCIDENT AND LAGGING)
+	- LAGGING
+		- GDP
+		- GDP %D (GROWTH/DECLINE)
+		- HDI
+		- CPI
+		- LABOUR MARKET STATS
+		- COMMODITIES (MAYBE NOT?)
+		- GINI COEFF
+			- HOSP. BEDS/REGION
+			- DRS/REGION
+	- LEADING
+		- HOUSE PRICES
+		- UNEMPLOYMENT CLAIMS
+		- EMPLOYMENT DATA??
+		- RETAIL SALES
+- TOURISM
+	- AVIATION (12MNTH ROLLING WINDOW)
+		- AIRLINE
+		- FLIGHT/WEEK
+		- INBOUND SEATS
+		- Y-ON-Y %D INBOUND SEATS
+		- ROUTE STRING-ID
+	- CRUISE
+		- CENTRALISED BUT TIME CONSUMING TO ACQUIRE
+	- STATE-WISE STATS (FINE DATA ANALYSIS)
+		- AGAIN TIME CONSUMING
+	- MARKET
+		- PURPOSE (STRING CAT)
+		- TRIP EXPEND (BY PURP)
+		- REGION VISITED
+		- OVERNIGHT STOPOVERS
+		- ORIGIN VISITORS (TOP 4)
+		- TOTAL VISITORS YEARLY
+		- VISITOR GAIN Y-ON-Y %D
+		- TOTAL SPEND (DOLLARS)
+		- TOTAL SPEND Y-ON-Y %D
+		- MEAN SPEND/TRIP
+		- MEAN SPEND/TRIP Y-ON-Y %D
+		- MEAN NIGHTS STAYED
+
+
