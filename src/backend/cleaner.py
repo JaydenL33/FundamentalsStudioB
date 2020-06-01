@@ -41,7 +41,7 @@ def _runStartup():
 	"""
 
 	# local dev, comment this out
-	# env = environConfig.safe_environ()
+	env = environConfig.safe_environ()
 
 	global RAW_DF_LIST
 	global DEBUG
@@ -50,8 +50,8 @@ def _runStartup():
 	global ATTRIBUTES
 
 	# update with the env config
-	# DEBUG = env("DEBUG")
-	# baseDir = env("BASE_DATA_DIR")
+	DEBUG = env("DEBUG")
+	baseDir = os.path.abspath(env("BASE_DATA_DIR"))
 
 	# retrieve the WHO Indicator Data and create a HDF (human data format) checklist
 	try:
