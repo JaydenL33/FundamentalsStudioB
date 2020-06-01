@@ -179,9 +179,6 @@ coverage.xml
 instance/
 .webassets-cache
 
-# Sphinx documentation
-docs/_build/
-
 # Translations
 *.mo
 *.pot
