@@ -4,7 +4,7 @@ well as label encoding for binary and categorical data.
 """
 
 # core user lib
-from core import environConfig
+from .core import environConfig
 
 # Python core
 import math
