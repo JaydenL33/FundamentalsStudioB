@@ -49,49 +49,112 @@ def splicer(df_list):
 
 	return new_df
 
-def groupbyMonthlyCovid(df):
+def groupTimeCovid(data: pd.DataFrame, time='M'):
 	"""
-	Author: Albert Ferguson
-	Reindex for time by retyping and applying a PeriodIndex selecting the M (mnonthly) opt.
-	Use the groupby function of a dataframe and the column we want to groupby, return a sum
+	========================================
+	**  DEPRECIATED USE groupbyTimeFreq   **
+	========================================
+	Author : Albert Ferguson
+	Brief  : Reindex for time by retyping. 
+	Details:
+		Retype and apply a PeriodIndex, selecting the M (monthly) opt. as a default.
+		Use the groupby function of a dataframe and the column we want to groupby, return a sum
+
+	Param  : data, a dataframe with the data to index by time.
+	Param  : time, options are 'Y', 'M' and 'D'. Defined by pd.PeriodIndex.
+			See: https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html
+			See: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.PeriodIndex.html
+			
+	Note   : This is a destructive method.
+	Returns: the dataframe grouped by time, False if an error occurs.
 	"""
-
-	# convert to PeriodIndexing
-	df.dateRep = pd.to_datetime(df.dateRep)
-	# aggregate for monthly data
-	df = df.groupby(pd.PeriodIndex(df.dateRep, freq = "M"), axis = 0).sum()
-	# re add the schema
-	df["schema"] = "COVID19"
-	return df.reset_index()
-
-def groupbyCountry(df):
-	"""
-	Author: Albert Ferguson
-	Use the groupby function of a dataframe and the column we want to groupby, return a sum
-	Note: this differs from df to df as schema may change and the field for countries is labelled
-		differently.
-	"""
-
-	# aggregate for countriesAndTerritories data
-
-	# save the schema for re adding later..TODO: figure out non destructive method
-	schema_str = df.schema[0]
-
 	try:
-		df = df.groupby(df.countriesAndTerritories, axis = 0).sum()
-		df = df.reset_index()
-
+		data.dateRep = pd.to_datetime(data.dateRep)
+		data = data.groupby(pd.PeriodIndex(data.dateRep, freq = time), axis = 0).sum()
 	except AttributeError:
+		return False
+
+	data["schema"] = "COVID19" # re add the schema
+	data = data.reset_index()  # reset the index for following functions.
+
+	return data
+
+def groupbyTimeFreq(data: pd.DataFrame, time='M'):
+    """
+    Author : Albert Ferguson
+    Brief  : Reindex for time by retyping. 
+    Details:
+        Retype and apply a PeriodIndex, selecting the M (monthly) opt. as a default.
+        Use the groupby function of a dataframe and the column we want to groupby, return a sum
+
+    Param  : data, a dataframe with the data to index by time.
+    Param  : time, options are 'Y', 'M' and 'D'. Defined by pd.PeriodIndex.
+            See: https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html
+            See: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.PeriodIndex.html
+            
+    Note   : This is a destructive method.
+    Returns: the dataframe grouped by time, False if an error occurs.
+    """
+    # info on sorting
+    # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sort_values.html
+    # https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.asfreq.html
+    
+    data.dateRep = pd.to_datetime(data.dateRep)
+    data.sort_values(by=["dateRep"], ascending=True, inplace=True)
+    dateSeries = list(data.dateRep)
+    data.reset_index(inplace=True)
+    data.dateRep = dateSeries
+    data.drop(["index"], axis=1, inplace=True)
+    data.dateRep = pd.to_datetime(data.dateRep)
+    return data
+
+def groupbyCountry(df, summative=False, country=None):
+	"""
+	Author : Albert Ferguson
+	Brief  : Group the given dataframe according to country. 
+	Details:
+		Use the groupby function of a dataframe and the column we want to
+		groupby, return a sum
+
+	Param: df, input dataframe to group.
+	Param: summative, optional kwarg to return a single row per country with
+		   sum of values per column. Drops any columns that can't be summed.
+	Param: country, if set and summative False, filter for the selected country.
+
+	Note   :
+		This differs from df to df as schema may change and the field
+		for countries is labelled differently.
+
+	TODO: figure out non destructive method
+	"""
+
+	
+	if summative and country is None:			
+		_df = df.copy() # work with a copy, destructive method
+		schema_str = _df.schema[0] # save the schema for re adding later.
 		try:
-			df = df.groupby(df.COUNTRY, axis = 0).sum()
-			df = df.reset_index()
-
+			_df = _df.groupby(df.countriesAndTerritories, axis = 0).sum()
 		except AttributeError:
-			pass
-
-	# re add the schema
-	df["schema"] = schema_str
-	return df
+			try:
+				_df = _df.groupby(df.COUNTRY, axis = 0).sum()
+			except AttributeError:
+				pass
+		_df = _df.reset_index()     # allow normal indexing for other functions.
+		_df["schema"] = schema_str # re-add the schema constant.
+		return _df
+	
+	elif country is not None:
+		_df = df.copy()
+		try:
+			_df = _df[df.countriesAndTerritories.isin(list(country))]
+		except AttributeError:
+			try:
+				_df = _df[df.COUNTRY.isin(list(country))]
+			except AttributeError:
+				return False
+		return _df
+	else:
+		return False
 
 def imputateMonthlyOther(df):
 	try:
