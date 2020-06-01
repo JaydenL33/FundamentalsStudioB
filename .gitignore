@@ -205,9 +205,6 @@ instance/
 instance/
 .webassets-cache
 
-# Sphinx documentation
-docs/_build/
-
 # Environments
 *.env
 .venv
