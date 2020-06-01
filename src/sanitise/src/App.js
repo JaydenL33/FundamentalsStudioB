@@ -15,10 +15,10 @@ import {
   } 
 from "react-router-dom";
 
-
-
-// a in style.css has now become <link> so remember to replace that in the CSS. 
-
+/**
+ * The App class entry point. Defines the routes for the app.
+ * note: a in style.css has now become <link> so remember to replace that in the CSS. 
+ */
 class App extends Component {
     
     render() {

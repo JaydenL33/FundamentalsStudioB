@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * The Card component.
+ *
+ * @param [props] ...
+ */
 export const Card = (props) => (
 
     <div style = {{

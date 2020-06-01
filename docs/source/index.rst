@@ -21,6 +21,7 @@ Table of Contents
 
    backend
    frontend
+   about
 
 Indices and tables
 ------------------
@@ -29,20 +30,4 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-
 .. _SANITISE.media: https://github.com/JaydenL33/FundamentalsStudioB
-
-What we have implemented
-------------------------
-
-- Server side data document rendering (D3.js).
-- MySQL database with ETL for raw data sources:
-	- ECDC;
-	- WHO;
-	- ...more to come!
-- Aesthetic front-end designs:
-	- logo and colour palettes;
-	- sticky header feature for easy navigation;
-	- About Us information page;
-	- scrolling animation effect.
-- Relevant and demonstrating graphs from **real** data.

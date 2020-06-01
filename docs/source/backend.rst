@@ -1,49 +1,61 @@
 Backend
-=======
+*******
 
 The Backend documentation for the SANITISE.media project.
 
-
 :mod:`backend`
---------------
+==============
 
-.. automodule:: src.backend.__init__
+.. automodule:: src.backend
 	:members:
-	:undoc-members:
-	:show-inheritance:
 
+Cleaner
+-------
+.. automodule:: src.backend.cleaner
+	:members:
+
+DashViewer
+----------
+.. automodule:: src.backend.dashViewer
+	:members:
+
+Ingest
+------
+.. automodule:: src.backend.ingest
+	:members:
+
+Overviewer
+----------
+.. automodule:: src.backend.overviewer
+	:members:
+
+Prototype Graphs
+----------------
+.. automodule:: src.backend.prototypeGraphs
+	:members:
+
+Pusher
+------
+.. automodule:: src.backend.pusher
+	:members:
 
 :mod:`core`
------------
+===========
 
-.. automodule:: src.backend.core.__init__
+.. automodule:: src.backend.core
 	:members:
-	:undoc-members:
 	:show-inheritance:
 
 :mod:`DataManagement`
----------------------
+=====================
 
-.. automodule:: src.backend.DataManagement.__init__
+.. automodule:: src.backend.DataManagement
 	:members:
-	:undoc-members:
 	:show-inheritance:
 
 :mod:`apis`
------------
+===========
 
-.. automodule:: src.backend.apis.__init__
+.. automodule:: src.backend.apis
 	:members:
-	:undoc-members:
 	:show-inheritance:
-
-
-.. apis
-.. core
-.. DataManagement
-.. cleaner
-.. dashViewer
-.. ingest
-.. overviewer
-.. prototypeGraphs
-.. pusher

@@ -1,7 +1,6 @@
-__doc__="""Cleaner runs the prechecks and initial import of any data sources
-we pull. This includes NaN, duplicate, missing data, erroneous strings checks as
-well as label encoding for binary and categorical data.
-"""
+__doc__ = """Cleaner runs the prechecks and initial import of any data sources \
+we pull. This includes NaN, duplicate, missing data, erroneous strings checks as \
+well as label encoding for binary and categorical data."""
 
 # core user lib
 from .core import environConfig
@@ -25,7 +24,6 @@ from sklearn.impute import SimpleImputer
 
 ATTRIBUTES = {}
 RAW_DF_LIST = []
-RAWGLOBAL_DF_LIST = []
 DEBUG = False                                                      # verbose debug prints
 baseDir = "data" # file name for Raw Data (defaults to my local machine as ../../data)
 
@@ -35,7 +33,7 @@ baseDir = "data" # file name for Raw Data (defaults to my local machine as ../..
 
 def _runStartup():
 	"""
-	Author: Albert Ferguson
+	:author Albert Ferguson
 	Explicit startup function. Runs any necessary preloads for data and Globals updates.
 	Retrieves raw data and assigns Globals to env vars, runs default ones gracefully otherwise.
 	"""
@@ -50,13 +48,14 @@ def _runStartup():
 	global ATTRIBUTES
 
 	# update with the env config
-	DEBUG = env("DEBUG")
-	baseDir = os.path.abspath(env("BASE_DATA_DIR"))
+	DEBUG   = env.bool("DEBUG", False)
+	baseDir = env("BASE_DATA_DIR")
 
 	# retrieve the WHO Indicator Data and create a HDF (human data format) checklist
 	try:
 		# data/WHO_INDICATORS.txt
-		with open(os.path.join(os.path.join(baseDir, "WHO"), "WHO_INDICATORS.txt"), "rb") as whoIndicators:
+		who_fn = os.path.join(baseDir, "data", "WHO", "WHO_INDICATORS.txt")
+		with open(who_fn, "rb") as whoIndicators:
 			ATTRIBUTES = pickle.load(whoIndicators)
 
 		for attributeID in ATTRIBUTES.values():
@@ -164,7 +163,7 @@ def imputateNaNs(df):
 			except ValueError:
 				pass
 		
-	if DEBUG:
+	if DEBUG == True:
 		print("imputateNaNs: Constant adjustments completed")
 
 	# 1. Select the cols with NaN data, where dtype is integer/
@@ -179,7 +178,7 @@ def imputateNaNs(df):
 		if nanValCheck_boolarr.sum() > 0:
 			df[col] = nanImp.fit_transform(df[[col]])
 	
-	if DEBUG:
+	if DEBUG == True:
 		print("imputateNaNs: imputation completed")
 		print("imputateNaNs:\n{}".format(df.head()))
 		print("imputateNaNs:\n{}".format(df.dtypes))
@@ -196,7 +195,7 @@ def splitGlobalStats(df):
 			# 2. retrieve indexes of GLOBAL stats
 			globals_df = df[globalCheck_boolarr]
 			
-			if DEBUG:
+			if DEBUG == True:
 				print("splitGlobalStats: dropped and added global dat\n")
 				print("\t###\n")
 
@@ -231,7 +230,7 @@ def binaryPreProcessor(df):
 	binaryCols_boolarr = df.nunique() == 2
 	binaryCols_list = df.columns[binaryCols_boolarr]
 	
-	if DEBUG:
+	if DEBUG == True:
 		print("binaryPreProcessor:\n{}\n".format(df.nunique()))
 		print("binaryPreProcessor: binary columns to adjust\n{}\n\n".format(binaryCols_boolarr))
 
@@ -250,7 +249,7 @@ def binaryPreProcessor(df):
 			new_col = col + '_binary_encoding'
 			df[new_col] = ordinalEncoder.fit_transform(df[[col]]).astype('bool')
 
-			if DEBUG:
+			if DEBUG == True:
 				print("binaryPreProcessor:\n{}\n".format(df[[col]]))
 				print("\t###\n")
 
@@ -273,7 +272,7 @@ def encodeCategoricals(df):
 	#		as they may assume continuous when these are arbitrarily ordered!
 	ordinalEncoder = pre.OrdinalEncoder()
 
-	if DEBUG:
+	if DEBUG == True:
 		print("encodeCategoricals: categorical columns\n{}".format(categoricalCols_df.head()))
 
 	for col in categoricalCols_df.columns:
@@ -281,7 +280,7 @@ def encodeCategoricals(df):
 			continue
 
 		try:
-			if DEBUG:
+			if DEBUG == True:
 				print("encodeCategoricals: attempting\n{}".format(col))
 			# df[[col]] = ordinalEncoder.fit_transform(df[[col]])
 			# Append the encoded rather than over writing
@@ -320,7 +319,8 @@ def runPreChecks():
 	
 	i = 1
 	for raw_df in RAW_DF_LIST:
-		if DEBUG:
+		if DEBUG  == True:
+			print(DEBUG)
 			print("\n\n#################################################################################")
 			print("CURRENT FRAME:", i)
 			#print("Source Name:\t", list(ATTRIBUTES.values())[i])
@@ -363,7 +363,7 @@ def runPreChecks():
 		globalDataRes = splitGlobalStats(raw_df)
 		if type(globalDataRes) is pd.DataFrame:
 			# add the global data to its own list
-			if DEBUG:
+			if DEBUG == True:
 				print("runPreChecks: GLOBAL DF DESCRIBE:\n{}\n".format(globalDataRes.head()))
 			
 			RAWGLOBAL_DF_LIST.append(globalDataRes)
@@ -387,14 +387,14 @@ def runPreChecks():
 		#    correct type and remove erroneous string content.
 		####
 		if "Display Value" in raw_df.columns and raw_df["Display Value"].dtype == np.object:
-			if DEBUG:
+			if DEBUG == True:
 				print("\nrunPreChecks: Adjusting Display Value type.\n")
 			raw_df["Display Value"] = numericaliseDisplayValueDimension(raw_df["Display Value"])
 			
 			try:
 				raw_df["Display Value"] = raw_df["Display Value"].astype("float64")
 			except ValueError as e:
-				if DEBUG:
+				if DEBUG == True:
 					print("\n###\nrunPreChecks:", e, "\n###\n")
 
 		####
@@ -403,7 +403,7 @@ def runPreChecks():
 		encodeCategoricals(raw_df)
 
 		# debug prints and counter update
-		if DEBUG:
+		if DEBUG == True:
 			print(raw_df.head())
 			input()
 
@@ -460,5 +460,6 @@ def main():
 	output() # write output to file dumps
 
 
-main()
+if __name__ == "__main__":
+	main()
 

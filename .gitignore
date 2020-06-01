@@ -172,7 +172,7 @@ instance/
 
 # Sphinx documentation
 docs/_build/
-docs/build
+docs/build/*
 
 # Scrapy stuff:
 .scrapy

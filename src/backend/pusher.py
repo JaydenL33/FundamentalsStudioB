@@ -3,7 +3,7 @@ data schema. Guarantees correct typing and secure connection.
 """
 
 # core user lib
-from core import environConfig
+from .core import environConfig
 
 
 # Python core
@@ -37,8 +37,7 @@ def _runStartup():
 	Author: Albert Ferguson
 	Explicit startup function. Runs any necessary preloads for data and Globals updates.
 	"""
-	# env = environConfig.safe_environ()
-
+	
 	global DEBUG
 	global RAW_DF_LIST
 	global RAWGLOBAL_DF_LIST
@@ -46,8 +45,9 @@ def _runStartup():
 	global env
 
 	# update with the env config
-	# DEBUG = env("DEBUG")
-	# baseDir = env("BASE_DATA_DIR")
+	env     = environConfig.safe_environ()
+	DEBUG   = env.bool("DEBUG", False)
+	baseDir = env("BASE_DATA_DIR")
 
 	try:
 		# call the read binary to read-in the data frames RAW

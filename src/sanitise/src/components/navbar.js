@@ -13,6 +13,7 @@ const imagestyle = {
     width: 'auto',
     overflow: 'hidden',
     margin: '-200px 0px -200px -100px'
+}
 
 class Navbar extends Component {
     render () {

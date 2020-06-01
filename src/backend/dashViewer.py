@@ -1,8 +1,7 @@
 # core user lib
-from core import environConfig
-from core import aggregations
-from core import corrPlotter
-from core import kdePlotter
+from .core import environConfig, aggregations
+from .core.grapher import corrPlotter
+from .core.grapher import plot as kdePlotter
 
 # Python core
 import os
@@ -41,15 +40,15 @@ def _runStartup():
 	Author: Albert Ferguson
 	Explicit startup function. Runs any necessary preloads for data and Globals updates.
 	"""
-	# env = environConfig.safe_environ()
+	env = environConfig.safe_environ()
 
 	global df_list
 	global DEBUG
 	global baseDir
 
 	# update with the env config
-	# DEBUG = env("DEBUG")
-	# baseDir = env("BASE_DATA_DIR")
+	DEBUG = DEBUG   = env.bool("DEBUG", False)
+	baseDir = env("BASE_DATA_DIR")
 
 	# call the read binary to read-in the data frames RAW
 	try:
@@ -70,14 +69,13 @@ def scaler():
 	pass
 
 def makeAllThePlots():
-	"""
-	Author: Albert Ferguson
-	Helper function, implements our various plots onto a grid.
-	Call the other functions in this file to make the CorrMatrix.
-	Note: naming convention is camel case with explicit variable typing.
-		e.g. myVar_int
-		e.g. myData_df
-		e.g. mySeries_list or mySeries_Series
+	"""Author: Albert Ferguson
+Helper function, implements our various plots onto a grid.
+Call the other functions in this file to make the CorrMatrix.
+Note: naming convention is camel case with explicit variable typing.
+	e.g. myVar_int
+	e.g. myData_df
+	e.g. mySeries_list or mySeries_Series
 	"""
 
 	# explicit note for Python to call the global def

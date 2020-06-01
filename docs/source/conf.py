@@ -56,6 +56,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = 'alabaster'
+html_logo = "_static/logo.png"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -65,7 +66,7 @@ html_static_path = ['_static']
 autosummary_generate = True
 numfig = True
 # Module names always prefix files.
-add_module_names = True
+# add_module_names = True
 # Authors per module are shown.
 show_authors = True
 # Don't include TODO notes into documentation renderings.
@@ -73,13 +74,22 @@ todo_include_todos = False
 
 # -- Enabling Extensions -----------------------------------------------------
 
-# extensions.append('sphinx_js') # JS documentation
+extensions.append('sphinx_js')          # JS documentation
 extensions.append('sphinx.ext.autodoc') # Python Autodoc feature enable.
 
 
 # -- Setting Source Paths ----------------------------------------------------
 
-# js_source_path = "src/sanitise/"
+this_path = os.path.dirname(os.path.abspath(__file__))
+this_path = os.path.dirname(this_path)
+this_path = os.path.dirname(this_path)
 
-# this_path = os.path.dirname(os.path.abspath(__file__))
-# python_package_source = os.path.join(this_path, '..','src', 'backend') 
+js_root = os.path.abspath(os.path.join(this_path, 'src', 'sanitise', 'src'))
+js_pages = os.path.abspath(os.path.join(js_root, 'pages'))
+js_components = os.path.abspath(os.path.join(js_root, 'components'))
+# Paths that containg JS source code.
+js_source_path = [js_root, js_pages, js_components]
+js_language = "javascript" # change to Typescript if need be.
+root_for_relative_js_paths = js_root
+
+python_package_source = os.path.abspath(os.path.join(this_path, 'src', 'backend'))
