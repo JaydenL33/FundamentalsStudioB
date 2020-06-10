@@ -1,0 +1,29 @@
+.sq {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+.inside {
+    
+  
+  /*  background: rgba(0, 0, 0, 0.8); /* Black background with 0.5 opacity */
+    color: yellow;
+    position: relative;
+    text-align: justify;
+  z-index: 100;
+   /* border: 1px solid red;*/
+    
+    margin-bottom: 10%;
+    margin-right: 25%;
+    margin-left: 25%;
+    font-size: 18px;
+  /* background-image: url('../images/building11.png');*/
+  
+  }
+
+
+
+  .example {
+    background-color:none;
+  }
