@@ -253,7 +253,6 @@ node_modules
 scripts/flow/*/.flowconfig
 
 # raw data and todos
-*.csv
 *.pdf
 
 # todo files

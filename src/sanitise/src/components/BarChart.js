@@ -4,29 +4,19 @@ import * as d3 from 'd3';
 export default class BarChart extends Component {
 
     componentDidMount () {
-        d3.csv('https://raw.githubusercontent.com/JaydenL33/FundamentalsStudioB/datawork/node-d3/examples/data/CDR.csv', 
-        d3.autoType).then(function (data) 
-        {
-        d3.select("body")
-        .selectAll("div")
-
-        .data(data)
-        console.log(data);
-        this.drawBarChart(data);
-        }
-        );
+        this.drawBarChart();
     }
     shouldComponentUpdate () {
         return false;
     }
 
-    drawBarChart(data)  {
-
+    drawBarChart()  {
         const canvasHeight = 400
         const canvasWidth = 600
         const scale = 20
         const svgCanvas = d3.select(this.refs.canvas);
 
+        d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv", function(data) {
         // List of subgroups = header of the csv files = soil condition here
         var subgroups = data.columns.slice(1)
 
@@ -74,7 +64,8 @@ export default class BarChart extends Component {
                 .attr("y", function(d) { return y(d[1]); })
                 .attr("canvasHeight", function(d) { return y(d[0]) - y(d[1]); })
                 .attr("canvasWidth",x.bandwidth())
-            }
+            })
+        }
 
     render() {
         return (
