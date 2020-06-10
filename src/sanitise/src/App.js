@@ -19,8 +19,8 @@ from "react-router-dom";
 
 // a in style.css has now become <link> so remember to replace that in the CSS. 
 
-
 class App extends Component {
+    
     render() {
         return (
             <Router>
@@ -42,6 +42,7 @@ class App extends Component {
         )
     }
 };
+
 
 
 export default App;

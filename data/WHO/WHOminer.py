@@ -8,7 +8,6 @@ import pandas as pd
 import numpy as np
 import os
 import requests
-import pickle
 
 
 ATTRIBUTES = {
@@ -28,7 +27,6 @@ ATTRIBUTES = {
 
 GHO_API = "https://ghoapi.azureedge.net/api/"
 ATHENA_API = "https://apps.who.int/gho/athena/api/GHO/"
-DEBUG = False
 
 def GETindicatorCodes():
 	r = requests.get(GHO_API+'Indicator')
@@ -40,8 +38,7 @@ def GETindicatorCodes():
 		indicators[i] = indicators[i][2:]
 		indicators[i] = indicators[i][:-16]
 
-	if DEBUG:
-		print("Found {} indicators...".format(length))
+	print("Found {} indicators...".format(length))
 	return indicators
 
 def GETindicatorData(indicator, apiPath):
@@ -49,9 +46,8 @@ def GETindicatorData(indicator, apiPath):
 	apiPath += '.csv'
 	# r = requests.get(apiPath)
 	df = pd.read_csv(apiPath)
-	if DEBUG:
-		print("\nAcquired: {} with shape {}...\n".format(indicator, df.shape))
-		print(df.describe())
+	print("\nAcquired: {} with shape {}...\n".format(indicator, df.shape))
+	print(df.describe())
 	return df
 
 def dataScraper():
@@ -60,13 +56,6 @@ def dataScraper():
 	for attribute in ATTRIBUTES:
 		df = GETindicatorData(ATTRIBUTES[attribute], ATHENA_API)
 		df.to_csv(ATTRIBUTES[attribute]+".csv")
-
-	with open("WHO_INDICATORS.txt", "wb") as output:
-		# for key, val in ATTRIBUTES.items():
-		# 	out = str("{} : {}\n".format(key, val))
-		# 	output.write(out)
-		pickle.dump(ATTRIBUTES, output)
-
 
 def listIndicatorCodes(indicators):
 	keys = list(ATTRIBUTES.keys())

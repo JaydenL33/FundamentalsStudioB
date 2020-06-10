@@ -27,7 +27,7 @@ ATTRIBUTES = {}
 RAW_DF_LIST = []
 RAWGLOBAL_DF_LIST = []
 DEBUG = False                                                      # verbose debug prints
-baseDir = os.path.join(os.path.join(os.pardir, os.pardir), "data") # file name for Raw Data (defaults to my local machine as ../../data)
+baseDir = "data" # file name for Raw Data (defaults to my local machine as ../../data)
 
 ################################################################################
 # Utilities
@@ -39,18 +39,19 @@ def _runStartup():
 	Explicit startup function. Runs any necessary preloads for data and Globals updates.
 	Retrieves raw data and assigns Globals to env vars, runs default ones gracefully otherwise.
 	"""
+
+	# local dev, comment this out
 	# env = environConfig.safe_environ()
 
 	global RAW_DF_LIST
 	global DEBUG
+	global baseDir
 	global RAWGLOBAL_DF_LIST
 	global ATTRIBUTES
 
 	# update with the env config
 	# DEBUG = env("DEBUG")
 	# baseDir = env("BASE_DATA_DIR")
-
-	# env = environConfig.safe_environ()
 
 	# retrieve the WHO Indicator Data and create a HDF (human data format) checklist
 	try:
@@ -336,7 +337,7 @@ def runPreChecks():
 		drops_list = [
 		"Comments", "PUBLISHSTATE","Display Value",
 		"High", "Low", "DATASOURCE", "DHSMICSGEOREGION",
-		"REGION", "geoId", "countryterritoryCode",
+		"REGION", "geoId",
 		]
 
 		# if from GHO, drop the "GHO" column
@@ -459,5 +460,5 @@ def main():
 	output() # write output to file dumps
 
 
-
+main()
 

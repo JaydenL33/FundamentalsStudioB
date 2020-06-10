@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
+/*import {Logo} from '../images/logo.png'*/
+import Logo from '../images/logo.png'
+
+
+
 
 const imagestyle = {
-    height: "36px",
-    width: "120px"
+   
+    height: '320px',
+    width: 'auto',
+    overflow: 'hidden',
+    margin: '-200px 0px -200px -100px'
 }
 
 class Navbar extends Component {
     render () {
         return (
+   
         <header id ="nav">
-            <h1> </h1>
-            <img src="/SANITISE_LOGO.png" style={imagestyle} alt=""/>
+        <img src={Logo} style ={imagestyle} alt="logo"/>
             <ul className="nav_links">
                 <li>
                     <Link to="/">Story</Link>
@@ -28,6 +36,8 @@ class Navbar extends Component {
                 </li>
             </ul>
         </header>
+      
+    
         );
     }
 }

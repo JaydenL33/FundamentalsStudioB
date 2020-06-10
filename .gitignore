@@ -260,3 +260,8 @@ scripts/flow/*/.flowconfig
 todo.*
 todo.md
 
+# ignore the docs folder locally, should only be affected on the server
+docs/*
+*.cfg
+requirements
+src/frontend/commit file
