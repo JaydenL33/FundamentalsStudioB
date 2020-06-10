@@ -39,7 +39,7 @@ class Display extends Component {
   // Set default props
 Display.defaultProps = {
     animation: "fadeInDown",
-    animateOnce: false
+    animateOnce: "false"
 }
 
 export default Display;
