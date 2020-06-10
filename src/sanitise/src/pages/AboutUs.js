@@ -5,7 +5,6 @@
 import React, { Component } from 'react';
 
 //React Reveal imports
-import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
 import Slide from 'react-reveal/Slide';
 import Reveal from 'react-reveal/Reveal';

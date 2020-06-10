@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import "animate.css/animate.min.css";
+import ScrollAnimation from 'react-animate-on-scroll';
 
 import './display.css'
+import BarChart from './BarChart';
 
 class Display extends Component {
     render () {
         return (
+            <ScrollAnimation animateIn={this.props.animation} initiallyVisible="false" offset="700" 
+            delay="1" animatePreScroll="false" animateOnce="false" animateOut="fadeOut"
+            duration="2.5">
             <section className="display-wrapper">
-                <script>
-                    ScrollOut();
-                </script>
                 <div className="media-wrapper">
-                    <img src={this.props.img} alt="Just a sample img"/>
+                    <BarChart> </BarChart>
                 </div>
                 <div className="content-wrapper">
                     <div>
@@ -28,8 +31,15 @@ class Display extends Component {
                     </div>
                 </div>
             </section>
+            </ScrollAnimation>
         )
     }
+}
+
+  // Set default props
+Display.defaultProps = {
+    animation: "fadeInDown",
+    animateOnce: "false"
 }
 
 export default Display;
