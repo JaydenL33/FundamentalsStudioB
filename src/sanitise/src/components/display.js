@@ -3,6 +3,7 @@ import "animate.css/animate.min.css";
 import ScrollAnimation from 'react-animate-on-scroll';
 
 import './display.css'
+import BarChart from './BarChart';
 
 class Display extends Component {
     render () {
@@ -12,7 +13,7 @@ class Display extends Component {
             duration="2.5">
             <section className="display-wrapper">
                 <div className="media-wrapper">
-                    <img src={this.props.img} alt="Just a sample img"/>
+                    <BarChart> </BarChart>
                 </div>
                 <div className="content-wrapper">
                     <div>
