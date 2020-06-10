@@ -1,0 +1,433 @@
+Sepal_Length,Sepal_Width,Species
+27,0,China
+27,0,China
+27,0,China
+44,0,China
+44,0,China
+59,0,China
+59,0,China
+59,0,China
+59,0,China
+59,0,China
+59,0,China
+59,1,China
+59,1,China
+59,1,China
+59,1,China
+59,2,China
+59,2,China
+63,2,China
+80,2,China
+216,3,China
+235,3,China
+386,6,China
+526,17,China
+623,17,China
+882,26,China
+1323,41,China
+1988,56,China
+2775,81,China
+4528,106,China
+5994,132,China
+7734,170,China
+9714,213,China
+11809,259,China
+14399,304,China
+17211,361,China
+20448,426,China
+24320,492,China
+28047,564,China
+31207,637,China
+34625,723,China
+37232,812,China
+40206,909,China
+42696,1017,China
+44724,1114,China
+59865,1368,China
+64021,1381,China
+66559,1524,China
+68566,1666,China
+70618,1771,China
+72508,1869,China
+74258,2008,China
+74652,2120,China
+75543,2238,China
+76369,2347,China
+77016,2445,China
+77234,2595,China
+77749,2665,China
+78159,2717,China
+78598,2746,China
+78927,2790,China
+79355,2837,China
+79929,2872,China
+80134,2914,China
+80261,2946,China
+80380,2983,China
+80497,3014,China
+80667,3044,China
+80768,3072,China
+80814,3099,China
+80859,3122,China
+80879,3139,China
+80908,3161,China
+80932,3172,China
+80954,3179,China
+80973,3194,China
+80995,3203,China
+81020,3216,China
+81063,3225,China
+81086,3241,China
+81130,3249,China
+81229,3253,China
+81281,3259,China
+81346,3265,China
+81484,3274,China
+81553,3281,China
+81631,3285,China
+81733,3291,China
+81827,3296,China
+81946,3299,China
+82059,3304,China
+82157,3306,China
+82241,3309,China
+82295,3310,China
+82395,3316,China
+82465,3326,China
+82527,3330,China
+82575,3333,China
+82642,3335,China
+82698,3335,China
+82784,3337,China
+82870,3339,China
+82925,3340,China
+83004,3343,China
+83097,3343,China
+83209,3345,China
+83303,3345,China
+83352,3346,China
+83402,3346,China
+83754,4636,China
+83785,4636,China
+83803,4636,China
+83817,4636,China
+83849,4636,China
+83864,4636,China
+83876,4636,China
+83884,4636,China
+83899,4636,China
+83909,4636,China
+83912,4637,China
+83938,4637,China
+83940,4637,China
+83944,4637,China
+83956,4637,China
+83959,4637,China
+83961,4637,China
+83964,4637,China
+83966,4637,China
+83968,4637,China
+83970,4637,China
+83976,4637,China
+83976,4637,China
+83991,4637,China
+84010,4637,China
+84011,4637,China
+84018,4637,China
+84024,4637,China
+84029,4637,China
+84038,4637,China
+84044,4638,China
+84054,4638,China
+84063,4638,China
+84065,4638,China
+84067,4638,China
+84079,4638,China
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+0,0,United Kingdom
+2,0,United Kingdom
+2,0,United Kingdom
+2,0,United Kingdom
+2,0,United Kingdom
+2,0,United Kingdom
+2,0,United Kingdom
+2,0,United Kingdom
+3,0,United Kingdom
+3,0,United Kingdom
+4,0,United Kingdom
+4,0,United Kingdom
+8,0,United Kingdom
+8,0,United Kingdom
+9,0,United Kingdom
+9,0,United Kingdom
+9,0,United Kingdom
+9,0,United Kingdom
+9,0,United Kingdom
+9,0,United Kingdom
+9,0,United Kingdom
+9,0,United Kingdom
+9,0,United Kingdom
+9,0,United Kingdom
+9,0,United Kingdom
+13,0,United Kingdom
+13,0,United Kingdom
+13,0,United Kingdom
+13,0,United Kingdom
+16,0,United Kingdom
+18,0,United Kingdom
+23,0,United Kingdom
+36,0,United Kingdom
+40,0,United Kingdom
+51,0,United Kingdom
+85,0,United Kingdom
+115,0,United Kingdom
+163,1,United Kingdom
+206,2,United Kingdom
+273,2,United Kingdom
+321,3,United Kingdom
+373,7,United Kingdom
+456,7,United Kingdom
+590,9,United Kingdom
+707,10,United Kingdom
+1140,28,United Kingdom
+1391,43,United Kingdom
+1543,65,United Kingdom
+1950,81,United Kingdom
+2630,115,United Kingdom
+3277,158,United Kingdom
+3983,194,United Kingdom
+5018,250,United Kingdom
+5683,285,United Kingdom
+6650,359,United Kingdom
+8077,508,United Kingdom
+9529,694,United Kingdom
+11658,877,United Kingdom
+14543,1161,United Kingdom
+17089,1455,United Kingdom
+19522,1669,United Kingdom
+22141,2043,United Kingdom
+25150,2425,United Kingdom
+29474,3095,United Kingdom
+33718,3747,United Kingdom
+38168,4461,United Kingdom
+41903,5221,United Kingdom
+47806,5865,United Kingdom
+51608,6433,United Kingdom
+55242,7471,United Kingdom
+60733,8505,United Kingdom
+65077,9608,United Kingdom
+70272,10760,United Kingdom
+78991,11599,United Kingdom
+84279,12285,United Kingdom
+88621,13029,United Kingdom
+93873,14073,United Kingdom
+98476,14915,United Kingdom
+103093,15944,United Kingdom
+108692,16879,United Kingdom
+114217,17994,United Kingdom
+120067,18492,United Kingdom
+124743,19051,United Kingdom
+129044,20223,United Kingdom
+133495,21060,United Kingdom
+138078,21787,United Kingdom
+143464,22792,United Kingdom
+148377,23635,United Kingdom
+152840,24055,United Kingdom
+157149,24393,United Kingdom
+161145,25302,United Kingdom
+165221,26097,United Kingdom
+171253,26771,United Kingdom
+177454,27510,United Kingdom
+182260,28131,United Kingdom
+186599,28446,United Kingdom
+190584,28734,United Kingdom
+194990,29427,United Kingdom
+201201,30076,United Kingdom
+206715,30615,United Kingdom
+211364,31241,United Kingdom
+215260,31587,United Kingdom
+219183,31855,United Kingdom
+223060,32065,United Kingdom
+226463,32692,United Kingdom
+229705,33186,United Kingdom
+233151,33614,United Kingdom
+236711,33998,United Kingdom
+240161,34466,United Kingdom
+243695,34636,United Kingdom
+246406,34796,United Kingdom
+248818,35341,United Kingdom
+248293,35704,United Kingdom
+250908,36042,United Kingdom
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+0,0,United States
+1,0,United States
+1,0,United States
+1,0,United States
+1,0,United States
+2,0,United States
+2,0,United States
+5,0,United States
+5,0,United States
+5,0,United States
+5,0,United States
+6,0,United States
+7,0,United States
+8,0,United States
+11,0,United States
+11,0,United States
+11,0,United States
+12,0,United States
+12,0,United States
+12,0,United States
+12,0,United States
+12,0,United States
+13,0,United States
+13,0,United States
+14,0,United States
+15,0,United States
+15,0,United States
+15,0,United States
+15,0,United States
+15,0,United States
+15,0,United States
+15,0,United States
+16,0,United States
+35,0,United States
+35,0,United States
+35,0,United States
+53,0,United States
+53,0,United States
+59,0,United States
+60,0,United States
+66,0,United States
+69,1,United States
+89,2,United States
+103,6,United States
+125,9,United States
+159,11,United States
+233,12,United States
+338,14,United States
+433,17,United States
+554,21,United States
+754,26,United States
+1025,28,United States
+1312,30,United States
+1663,40,United States
+2174,47,United States
+2951,57,United States
+3774,69,United States
+4661,85,United States
+6427,108,United States
+9415,150,United States
+14250,150,United States
+19624,260,United States
+26747,340,United States
+35206,471,United States
+46442,590,United States
+55231,801,United States
+69194,1050,United States
+85991,1296,United States
+104686,1707,United States
+124665,2191,United States
+143025,2509,United States
+164620,3170,United States
+189618,4079,United States
+216721,5138,United States
+245540,6053,United States
+277965,7157,United States
+312237,8501,United States
+337635,9647,United States
+368196,10989,United States
+398809,12895,United States
+432132,14817,United States
+466033,16690,United States
+501560,18777,United States
+529951,20608,United States
+557571,22108,United States
+582594,23649,United States
+609516,26057,United States
+639664,30985,United States
+671331,33284,United States
+702164,37054,United States
+735086,38910,United States
+759687,40682,United States
+787752,42539,United States
+825041,45063,United States
+842629,46784,United States
+869172,49963,United States
+890524,51017,United States
+939053,53189,United States
+965910,54876,United States
+988451,56245,United States
+1012583,58355,United States
+1039909,60966,United States
+1069826,63006,United States
+1103781,65068,United States
+1133069,66385,United States
+1158041,67682,United States
+1180634,68934,United States
+1204475,71078,United States
+1228603,73431,United States
+1256972,75670,United States
+1283929,77180,United States
+1309541,78794,United States
+1329799,79528,United States
+1347916,80684,United States
+1369964,82387,United States
+1390746,84133,United States
+1417889,85906,United States
+1443397,87568,United States
+1467884,88754,United States
+1486757,89562,United States
+1508598,90353,United States
+1528568,91921,United States
+1551853,93439,United States
+1577287,94702,United States
