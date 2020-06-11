@@ -35,3 +35,13 @@ Leadership arrangements were decided as Albert and Jayden taking primary leaders
 
 3.	Meeting arrangements:
 Meeting arrangements as set out at the start of the semester established that group SANITISE will meet every Monday close to the time of the plenary studio for fundamental studio B. We will meet for 1 to 1 and a half hours to discuss our progress made as well as next steps for the week ahead. Contingency plans if the weekly meeting is not possible with everyone had led to a general time when everyone was available to meet. As per the subject requirements, we were to meet with Don and Robin, where we discussed our progress where were at, in addition to ideas that we could use in the project and add to our individual lab archives. 
+
+4.	Reflections
+	Effectiveness of your team processes:
+	Reflecting upon the team processes that we have used throughout the project, the team generally agrees all team processes were effective throughout the development of the project inclusive of changing requirements, documenting all essential processes needed for the project to come together, in addition to effective communication and sharing of ideas needed throughout the project. 
+
+	By establishing a well organised GitHub allowed the tracking of all work that needed to be completed and work and progress throughout the project. Multiple branches were setup for different purposes of the project. This allowed development completed by each team member to be merged into one. 
+
+	Due to the current circumstances of COVID-19 we were all required to work from home we therefore had taken full advantage of Microsoft teams to ensure robust communication with team members, ensuring effective communication of ideas, deadlines, in addition to collating resources that could be researched further for application within the project. 
+
+	Lastly Lab archives being individual lead to the opportunity of self-evaluation and reflection upon the processes that our team had taken, in addition to the tasks assigned to each member. Overall the team agreed on Lab archives being an effective way of documenting exactly each team member had completed relative to the project as a whole.  
