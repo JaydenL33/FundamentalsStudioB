@@ -8,25 +8,25 @@ This section describes each team member, their experience relevant to the projec
 
 		i.	Albert Ferguson:
 		Experience: 
-		Experience in python, data mining (Pandas), data scraping(Selenium), data analytics, database SQL management, data pipeline design, backend design, development operations, GIT
+		Experience in python, data mining (Pandas), data scraping(Selenium), data analytics, database SQL management, data pipeline design, backend design, development operations, GIT.
 		Roles: 
 		In charge of setting up the majority of the backend design specifically with the hosting of the website, Responsible for acquiring the raw data for processing and mining through the pipelines designed. Setting up the SQL database to hold the raw data that has been scrapped. Setting up sphinx to help automate documentation of the final report. 
 
 		ii.	Cohen Bosworth
 		Experience:
-		mid-level experience in data analysis, data mining, python, basic experience with SQL, JavaScript, front end design, backend design, HTML, web hosting, GIT
+		mid-level experience in data analysis, data mining, python, basic experience with SQL, JavaScript, front end design, backend design, HTML, web hosting, GIT.
 		Roles:
 		Responsible for contributing to the data mining areas, using pandas, and various python dependencies such as NumPy, matplotlib. In addition to development with D3.js for creation of graphs and helping the integration of D3 working with Jayden to do so. 
 
 		iii. Jayden Lee
 		Experience:
-		Extensive experience in backend development & design, system design & architecture, API routing, python, data analytics, data mining, JavaScript, React.JS, dev-ops, node.js, Flask, Django, GIT, website design 
+		Extensive experience in backend development & design, system design & architecture, API routing, python, data analytics, data mining, JavaScript, React.JS, dev-ops, node.js, Flask, Django, GIT, website design.
 		Roles: 
 		Primarily responsible for the front to middle-end design and the associated API routes needed to interface between the database server set up by Albert, and the front end as set up by Joel and Jayden. Also responsible for most of the front end, setting up node.js and react components to help build the website and its functionality. 
 
 		iv.	Joel Morrison
 		Experience: 
-		Extensive experience with JavaScript, HTML, specifically front end design. Experience in designing and implementing websites, python, data analytics, GIT, 
+		Extensive experience with JavaScript, HTML, specifically front end design. Experience in designing and implementing websites, python, data analytics, GIT.
 		Role: 
 		Primarily responsible for the development of the front-end interface and the various scrolling effects, and web pages that are needed within the website. In addition, helping Jayden with react development, and JavaScript for the website.
 
