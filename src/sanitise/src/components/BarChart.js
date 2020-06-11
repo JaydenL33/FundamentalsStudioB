@@ -13,9 +13,9 @@ export default class BarChart extends Component {
     drawBarChart()  {
 
         var svg = d3.select(this.refs.canvas)
-            var margin = {top: 10, right: 30, bottom: 20, left: 50},
-            width = 460 - margin.left - margin.right,
-            height = 400 - margin.top - margin.bottom;
+        var margin = {top: 20, right: 20, bottom: 30, left: 40},
+        width = +svg.attr("width") - margin.left - margin.right,
+        height = +svg.attr("height") - margin.top - margin.bottom;
 
         var g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -102,7 +102,7 @@ export default class BarChart extends Component {
 
     render() {
         return (
-            <svg className="line-container" width={"600"} height={"600"} ref={this.props.ref} />
+            <svg className="line-container" width={"900"} height={"600"} ref={this.props.ref} />
         )
     }
 }
