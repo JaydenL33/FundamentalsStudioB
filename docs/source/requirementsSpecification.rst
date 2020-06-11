@@ -42,16 +42,10 @@ Functionally, the Ingest API performs three operations once called. Initially, i
 
 .. figure:: images/CovMats_SarsCov2_RAW.png
     :alt: Time-axis compared covariance matricies for all data.
-    :width: 850mm
-    :height: 450mm
-    :figclass: align-center
+    :width:  250mm
+    :height: 125mm
 
     Time-axis compared covariance matrices for all data.
-
-
-.. include:: backend.rst
-
-.. include:: frontend.rst
 
 Data Research, Acquisition and Access
 =====================================
@@ -90,14 +84,13 @@ Exploring the Datasets, EVDA
 Briefly, an EVDA of the data shows the distributions of the ECDC and WHO Indicator datasets.
 :numref:`labelWHOBoxes` describes the “outliers” of the WHO Indicator data. 
 :numref:`labelKDEdeathscases` succinctly describes the PDF function estimates of ECDC recorded cases and deaths.
-Next, :numref:`labelDistributionPlotsECDC` describes the PDF functions estimated in :numref:`labelKDEdeathscases` discretely for clearer axis observations. Finally, a similar overview of KDE and frequency plots was generated for the WHO Indicator data in :numref:`labelDistributionFrequencyWHO`.
+For more figures, see :numref:`labelDistributionPlotsECDC` and :numref:`labelDistributionFrequencyWHO` in Appendix A: *Reference Figures: Data Mining*.
 
 .. _labelWHOBoxes:
 
 .. figure:: images/Boxplots_WHO_RAW.png
     :alt: Time-axis compared covariance matricies for all data.
-    :width: 350mm
-    :height: 120mm
+    :width: 110%
 
     WHO Indicators boxplots.
 
@@ -105,27 +98,7 @@ Next, :numref:`labelDistributionPlotsECDC` describes the PDF functions estimated
 
 .. figure:: images/Deaths_KDE.png
     :alt: Deaths and Cases kernel density estimate plot.
-    :width: 150mm
-    :height: 100mm
+    :width: 45%
 
     Deaths and Cases KDE plot.
 
-
-.. _labelDistributionPlotsECDC:
-
-.. figure:: images/distplots_SarsCov2_RAW_SCALED.png
-    :alt: Deaths and Cases distribution plots.
-    :width: 350mm
-    :height: 120mm
-
-    Deaths and Cases distribution plots.
-
-
-.. _labelDistributionFrequencyWHO:
-
-.. figure:: images/A.png
-    :alt: Distribution and Frequency plots of WHO Indicator data.
-    :width: 350mm
-    :height: 120mm
-
-    Distribution and Frequency Plots of WHO Indicator Data.

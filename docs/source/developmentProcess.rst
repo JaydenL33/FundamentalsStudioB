@@ -58,66 +58,6 @@ Meeting arrangements
 
 Meeting arrangements, as set out at the start of the semester, established that group SANITISE.media would meet every Monday. This meeting should endeavour to coincide approximately to the time of the Fundamental Studio B plenary session time. We would meet appropriately between 45 minutes to two hours to discuss our progress made as well as the next steps for the week ahead. Contingency plans if the weekly meeting is not possible with everyone had led to a general time when everyone was available to meet. As per the subject requirements, we were to meet with Don and Robin, where we discussed our progress where we are at, in addition to ideas that we could use in the project and add to our lab archives. 
 
-.. _GitBranching:
-
-.. figure:: images/GIT_BRANCH.PNG
-    :align: center
-    :alt: Git Branching
-    :width: 400
-    :height: 400
-
-    Git Branching.
-
-.. _GitMasterBranch:
-
-.. figure:: images/GIT_MASTER.PNG
-    :align: center
-    :alt: Git Master screenshot.
-    :width: 400
-    :height: 400
-
-    Git Master Branch (Screenshot).
-
-.. _TeamsCal:
-
-.. figure:: images/TEAMS_CAL.PNG
-    :align: center
-    :alt: Teams Calendar.
-    :width: 400
-    :height: 400
-
-    Teams Calendar.
-
-.. _TeamsGeneralChat:
-
-.. figure:: images/TEAMS_GENERAL_CH.PNG
-    :align: center
-    :alt: Teams General Chat.
-    :width: 400
-    :height: 400
-
-    Teams General Chat.
-
-.. _TeamsNotebookOrig:
-
-.. figure:: images/TEAMS_NOTEBOOK_ORG.PNG
-    :align: center
-    :alt: Teams Notebook Orig.
-    :width: 400
-    :height: 400
-
-    Teams Notebook Orig.
-
-.. _MicrosoftTasks:
-
-.. figure:: images/TODO_MS.PNG
-    :align: center
-    :alt: Microsoft Tasks (TODO).
-    :width: 400
-    :height: 400
-
-    Microsoft Tasks (TODO).
-
 
 Reflections
 ===========

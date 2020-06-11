@@ -68,7 +68,8 @@ def _runStartup():
 
 def dbConnect():
 	"""
-	Author: Albert Ferguson
+	:author: Albert Ferguson
+	:param: none
 	Create a new connection to the desired db engine. This setting is
 	controlled via the environ settings according to 12 Factor methods.
 	

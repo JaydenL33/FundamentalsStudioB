@@ -74,6 +74,8 @@ pdf_stylesheets = ['twocolumn', 'autumn', 'A4']
 # A list of folders to search for stylesheets. Example:
 pdf_style_path = ['.', '_styles']
 
+pdf_break_level = 1
+
 # Create a compressed PDF
 # Use True/False or 1/0
 # Example: compressed=True
@@ -101,7 +103,10 @@ pdf_default_dpi = 72
 #pdf_extensions = ['vectorpdf']
 
 # Page template name for "regular" pages
-#pdf_page_template = 'cutePage'
+pdf_page_template = 'cutePage'
+
+# Show Table Of Contents at the beginning?
+pdf_use_toc = True
 
 # -- Options for HTML output -------------------------------------------------
 

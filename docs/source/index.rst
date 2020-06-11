@@ -13,13 +13,24 @@ SARS-COV-2 (a.k.a. COVID or Coronavirus) outbreak promptly. In conjunction with
 efficiently and effectively delivering this data in an easily understandable
 format.
 
+.. image:: _static/logo.png
+	:alt: SANITISE.media
+	:align: center
+
+
+.. NOTE: remove this heading when generating the final PDF.
+
 Table of Contents
-=================
+-----------------
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    about
+   references
+   appendixA
+   appendixB
 
 Indices and tables
 ------------------
