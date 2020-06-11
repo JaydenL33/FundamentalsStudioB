@@ -1,5 +1,5 @@
 header {
-    display: flex;
+    display: inline-flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px 10%;
@@ -8,8 +8,8 @@ header {
     overflow: hidden;
     z-index: 100000;
     width: 100%;
-    margin: auto;
     top: 0;
+    margin-bottom: 100px; 
 
 }
 
