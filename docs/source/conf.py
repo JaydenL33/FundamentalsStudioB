@@ -3,6 +3,9 @@
 # This file only contains a selection of the most common options. For a full
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
+#########################################################################
+# NOTE: RUN NPM INSTALL JSDOC TO AVOID BUILD ERRORS
+#########################################################################
 
 # -- Path setup --------------------------------------------------------------
 
@@ -41,6 +44,10 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
+# -- Options for PDF output --------------------------------------------------
+extensions.append('rst2pdf.pdfbuilder') # PDF module plugin
+pdf_documents = [('index', u'Final Product Proposal', project, author),]
+
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -76,7 +83,6 @@ todo_include_todos = False
 
 extensions.append('sphinx_js')          # JS documentation
 extensions.append('sphinx.ext.autodoc') # Python Autodoc feature enable.
-
 
 # -- Setting Source Paths ----------------------------------------------------
 
