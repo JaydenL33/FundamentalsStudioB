@@ -42,8 +42,8 @@ Functionally, the Ingest API performs three operations once called. Initially, i
 
 .. figure:: images/CovMats_SarsCov2_RAW.png
     :alt: Time-axis compared covariance matricies for all data.
-    :width: 850
-    :height: 450
+    :width: 850mm
+    :height: 450mm
     :figclass: align-center
 
     Time-axis compared covariance matrices for all data.
@@ -96,20 +96,18 @@ Next, :numref:`labelDistributionPlotsECDC` describes the PDF functions estimated
 
 .. figure:: images/Boxplots_WHO_RAW.png
     :alt: Time-axis compared covariance matricies for all data.
-    :width: 500
-    :height: 250
-    :figclass: align-center
-    
+    :width: 350mm
+    :height: 120mm
+
     WHO Indicators boxplots.
 
 .. _labelKDEdeathscases:
 
 .. figure:: images/Deaths_KDE.png
     :alt: Deaths and Cases kernel density estimate plot.
-    :width: 500
-    :height: 250
-    :figclass: align-center
-    
+    :width: 150mm
+    :height: 100mm
+
     Deaths and Cases KDE plot.
 
 
@@ -117,10 +115,9 @@ Next, :numref:`labelDistributionPlotsECDC` describes the PDF functions estimated
 
 .. figure:: images/distplots_SarsCov2_RAW_SCALED.png
     :alt: Deaths and Cases distribution plots.
-    :width: 500
-    :height: 250
-    :figclass: align-center
-    
+    :width: 350mm
+    :height: 120mm
+
     Deaths and Cases distribution plots.
 
 
@@ -128,8 +125,7 @@ Next, :numref:`labelDistributionPlotsECDC` describes the PDF functions estimated
 
 .. figure:: images/A.png
     :alt: Distribution and Frequency plots of WHO Indicator data.
-    :width: 500
-    :height: 250
-    :figclass: align-center
-    
+    :width: 350mm
+    :height: 120mm
+
     Distribution and Frequency Plots of WHO Indicator Data.

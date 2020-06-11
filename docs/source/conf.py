@@ -21,8 +21,8 @@ sys.path.insert(0, os.path.abspath('src'))
 # -- Project information -----------------------------------------------------
 
 project = 'SANITISE.media'
-copyright = '2020, Albert Ferguson, Jayden Lee, Joel Morrison, Cohen Bosworth'
-author = 'Albert Ferguson, Jayden Lee, Joel Morrison, Cohen Bosworth'
+copyright = '2020 [B] Fundamental Studio, Albert Ferguson, Jayden Lee, Joel Morrison, Cohen Bosworth'
+author = 'Albert Ferguson (13611165), Jayden Lee (13558782), Joel Morrison (13534060), Cohen Bosworth (13193103)'
 
 # The short X.Y version.
 version = '1.2'
@@ -45,9 +45,63 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 # -- Options for PDF output --------------------------------------------------
-extensions.append('rst2pdf.pdfbuilder') # PDF module plugin
-pdf_documents = [('index', u'Final Product Proposal', project, author),]
 
+# See: http://rst2pdf.ralsina.me/handbook.html#styles
+# For documentation 
+
+# Grouping the document tree into PDF files. List of tuples
+# (source start file, target name, title, author, options).
+#
+# If there is more than one author, separate them with \\.
+# For example: r'Guido van Rossum\\Fred L. Drake, Jr., editor'
+#
+# The options element is a dictionary that lets you override
+# this config per-document.
+# For example,
+# ('index', u'MyProject', u'My Project', u'Author Name',
+#  dict(pdf_compressed = True))
+# would mean that specific document would be compressed
+# regardless of the global pdf_compressed setting.
+
+extensions.append('rst2pdf.pdfbuilder') # PDF module plugin
+pdf_documents = [
+	('index', u'Final Product Proposal', project, author),
+] # generate the doc
+
+# A comma-separated list of custom stylesheets. Example:
+pdf_stylesheets = ['twocolumn', 'autumn', 'A4']
+
+# A list of folders to search for stylesheets. Example:
+pdf_style_path = ['.', '_styles']
+
+# Create a compressed PDF
+# Use True/False or 1/0
+# Example: compressed=True
+
+pdf_compressed = False
+
+# Language to be used for hyphenation support
+pdf_language = "en_US"
+
+# Mode for literal blocks wider than the frame. Can be
+# overflow, shrink or truncate
+pdf_fit_mode = "shrink"
+
+# Name of the cover page template to use. IF NEEDED FOR A PROJECT ADD IT HERE
+#pdf_cover_template = 'sphinxcover.tmpl
+
+# Documents to append as an appendix to all manuals.
+#pdf_appendices = []
+
+# Set the default DPI for images
+pdf_default_dpi = 72
+
+# Enable rst2pdf extension modules (default is only vectorpdf)
+# you need vectorpdf if you want to use sphinx's graphviz support
+#pdf_extensions = ['vectorpdf']
+
+# Page template name for "regular" pages
+#pdf_page_template = 'cutePage'
 
 # -- Options for HTML output -------------------------------------------------
 
