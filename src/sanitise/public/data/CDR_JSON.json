@@ -1,0 +1,26 @@
+[
+  {
+    "Country": "World",
+    "Cases": 5067579,
+    "Deaths": 338039,
+    "Recovered": 3783632
+  },
+  {
+    "Country": "China",
+    "Cases": 84079,
+    "Deaths": 4638,
+    "Recovered": 63552
+  },
+  {
+    "Country": "United Kingdom",
+    "Cases": 250908,
+    "Deaths": 36042,
+    "Recovered": 171892
+  },
+  {
+    "Country": "United States",
+    "Cases": 1577287,
+    "Deaths": 94702,
+    "Recovered": 1186068
+  }
+]

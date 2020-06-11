@@ -11,60 +11,43 @@ export default class BarChart extends Component {
     }
 
     drawBarChart()  {
-        const canvasHeight = 400
-        const canvasWidth = 600
-        const scale = 20
-        const svgCanvas = d3.select(this.refs.canvas);
+        var g = window.g || {};
 
-        d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv", function(data) {
-        // List of subgroups = header of the csv files = soil condition here
-        var subgroups = data.columns.slice(1)
 
-        // List of groups = species here = value of the first column called group -> I show them on the X axis
-        var countries = d3.map(data, function(d){return(d.Country)}).keys()
 
-        // Add X axis
-        var x = d3.scaleBand()
-            .domain(countries)
-            .range([0, canvasWidth])
-            .padding([0.2])
-        svgCanvas.append("g")
-            .attr("transform", "translate(0," + canvasHeight + ")")
-            .call(d3.axisBottom(x).tickSizeOuter(0));
+        var svg = d3.select(this.refs.canvas)
+        var margin = {top: 10, right: 30, bottom: 20, left: 50},
+        width = 460 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
 
-        // Add Y axis
+        g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        // The Scale between the groups.
+        var x0 = d3.scaleBand()
+        .rangeRound([0, width])
+        .paddingInner(0.1);
+
+        // The scale for spacing each group's bar:
+        var x1 = d3.scaleBand()
+        .padding(0.05);
+
         var y = d3.scaleLinear()
-            .domain([0, 5500000])
-            .range([ canvasHeight, 0 ]);
-        svgCanvas.append("g")
-            .call(d3.axisLeft(y));
+        .rangeRound([height, 0]);
 
-        // color palette = one color per subgroup
-        var color = d3.scaleOrdinal()
-            .domain(subgroups)
-            .range(['#e41a1c','#377eb8','#4daf4a'])
+        var z = d3.scaleOrdinal()
+        .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
-        //stack the data? --> stack per subgroup
-        var stackedData = d3.stack()
-            .keys(subgroups)
-            (data)
 
-        // Show the bars
-        svgCanvas.append("g")
-            .selectAll("g")
-            // Enter in the stack data = loop key per key = group per group
-            .data(stackedData)
-            .enter().append("g")
-            .attr("fill", function(d) { return color(d.key); })
-            .selectAll("rect")
-            // enter a second time = loop subgroup per subgroup to add all rectangles
-            .data(function(d) { return d; })
-            .enter().append("rect")
-                .attr("x", function(d) { return x(d.data.Country); })
-                .attr("y", function(d) { return y(d[1]); })
-                .attr("canvasHeight", function(d) { return y(d[0]) - y(d[1]); })
-                .attr("canvasWidth",x.bandwidth())
-            })
+        d3.csv("data/CDR.csv", function(d, i, columns) {
+            for (var i = 1, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
+            return d;
+        }).then(function(data) {
+            console.log(data);
+            var keys = data.columns.slice(1);
+            console.log("The Key is: " + keys);
+
+                }
+            )
         }
 
     render() {
@@ -90,3 +73,51 @@ BarChart.defaultProps = {
 //     .attr("fill", "orange")
 //     .attr("x", (datapoint, iteration) => iteration * 45)
 //     .attr("y", (datapoint) => canvasHeight - datapoint * scale)
+
+// console.log(data);
+// // List of subgroups = header of the csv files = soil condition here
+// var subgroups = data;
+// // List of groups = species here = value of the first column called group -> I show them on the X axis
+// var countries = d3.map(data, function(d){return(d.Country)}).keys()
+
+// // Add X axis
+// var x = d3.scaleBand()
+//     .domain(countries)
+//     .range([0, canvasWidth])
+//     .padding([0.2])
+// svgCanvas.append("g")
+//     .attr("transform", "translate(0," + canvasHeight + ")")
+//     .call(d3.axisBottom(x).tickSizeOuter(0));
+
+// // Add Y axis
+// var y = d3.scaleLinear()
+//     .domain([0, 5500000])
+//     .range([ canvasHeight, 0 ]);
+// svgCanvas.append("g")
+//     .call(d3.axisLeft(y));
+
+// // color palette = one color per subgroup
+// var color = d3.scaleOrdinal()
+//     .domain(subgroups)
+//     .range(['#e41a1c','#377eb8','#4daf4a'])
+
+// //stack the data? --> stack per subgroup
+// var stackedData = d3.stack()
+//     .keys(subgroups)
+//     (data)
+
+// // Show the bars
+// svgCanvas.append("g")
+//     .selectAll("g")
+//     // Enter in the stack data = loop key per key = group per group
+//     .data(stackedData)
+//     .enter().append("g")
+//     .attr("fill", function(d) { return color(d.key); })
+//     .selectAll("rect")
+//     // enter a second time = loop subgroup per subgroup to add all rectangles
+//     .data(function(d) { return d; })
+//     .enter().append("rect")
+//         .attr("x", function(d) { return x(d.data.Country); })
+//         .attr("y", function(d) { return y(d[1]); })
+//         .attr("canvasHeight", function(d) { return y(d[0]) - y(d[1]); })
+//         .attr("canvasWidth",x.bandwidth())
