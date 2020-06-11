@@ -36,6 +36,17 @@ Leadership arrangements were decided as Albert and Jayden taking primary leaders
 3.	Meeting arrangements:
 Meeting arrangements as set out at the start of the semester established that group SANITISE will meet every Monday close to the time of the plenary studio for fundamental studio B. We will meet for 1 to 1 and a half hours to discuss our progress made as well as next steps for the week ahead. Contingency plans if the weekly meeting is not possible with everyone had led to a general time when everyone was available to meet. As per the subject requirements, we were to meet with Don and Robin, where we discussed our progress where were at, in addition to ideas that we could use in the project and add to our individual lab archives. 
 
+PNGs:
+GIT_BRANCH.PNG
+GIT_MASTER.PNG
+TEAMS_CAL.PNG
+TEAMS_GENERAL_CH.PNG
+TEAMS_NOTEBOOK_ORG.PNG
+TODO_MS.PNG
+
+
+
+
 4.	Reflections
 	Effectiveness of your team processes:
 	Reflecting upon the team processes that we have used throughout the project, the team generally agrees all team processes were effective throughout the development of the project inclusive of changing requirements, documenting all essential processes needed for the project to come together, in addition to effective communication and sharing of ideas needed throughout the project. 
