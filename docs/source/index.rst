@@ -19,8 +19,6 @@ Table of Contents
    :maxdepth: 2
    :caption: Contents:
 
-   backend
-   frontend
    about
 
 Indices and tables

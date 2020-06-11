@@ -1,0 +1,135 @@
+Requirements Specification
+==========================
+
+The SANITISE.media project is a conglomeration of several fundamental products. Each is required to fulfil the project’s abstract goals. The following is a description of these “atomic” products. This is structured as a description of the problems that each solves, grouped as per their functional, usable, and technical contributions to the whole.
+
+For a more in depth view of the functional breakdown of these atomic products, the frontend or backend documentation sections should be referenced
+
+Usability
+---------
+
+Fundamentally, every “API” product solves the meta aim of SANITISE.media. One of the primary goals of SANITISE.media is its ease-of-use and user experience. Every contributing API product aims to solve this issue.
+
+API: UX/UI
+----------
+
+The UI and its UX is reliant on data abstraction and immediately simple, as well as concise, user interactions. This issue is solved by the development of a frontend that abstracts the data layer into simple and concise actions. It abstracts the CRUD (Create, Remove, Update and Delete) aspects of a database, where relevant, in addition to abstracting the EVDA (Exploratory Visual Data Analysis) operations an analyst would typically perform.
+Technically, this requires supporting data systems to abstract:
+
+* a database (MySQL);
+* a RESTful API routing system (Flask);
+* a modelling and/or data cleaner (various custom scripts and services).
+
+This API product also includes several technical dependencies:
+
+* a visualisation engine (Data Driven Documents aka D3.js);
+* a server-side rendering environment (Node.js + React.js).
+
+API: Database
+-------------
+
+A requirement of this ambitious data centric project is a method and application of performing CRUD operations on the data in question. Further, a method of integrating new data, processing updates and staging these changes for abstracted interface to the UI/UX API is fundamental to this project’s design.
+Technically, the implementation of a database requires a database engine, as well as a supporting environment to run the engine and any application it is paired with. This project utilises the MySQL application to achieve this requirement. It is instantiated server side and designed to support the UI/UX API via a dependency on the RESTful API routing system (Flask). 
+
+API: “Ingest”
+-------------
+
+A further dependency of the UI/UX API is a relevant data system to abstract. Although the MySQL database solves the problem of CRUD operations upon the data set(s), a dependency on the ingest of arbitrary data is still required. The (data) “ingest” API is a simple call-once API designed to ingest data. It is an atomic dependency of the project that forms the foundation of the data layer and subsequent presentation layer.
+
+Functionally, the Ingest API performs three operations once called. Initially, it cleans the ingested data sets, removing duplicates, standardising time formats, labelling data columns appropriately, NaN filtering, etc. Further, the cleaning stage also encodes any relevant fields to binary or numeric values for later use in modelling. Secondly, the Ingest API call pushes these changes to the MySQL database API, making the data available for later modelling and processing. This point is the earliest stage that the data is available to call upon by the UI/UX API. Lastly, the Ingest API generates a report view of the ingested data for overview by the engineer calling the API. This view is shown below in :numref:`labelfigCovMats` as an example.
+
+.. _labelfigCovMats:
+
+.. figure:: images/CovMats_SarsCov2_RAW.png
+	:alt: Time-axis compared covariance matricies for all data.
+	:width: 850
+	:height: 450
+	:figclass: align-center
+
+	Time-axis compared covariance matricies for all data.
+
+
+.. include:: backend.rst
+
+.. include:: frontend.rst
+
+Data Research, Acquisition and Access
+=====================================
+
+Data Research
+-------------
+
+“What is the current SARS-Cov2 scenario globally?” This research question was the focus for determining data sources to acquire for this product. A secondary research question defined the focus of this investigation by asking “what confounding factors may exist in this (COVID) scenario?” In answering these, the ECDC and WHO formed high quality secondary sources of primary data. The ECDC is a credible source for global SARS-Cov2 data, including details on countries that are typically more difficult to acquire (USA and China for example).
+
+The ECDC data set was of particular interest, as it was a singular source that included the USA and China datasets. Further, the ECDC exposes recent data through a simple to access URL endpoint under the path covid19/casedistribution/csv. Allowing a simple command, script or basic web scraper to acquire the data.
+
+The WHO datasets to use involved more in-depth research. The research question posited the existence of confounding factors and many must exist. Initially, health, travel and economic data sources were considered. However, the scope of this project placed a time (and monetary) constriction on the acquisition and research of all of these data sets. In particular, acquiring relevant economic data involved paid subscriptions, lest the data be redundant (more than 2 years old) and travel data (tourism specifically) is highly sparse and distributed data that would be too difficult to acquire quickly.
+However, the WHO datasets, specifically those exposed by the GHO Athena API, are publicly available and relevant to this research. This source exposed a possible avenue of data mining for correlations in confounding health factors, perhaps comorbidities, for SARS-Cov2 cases.
+
+The Datasets
+^^^^^^^^^^^^
+
+11 datasets were pulled from the Athena API. These included:
+
+* Average of 13 International Health Regulations core capacity scores;
+* Composite [Health] Coverage Index (%);
+* Population with household expenditures greater than 10% of total household expenditure or income;
+* Population with household expenditures greater than 25% of total household expenditure or income;
+* Existence of Register of Patients who had Rheumatic Fever and Rheumatic Heart Disease;
+* Medical Doctors  (number);
+* Cancer, age standardised death rates (15+), per 100,000 Population;
+* Current Health Expenditure (CHE) per capita in PPP int$;
+* and Zoonotic Events and the Human-animal Interface.
+
+
+The above datasets were sourced and an exploration was initiated, with testing and modelling to commence. Unfortunately, the scope of the project and extenuating circumstances interferes with a full investigation. However, this topic is an option to be revisited later and given a priority of focus.
+
+Exploring the Datasets, EVDA
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Briefly, an EVDA of the data shows the distributions of the ECDC and WHO Indicator datasets.
+:numref:`labelWHOBoxes` describes the "outliers" of the WHO Indicator data. 
+:numref:`labelKDEdeathscases` succinctly describes the PDF function estiamtes of ECDC recorded cases and deaths.
+Next, :numref:`labelDistributionPlotsECDC` describes the PDF functions estimated in :numref:`labelKDEdeathscases` discretely for clearer axis observations. Finally, a similar overview of KDE and frequency plots was generated for the WHO Indicator data in :numref:`labelDistributionFrequencyWHO`.
+
+.. _labelWHOBoxes:
+
+.. figure:: images/Boxplots_WHO_RAW.png
+	:alt: Time-axis compared covariance matricies for all data.
+	:width: 500
+	:height: 250
+	:figclass: align-center
+	
+	WHO Indicators boxplots.
+
+.. _labelKDEdeathscases:
+
+.. figure:: images/Deaths_KDE.png
+	:alt: Deaths and Cases kernel density estimate plot.
+	:width: 500
+	:height: 250
+	:figclass: align-center
+	
+	Deaths and Cases KDE plot.
+
+
+.. _labelDistributionPlotsECDC:
+
+.. figure:: images/distplots_SarsCov2_RAW_SCALED.png
+	:alt: Deaths and Cases distribution plots.
+	:width: 500
+	:height: 250
+	:figclass: align-center
+	
+	Deaths and Cases distribution plots.
+
+
+.. _labelDistributionFrequencyWHO:
+
+.. figure:: images/A.png
+	:alt: Distribution and Frequency plots of WHO Indicator data.
+	:width: 500
+	:height: 250
+	:figclass: align-center
+	
+	Distribution and Frequency Plots of WHO Indicator Data.

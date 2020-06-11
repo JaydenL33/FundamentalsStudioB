@@ -1,9 +1,5 @@
-About
-=====
-
-Write some details about the project here. Anything that details the team,
-our goals, etc. The product description follows.
-
+About The Project and Product
+=============================
 
 What we have implemented
 ------------------------
@@ -23,5 +19,5 @@ What we have implemented
 
 .. include:: productDescription.rst
 .. include:: systemOverview.rst
-.. include:: requirementsOfTheProduct.rst
+.. include:: requirementsSpecification.rst
 .. include:: developmentProcess.rst
