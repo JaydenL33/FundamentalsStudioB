@@ -1,8 +1,3 @@
-Product Description
--------------------
-
-This project will consist of developing Virus Visualising Media, henceforth **SANITISE.media ** (*Showing and Naming Integral Tools in Slowing Epidemics*). 
-This project relevantly compares and visualises complex and dynamic data of the SARS-COV-2 (a.k.a. COVID, Coronavirus, COVID-19) outbreak promptly in conjunction with efficiently and effectively delivering this data in an easily understandable format.
 
 Product Description and Context
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
