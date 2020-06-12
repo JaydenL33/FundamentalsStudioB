@@ -59,3 +59,14 @@ Project Motivation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This project does not have any stakeholders, rather it is simply a project undertaken independently by university students as part of a subject in order to promote topical data visualisation that is both accuracy and conveys information easily and effectively. The visualisation is currently on a website that is available for free in the public domain. 
 
+Impact
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SANITISE will aim to achieve a major impact on a global scale by the incorporation intuitive and inclusive design principles from UI/UX domains. This creation of a simple interactive interface will also have further its impact of being able to effectively convey information to those who visit the website. The other way in which it will achieve its impact will be through the correlation of specific and relevant data to be able to convey in a simple manner the underlining effects that Covid-19 has and is having on the world. 
+
+Target audience
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SANTISE does not aim to have to specific target audience but rather aims to cater to people of all traits and behavioural properties. This product is widely available to the whole general public as it is hosted on the internet and thus is targeted to be used by people on a global scale. It has to be stated however, that the information provide is in English and therefore those who will benefit the project solution the most will be those of who understand English. 
+
+
