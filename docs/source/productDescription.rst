@@ -3,8 +3,16 @@ Product Description and Context
 -------------------------------
 
 Given the current situation regarding SARS-CoV-2, we conferred and agreed that there was a lacking in centralised and relevant information for the general public. Currently, the
-closest products with similar goals are the ArcGis Dashboard (CSSE at John Hopkins University 2020) and the NSW Daily Telegraph live-page (Carayannis 2020) or the pure-data view of
-World Meter (World Meter n.d.). However, these miss the vital aim of our product, in essence, it must relevantly compare and visualise the complex and dynamic data of the SARS-CoV-2
+closest products with similar goals are:
+
+* ArcGis Dashboard (CSSE at John Hopkins University 2020);
+* NSW Daily Telegraph live-page (Carayannis 2020);
+* World Meter (World Meter 2020);
+* Tokyo CDC Reporting (Tokyo Metropolitan Government 2020);
+* 1Point3Acres (1Point3Acres 2020);
+* WHO Dashboard/Explorer (WHO 2020).
+
+However, these miss the vital aim of our product, in essence, it must relevantly compare and visualise the complex and dynamic data of the SARS-CoV-2
 outbreak promptly that helps enable well-informed and update predictions based on the latest data available for the current SARS-CoV-2 epidemic. 
 SANITISE.media comprises of two main components, a data-plane service for modelling and managing the data and a front-end service to meet accessibility requirements. 
 
