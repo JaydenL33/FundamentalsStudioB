@@ -55,10 +55,6 @@ As a team of Data Engineers, we find prediction and modelling core to understand
 consumer, but filled with sensationalist headlines only to draw more attention to media corporations. SANITISE.media aims to have interactive and easily accessible
 explanations and information about SARS-CoV-2, in hopes this will allow the public to be more informed and help ease the sense of anxiety around SARS-CoV-2, with some form of certainty. 
 
-Project Motivation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This project does not have any stakeholders, rather it is simply a project undertaken independently by university students as part of a subject in order to promote topical data visualisation that is both accuracy and conveys information easily and effectively. The visualisation is currently on a website that is available for free in the public domain. 
-
 Impact
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -69,4 +65,6 @@ Target audience
 
 SANTISE does not aim to have to specific target audience but rather aims to cater to people of all traits and behavioural properties. This product is widely available to the whole general public as it is hosted on the internet and thus is targeted to be used by people on a global scale. It has to be stated however, that the information provide is in English and therefore those who will benefit the project solution the most will be those of who understand English. 
 
-
+Project Motivation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This project does not have any stakeholders, rather it is simply a project undertaken independently by university students as part of a subject in order to promote topical data visualisation that is both accuracy and conveys information easily and effectively. The visualisation is currently on a website that is available for free in the public domain. 
