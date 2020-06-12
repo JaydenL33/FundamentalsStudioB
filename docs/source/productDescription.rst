@@ -12,7 +12,10 @@ closest products with similar goals are:
 * 1Point3Acres (1Point3Acres 2020);
 * WHO Dashboard/Explorer (WHO 2020).
 
-However, these miss the vital aim of our product, in essence, it must relevantly compare and visualise the complex and dynamic data of the SARS-CoV-2
+Details of existing solutions
+Looking at these above mention similar commercial and educational products, particularly the “COVID-19 Dashboard by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University (JHU)” and the “COVID-19 World Meter” it is clear that what these existing solution goal is to present in the simplest form the geographical spread of Covid-19 and its level of abundance in the world. Thus, it is clear that these solutions although mainly just present figures without context that it aim is to provide simply a statistical overview on the current situation of the pandemic and either through its presentation of data evoke a response to encourage those to take precautions and acknowledge the pandemic seriously as the virus is highly transmissible.
+
+However, these existing solutions  miss the vital aim of our product, in essence, it must relevantly compare and visualise the complex and dynamic data of the SARS-CoV-2
 outbreak promptly that helps enable well-informed and update predictions based on the latest data available for the current SARS-CoV-2 epidemic. 
 SANITISE.media comprises of two main components, a data-plane service for modelling and managing the data and a front-end service to meet accessibility requirements. 
 
@@ -51,3 +54,8 @@ Predictions Related to SARS-CoV-2
 As a team of Data Engineers, we find prediction and modelling core to understanding the SARS-CoV-2 epidemic. Not only is the modelling not explicit for the average
 consumer, but filled with sensationalist headlines only to draw more attention to media corporations. SANITISE.media aims to have interactive and easily accessible
 explanations and information about SARS-CoV-2, in hopes this will allow the public to be more informed and help ease the sense of anxiety around SARS-CoV-2, with some form of certainty. 
+
+Project Motivation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+This project does not have any stakeholders, rather it is simply a project undertaken independently by university students as part of a subject in order to promote topical data visualisation that is both accuracy and conveys information easily and effectively. The visualisation is currently on a website that is available for free in the public domain. 
+
