@@ -12,7 +12,7 @@ closest products with similar goals are:
 * 1Point3Acres (1Point3Acres 2020);
 * WHO Dashboard/Explorer (WHO 2020).
 
-Details of existing solutions
+
 Looking at these above mention similar commercial and educational products, particularly the “COVID-19 Dashboard by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University (JHU)” and the “COVID-19 World Meter” it is clear that what these existing solution goal is to present in the simplest form the geographical spread of Covid-19 and its level of abundance in the world. Thus, it is clear that these solutions although mainly just present figures without context that it aim is to provide simply a statistical overview on the current situation of the pandemic and either through its presentation of data evoke a response to encourage those to take precautions and acknowledge the pandemic seriously as the virus is highly transmissible.
 
 However, these existing solutions  miss the vital aim of our product, in essence, it must relevantly compare and visualise the complex and dynamic data of the SARS-CoV-2
