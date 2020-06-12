@@ -40,8 +40,8 @@ Team members and their experience and roles
     **Roles:**
     Primarily responsible for the front to middle-end design and the associated API routes needed to interface between the database server set up by Albert, and the front end as setting up by Joel and Jayden. Also responsible for most of the front end, setting up node.js and react components to help build the website and its functionality. 
 
-4.    Joel Morrison
-
+4. Joel Morrison
+    
     **Experience:**
     Extensive experience with JavaScript, HTML, specifically front end design. Experience in designing and implementing websites, python, data analytics, GIT.
 
