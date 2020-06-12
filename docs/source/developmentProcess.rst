@@ -18,7 +18,7 @@ Team members and their experience and roles
 
 1. Albert Ferguson
 
-    ** experience:**
+    **Experience:**
     Experience in Python, data mining (Pandas), data scraping(Selenium), data analytics, database SQL management, data pipeline design, backend design, development operations, GIT.
 
     **Roles:**
@@ -26,7 +26,7 @@ Team members and their experience and roles
 
 2. Cohen Bosworth
 
-    ** experience:**
+    **Experience:**
     mid-level experience in data analysis, data mining, Python, basic experience with SQL, JavaScript, front end design, backend design, HTML, web hosting, Git.
 
     Roles:
@@ -34,7 +34,7 @@ Team members and their experience and roles
 
 3. Jayden Lee
 
-    ** experience:**
+    **Experience:**
     Extensive experience in backend development & design, system design & architecture, API routing, Python, data analytics, data mining, JavaScript, React.JS, dev-ops, node.js, Flask, Django, GIT, website design.
 
     **Roles:**
@@ -42,7 +42,7 @@ Team members and their experience and roles
 
 4.    Joel Morrison
 
-    ** experience:**
+    **Experience:**
     Extensive experience with JavaScript, HTML, specifically front end design. Experience in designing and implementing websites, python, data analytics, GIT.
 
     **Roles:**
