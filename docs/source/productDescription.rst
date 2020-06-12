@@ -63,8 +63,26 @@ SANITISE will aim to achieve a major impact on a global scale by the incorporati
 Target audience
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-SANTISE does not aim to have to specific target audience but rather aims to cater to people of all traits and behavioural properties. This product is widely available to the whole general public as it is hosted on the internet and thus is targeted to be used by people on a global scale. It has to be stated however, that the information provide is in English and therefore those who will benefit the project solution the most will be those of who understand English. 
+SANTISE does not aim to have to specific target audience but rather aims to cater to people of all traits and behavioural properties. This product is widely available to the whole general public as it is hosted on the internet and thus is targeted to be used by people on a global scale. 
+
+Geographically, we aim to reach as many people as possible, where maximum global outreach will be providing what we consider necessary accurate information. With potential cultural differences leading to various understandings and interpretations of the data, it is essential to make the information as universal as possible to limit the possible misunderstanding of the data.
+
+Demographically, we aim our product to target a multi- faceted demographic.  Targeting an extensive age range, all kinds of education levels, people of different socioeconomic statuses, and gender.
+
+It has to be stated however, that the information provide is in English and therefore those who will benefit the project solution the most will be those of who understand English.
+
+Market analysis
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Upon researching into similar existing solutions as well as in the age of the internet being constantly hit with and information being easy sourced, some of these sources in relation to Covid-19 seem to either over-tangle or generalise the “complex” data reports that health institutions or authorities have gathered, providing to the viewer what may seem like an abundance of conflicting information. 
+
+When considering the four factors of market segmentation (geographic, demographic, psychographic, and behavioural) (Schmitz 2012), we deduced from a brief market analysis that our market segment should be as generalised (demographically) as much as possible.
+
+Our primary goal in this “market of information” can be surmised as “providing a service which implements simple, unrestricted access to essential, timely and relevant information regarding the SARS-COV-2 pandemic.”
+
+
 
 Project Motivation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 This project does not have any stakeholders, rather it is simply a project undertaken independently by university students as part of a subject in order to promote topical data visualisation that is both accuracy and conveys information easily and effectively. The visualisation is currently on a website that is available for free in the public domain. 
