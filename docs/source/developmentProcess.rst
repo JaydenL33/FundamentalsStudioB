@@ -131,15 +131,27 @@ Outlined is the individual process and tasks that where completed during this de
  **-D3.js Development:**
  
  **Creation of Data Visualisation including Graphs.**
+ 
+ 9.	Project Implementation 
+
+The project implementation involved the combining of both the front end and the backend development together to create the complete website. 
 
 
-   
+10.	Project Debugging
+
+Throughout the project as errors arrive the product will have to be constantly debugged or improved upon in order to create the most complete and a successfully working solution.
+
+11.	Finalise Project Portfolio
+
+The creation of this documentation.
+
+
+
    
    
    
    
  
-
 Gantt Chart of Development Process
 ------------------------------------
 
