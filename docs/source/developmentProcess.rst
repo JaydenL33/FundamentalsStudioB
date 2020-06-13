@@ -59,7 +59,7 @@ Meeting arrangements
 Meeting arrangements, as set out at the start of the semester, established that group SANITISE.media would meet every Monday. This meeting should endeavour to coincide approximately to the time of the Fundamental Studio B plenary session time. We would meet appropriately between 45 minutes to two hours to discuss our progress made as well as the next steps for the week ahead. Contingency plans if the weekly meeting is not possible with everyone had led to a general time when everyone was available to meet. As per the subject requirements, we were to meet with Don and Robin, where we discussed our progress where we are at, in addition to ideas that we could use in the project and add to our lab archives. 
 
 Development process
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------
 
 1. Inital Brainstorming
 
