@@ -13,4 +13,4 @@ Appendix B
 
    PageBreak
 
-.. include:: frontend.rst
+.. removed frontend for submission
