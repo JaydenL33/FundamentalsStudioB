@@ -114,23 +114,23 @@ Outlined is the individual process and tasks that where completed during this de
 
 7.	Backend Development
 
-  **-Creation of a Database management system**
+  -Creation of a Database management system
   
-  **-Hosting of Website**
+  -Hosting of Website
   
-  **-Data Mining**
+  -Data Mining
   
-  **-Data retrieval and transformation**
+  -Data retrieval and transformation
 
 8.	Frontend Development
 
- **-Story Page**
+   -Story Page
  
- **-About Us Page**
+   -About Us Page
  
- **-D3.js Development:**
+   -D3.js Development:
  
- **Creation of Data Visualisation including Graphs.**
+   Creation of Data Visualisation including Graphs.
  
  9.	Project Implementation 
 
