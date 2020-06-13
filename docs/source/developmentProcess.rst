@@ -96,6 +96,49 @@ Development process
    project outline thus began with outlining the development of the alpha stage which would involve storyboarding, creating and designing basic key elements for there to be a simple but functioning
    solution.
 
+4. Project Allocation
+
+   Each member in the team chosen their own area in which they wanted to develop and from there individual tasks where assigned to each member which reflected the needs of the product as outlined as well as their interest and ability for the project which they will develop for the final prototype.
+
+5.	Project Proposal
+
+   The next major milestone in the development process was the creation of the project proposal which is a writing document that outline the research and project development that had been undertaken as well as what was planned for the future in terms of development of the project. 
+
+
+6.	Website Development
+
+   The next stage in development was the full creation of a more completed and refined solution that incorporated both the development of the backend and the frontend. This led to an optimised build and design of the website.
+
+
+Outlined is the individual process and tasks that where completed during this development stage:
+
+7.	Backend Development
+
+  **-Creation of a Database management system**
+  
+  **-Hosting of Website**
+  
+  **-Data Mining**
+  
+  **-Data retrieval and transformation**
+
+8.	Frontend Development
+
+ **-Story Page**
+ 
+ **-About Us Page**
+ 
+ **-D3.js Development:**
+ 
+ **Creation of Data Visualisation including Graphs.**
+
+
+   
+   
+   
+   
+   
+ 
 
 Gantt Chart of Development Process
 ------------------------------------
