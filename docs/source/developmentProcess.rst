@@ -40,8 +40,8 @@ Team members and their experience and roles
     **Roles:**
     Primarily responsible for the front to middle-end design and the associated API routes needed to interface between the database server set up by Albert, and the front end as setting up by Joel and Jayden. Also responsible for most of the front end, setting up node.js and react components to help build the website and its functionality. 
 
-4.    Joel Morrison
-
+4. Joel Morrison
+    
     **Experience:**
     Extensive experience with JavaScript, HTML, specifically front end design. Experience in designing and implementing websites, python, data analytics, GIT.
 
@@ -58,6 +58,20 @@ Meeting arrangements
 
 Meeting arrangements, as set out at the start of the semester, established that group SANITISE.media would meet every Monday. This meeting should endeavour to coincide approximately to the time of the Fundamental Studio B plenary session time. We would meet appropriately between 45 minutes to two hours to discuss our progress made as well as the next steps for the week ahead. Contingency plans if the weekly meeting is not possible with everyone had led to a general time when everyone was available to meet. As per the subject requirements, we were to meet with Don and Robin, where we discussed our progress where we are at, in addition to ideas that we could use in the project and add to our lab archives. 
 
+Development process
+------------------------------------
+
+1. Inital Brainstorming
+
+   The first major milestone in the development of the project was the initial brainstorming of several ideas of which the project will not only be based on but also brainstormed how it will look and how it will be built. Given the recent events at the time of brainstorming it was decided that the data visualisation should be based on and around viruses, particularly the effects of Covid-19 on the world. 
+   
+2. Research
+
+   Before any initial designing or developing for the project was conducted each member took the time to complete research in not only the science and impact behind Covid-19 but also areas, ideas or skills they were interested in further developing to be able to achieve the creation of the website. 
+   
+3. Project Outline & Design
+
+   The above mention research into similar projects, methods of website creation and the overall data that was being discovered on the Covid-19 meant that the was better prepared when it came to the designing and creating a concrete project outline in which would direct all development of the project. The team then discussed the exact requirements that would be for the project to prove a success a successful and achieve its purpose of educating a larger audience. These requirements involved the creation and development of backend and a front end for the website. The project outline thus began with outlining the development of the alpha stage which would involve storyboarding, creating and designing basic key elements for there to be a simple but functioning solution.
 
 Reflections
 ===========

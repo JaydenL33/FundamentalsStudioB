@@ -12,7 +12,10 @@ closest products with similar goals are:
 * 1Point3Acres (1Point3Acres 2020);
 * WHO Dashboard/Explorer (WHO 2020).
 
-However, these miss the vital aim of our product, in essence, it must relevantly compare and visualise the complex and dynamic data of the SARS-CoV-2
+
+Looking at these above mention similar commercial and educational products, particularly the “COVID-19 Dashboard by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University (JHU)” and the “COVID-19 World Meter” it is clear that what these existing solution goal is to present in the simplest form the geographical spread of Covid-19 and its level of abundance in the world. Thus, it is clear that these solutions although mainly just present figures without context that it aim is to provide simply a statistical overview on the current situation of the pandemic and either through its presentation of data evoke a response to encourage those to take precautions and acknowledge the pandemic seriously as the virus is highly transmissible.
+
+However, these existing solutions  miss the vital aim of our product, in essence, it must relevantly compare and visualise the complex and dynamic data of the SARS-CoV-2
 outbreak promptly that helps enable well-informed and update predictions based on the latest data available for the current SARS-CoV-2 epidemic. 
 SANITISE.media comprises of two main components, a data-plane service for modelling and managing the data and a front-end service to meet accessibility requirements. 
 
@@ -51,3 +54,35 @@ Predictions Related to SARS-CoV-2
 As a team of Data Engineers, we find prediction and modelling core to understanding the SARS-CoV-2 epidemic. Not only is the modelling not explicit for the average
 consumer, but filled with sensationalist headlines only to draw more attention to media corporations. SANITISE.media aims to have interactive and easily accessible
 explanations and information about SARS-CoV-2, in hopes this will allow the public to be more informed and help ease the sense of anxiety around SARS-CoV-2, with some form of certainty. 
+
+Impact
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SANITISE will aim to achieve a major impact on a global scale by the incorporation intuitive and inclusive design principles from UI/UX domains. This creation of a simple interactive interface will also have further its impact of being able to effectively convey information to those who visit the website. The other way in which it will achieve its impact will be through the correlation of specific and relevant data to be able to convey in a simple manner the underlining effects that Covid-19 has and is having on the world. 
+
+Target audience
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+SANTISE does not aim to have to specific target audience but rather aims to cater to people of all traits and behavioural properties. This product is widely available to the whole general public as it is hosted on the internet and thus is targeted to be used by people on a global scale. 
+
+Geographically, we aim to reach as many people as possible, where maximum global outreach will be providing what we consider necessary accurate information. With potential cultural differences leading to various understandings and interpretations of the data, it is essential to make the information as universal as possible to limit the possible misunderstanding of the data.
+
+Demographically, we aim our product to target a multi- faceted demographic.  Targeting an extensive age range, all kinds of education levels, people of different socioeconomic statuses, and gender.
+
+It has to be stated however, that the information provide is in English and therefore those who will benefit the project solution the most will be those of who understand English.
+
+Market analysis
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Upon researching into similar existing solutions as well as in the age of the internet being constantly hit with and information being easy sourced, some of these sources in relation to Covid-19 seem to either over-tangle or generalise the “complex” data reports that health institutions or authorities have gathered, providing to the viewer what may seem like an abundance of conflicting information. 
+
+When considering the four factors of market segmentation (geographic, demographic, psychographic, and behavioural) (Schmitz 2012), we deduced from a brief market analysis that our market segment should be as generalised (demographically) as much as possible.
+
+Our primary goal in this “market of information” can be surmised as “providing a service which implements simple, unrestricted access to essential, timely and relevant information regarding the SARS-COV-2 pandemic.”
+
+
+
+Project Motivation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This project does not have any stakeholders, rather it is simply a project undertaken independently by university students as part of a subject in order to promote topical data visualisation that is both accuracy and conveys information easily and effectively. The visualisation is currently on a website that is available for free in the public domain. 
