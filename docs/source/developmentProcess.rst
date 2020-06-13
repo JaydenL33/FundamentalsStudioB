@@ -96,6 +96,19 @@ Development process
    project outline thus began with outlining the development of the alpha stage which would involve storyboarding, creating and designing basic key elements for there to be a simple but functioning
    solution.
 
+
+Gantt Chart of Development Process
+------------------------------------
+
+.. _labelGanttChart:
+
+.. figure:: images/GANTT_CHART.png
+    :alt: Gantt Chart of our Project Stages
+    :width: 110%
+
+    Gantt Chart of Development Process
+
+
 Reflections
 ===========
 

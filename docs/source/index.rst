@@ -20,8 +20,8 @@ format.
 
 .. NOTE: remove this heading when generating the final PDF.
 
-Table of Contents
------------------
+.. Table of Contents
+.. -----------------
 
 .. toctree::
    :maxdepth: 2
