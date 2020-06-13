@@ -24,6 +24,7 @@ from sklearn.impute import SimpleImputer
 
 ATTRIBUTES = {}
 RAW_DF_LIST = []
+RAWGLOBAL_DF_LIST = []
 DEBUG = False                                                      # verbose debug prints
 baseDir = "data" # file name for Raw Data (defaults to my local machine as ../../data)
 

@@ -40,14 +40,14 @@ baseDir = env("BASE_DATA_DIR")
 # Load up the raw data
 
 # retrieve the WHO Indicator Data and create a HDF (human data format) checklist
-with open(os.path.join(baseDir, "data", "WHO", "WHO_INDICATORS.txt"), "rb") as whoIndicators:
+with open(os.path.join(baseDir, "WHO", "WHO_INDICATORS.txt"), "rb") as whoIndicators:
 	ATTRIBUTES = pickle.load(whoIndicators)
 
 for attributeID in ATTRIBUTES.values():
-	fn = os.path.join(baseDir, 'data', 'WHO', attributeID+".csv")
+	fn = os.path.join(baseDir, 'WHO', attributeID+".csv")
 	RAW_DF_LIST.append(pd.read_csv(fn, index_col=0, parse_dates=True))
 
-ecdc_path = os.path.join(baseDir, "data", "ECDC", "COVID-19-geographic-disbtribution-worldwide.xlsx")
+ecdc_path = os.path.join(baseDir,"ECDC", "COVID-19-geographic-disbtribution-worldwide.xlsx")
 RAW_DF_LIST.append(pd.read_excel(ecdc_path))
 
 # TODO: add 1point3acres stuff here once granted access
@@ -60,19 +60,16 @@ RAW_DF_LIST.append(pd.read_excel(ecdc_path))
 # Sanity, NaN, Null, zero dev checks
 
 def dropConstantColumns(df):
-	 """
-    Author : Albert Ferguson
-    Brief  : Dropping columns with unique data within a given dataframe
-    Details:
-        
+	"""
+	Dropping columns with unique data within a given dataframe.
+	This method helps filter values for effective data mining. 
 
-    Param  : df, a dataframe containing all the relevant columns that contain
-			unique values that are to be dropped. 
-            
-            
-    Note   : This method helps filter values for effective data mining. 
-    Returns: the dataframe with filtered unique values
+    :author: Albert Ferguson
+    :param  df: a dataframe containing all the relevant columns that contain unique values that are to be dropped. 
+    :return: the dataframe with filtered unique values
+    :rtype: pandas.DataFrame
     """
+	
 	# 1. Determine number of unique values in a column, mask for 1
 	dataUnique_boolarr = df.nunique().isin([1])
 
@@ -87,19 +84,15 @@ def dropConstantColumns(df):
 	return True
 
 def dropHighNaNCols(df):
-		 """
-    Author : Albert Ferguson
-    Brief  : Dropping the NaN values from the dataframe, and determines
-			the total number of NaN values present. 
-    Details:
-        
-	Param  : df, a dataframe containing all the relevant columns that relevant
-			data passed through the function to be processed
-            
-            
-    Note   : This method helps filter NaN values for effective data mining 
-    Returns: true and false for the high number NaN columns that are dropped.
+	"""
+    Dropping the NaN values from the dataframe, and determines the total number of NaN values present. 
+
+    :author: Albert Ferguson
+    :param  df: a dataframe containing all the relevant columns that relevant data passed through the function to be processed
+    :return: true and false for the high number NaN columns that are dropped.
+    :rtype: true and false
     """
+	
 	# 1. Get the total sum of NaN values (sum of fields and sum of sums)
 	NaNCount = df.isna().sum().sum()
 
@@ -124,19 +117,15 @@ def dropHighNaNCols(df):
 	return False
 
 def imputateNaNs(df):
-		         """
-    Author : Albert Ferguson
-    Brief  : Imputes NaN data in columns that contain NaN data 
-        
-    Param  : df, a dataframe containing all the relevant columns that relevant
-            data passed through the function to be processed.
-            
-            
-    Note   : This method imputes columns that contain NaN data or data of 
-		similar types
-    Returns: true and false for helping the imputate process to determine 
-		which NaN values in columns are to be imputed. 
-				"""
+	"""
+	Imputes NaN data in columns that contain NaN data. 
+
+    :author: Albert Ferguson
+    :param  df: a dataframe containing all the relevant columns that relevant data passed through the function to be processed. This method imputes columns that contain NaN data or data of similar types.
+    :return:  for helping the imputate process to determine which NaN values in columns are to be imputed. 
+    :rtype: true and false
+	"""
+
 	# A. pre, return immediately if no NaNs in df.
 	if df.isna().sum().sum() is 0:
 		return True
