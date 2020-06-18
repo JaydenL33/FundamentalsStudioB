@@ -195,3 +195,11 @@ def plotTimlineDelta(data: pd.DataFrame, y_vals: pd.Series, ax, title: str) -> b
     for spine in ["left", "top", "right"]: ax.spines[spine].set_visible(False)
 
     return True
+
+
+# backward compatible for dashViewer
+
+def corrPlotter(df, ax, labels=True):
+    """Attaches the plot to the given axis."""
+    sns.heatmap(df.corr(method ='kendall') , annot=True, ax=ax, xticklabels=labels)
+

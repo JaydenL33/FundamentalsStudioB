@@ -11,15 +11,37 @@ import matplotlib.gridspec as gridspec
 import matplotlib.pyplot as plt
 
 # core user lib
-from src.backend.core import aggregations
-from src.backend.core import grapher
+from .core import aggregations, grapher, environConfig
+
+DEBUG = False                                                      # verbose debug prints
+baseDir = "data" # file name for Raw Data (defaults to my local machine as ../../data)
+
+def _runStartup():
+	"""
+	:author Albert Ferguson
+	Explicit startup function. Runs any necessary preloads for data and Globals updates.
+	Retrieves raw data and assigns Globals to env vars, runs default ones gracefully otherwise.
+	"""
+
+	# local dev, comment this out
+	env = environConfig.safe_environ()
+
+	global DEBUG
+	global baseDir
+
+	# update with the env config
+	DEBUG   = env.bool("DEBUG", False)
+	baseDir = env("BASE_DATA_DIR")
+
+	return True
 
 def flatteningCurves():
     """
     Author : Albert Ferguson
     Brief  : Prototype the "flattening" the curve graphs.
     """
-    with open("data/processing_dump.txt", "rb") as f:
+
+    with open(os.path.join(baseDir, "data", "processing_dump.txt", "rb")) as f:
         df_list = pickle.load(f)
     df = df_list[-1]
     countries = df.countriesAndTerritories.unique()
@@ -33,7 +55,7 @@ def flatteningCurves():
         if (not grapher.plotCulmValues(_df, _df.shape[0], ax, str(country))):
             print("Error")
             return False
-        plt.savefig("res/graph protos/"+country+".png")
+        plt.savefig(os.path.join(baseDir, "res", "graph protos", country+".png"))
     return
 
 def curveWithConstant():
@@ -41,8 +63,8 @@ def curveWithConstant():
     Author : Albert Ferguson
     Brief  : Prototype graphing a constant against a hisogram/barplot of the data.
     """
-
-    with open("data/processing_dump.txt", "rb") as f: df_list = pickle.load(f)
+    
+    with open(os.path.join(baseDir, "data", "processing_dump.txt", "rb")) as f: df_list = pickle.load(f)
     covid = df_list[-1]
     hcap  = df_list[6]
 
@@ -64,7 +86,7 @@ def curveWithConstant():
         if not grapher.barPlotComp(covid_frame.dateRep, covid_frame.cases, ax, hcap_num, str(country)):
             print("Error")
             return False
-        plt.savefig("res/graph protos/prototype country_with_health_cap/"+country+".png")
+        plt.savefig(os.path.join(baseDir, "res", "graph protos", "prototype country_with_health_cap", country+".png"))
     return
 
 def deltaTimeLine():
@@ -72,7 +94,8 @@ def deltaTimeLine():
     Author : Albert Ferguson
     Brief  : Prototype the delta case, deaths and fatality ratio graphs.
     """
-    with open("data/processing_dump.txt", "rb") as f: df_list = pickle.load(f)
+    
+    with open(os.path.join(baseDir, "data", "processing_dump.txt", "rb")) as f: df_list = pickle.load(f)
     df = df_list[-1]
     df.drop(columns=['day', 'month', 'year', 'year_binary_encoding'], inplace=True)
     countries_list = df.countriesAndTerritories.unique()
@@ -104,7 +127,8 @@ def deltaTimeLine():
         if not grapher.plotTimlineDelta(_df, fatalityRatio, ax, "COVID 19 Fatality Ratio Delta against Time"):
             print("Error")
             return False
-        plt.savefig("res/graph protos/prototype deltaTimeline/"+country+"_fatalityRatio.png"); plt.close(fig)
+        plt.savefig(os.path.join(baseDir, "res", "graph protos", "prototype deltaTimeline", country+"_fatalityRatio.png")); plt.close(fig)
     return
 
-deltaTimeLine()
+_runStartup()
+

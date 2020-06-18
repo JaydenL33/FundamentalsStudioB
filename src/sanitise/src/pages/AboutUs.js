@@ -49,7 +49,7 @@ const Arrow = styled.div `
 const CarouselUI = ({ position, handleClick, children }) => (
   <Container>
       {children}
-      <Arrow onClick={handleClick} data-position={position - 1}>{'<'}</Arrow>
+      <Arrow onClick={handleClick} data-position={position - 1}>{'<'} </Arrow>
       <Arrow right onClick={handleClick} data-position={position + 1}>{'>'}</Arrow>
   </Container>
 );
@@ -266,19 +266,24 @@ function SlideText() {
 }
 
 
+/**
+ * The App class entry point. Defines the routes for the app.
+ * note: a in style.css has now become <link> so remember to replace that in the CSS. 
+ * @constructor
+ */
+class AboutUs extends Component
+{
+  constructor()
+  {
+    super();
+    this.state = {
+      name: 'React'
+    };
+  }
 
-
-
-class AboutUs extends Component {
-    constructor() {
-      super();
-      this.state = {
-        name: 'React'
-      };
-    }
-  
-    render() {
-      return (
+  render()
+  {
+    return (
       <div>
         <Navbar></Navbar>
         <Title></Title>
@@ -291,8 +296,7 @@ class AboutUs extends Component {
         <Resources></Resources>
       </div>
     );
-    }
+  }
 }
-
 
 export default AboutUs;

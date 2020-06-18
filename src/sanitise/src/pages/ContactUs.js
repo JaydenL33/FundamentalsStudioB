@@ -3,8 +3,10 @@ import Navbar from '../components/navbar';
 import Display from '../components/display';
 
 
-
-class Story extends Component {
+/**
+ * TESTING
+ */
+class ContactUs extends Component {
     render () {
         return (
             <div>
@@ -28,6 +30,4 @@ class Story extends Component {
     }
 }
 
-
-
-export default Story;
+export default ContactUs;

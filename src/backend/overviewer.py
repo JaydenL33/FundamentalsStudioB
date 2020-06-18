@@ -4,7 +4,7 @@ well as label encoding for binary and categorical data.
 """
 
 # core
-# from core import environConfig
+from .core import environConfig
 
 # third party libs
 import pandas as pd
@@ -20,7 +20,7 @@ import os
 
 #################################################################################
 # Globals
-env = environConfig.safe_environt()
+env = environConfig.safe_environ()
 
 ATTRIBUTES = {
 }
@@ -28,7 +28,7 @@ ATTRIBUTES = {
 RAW_DF_LIST = []
 RAWGLOBAL_DF_LIST = []
 
-DEBUG = env("DEBUG")
+DEBUG   = env.bool("DEBUG", False)
 
 baseDir = env("BASE_DATA_DIR")
 
@@ -40,14 +40,14 @@ baseDir = env("BASE_DATA_DIR")
 # Load up the raw data
 
 # retrieve the WHO Indicator Data and create a HDF (human data format) checklist
-with open(os.path.join(baseDir, "WHO_INDICATORS.txt"), "rb") as whoIndicators:
+with open(os.path.join(baseDir, "WHO", "WHO_INDICATORS.txt"), "rb") as whoIndicators:
 	ATTRIBUTES = pickle.load(whoIndicators)
 
 for attributeID in ATTRIBUTES.values():
-	fn = os.path.join(baseDir, attributeID+".csv")
+	fn = os.path.join(baseDir, 'WHO', attributeID+".csv")
 	RAW_DF_LIST.append(pd.read_csv(fn, index_col=0, parse_dates=True))
 
-ecdc_path = os.path.join("ECDC", "COVID-19-geographic-disbtribution-worldwide.xlsx")
+ecdc_path = os.path.join(baseDir,"ECDC", "COVID-19-geographic-disbtribution-worldwide.xlsx")
 RAW_DF_LIST.append(pd.read_excel(ecdc_path))
 
 # TODO: add 1point3acres stuff here once granted access
@@ -60,6 +60,16 @@ RAW_DF_LIST.append(pd.read_excel(ecdc_path))
 # Sanity, NaN, Null, zero dev checks
 
 def dropConstantColumns(df):
+	"""
+	Dropping columns with unique data within a given dataframe.
+	This method helps filter values for effective data mining. 
+
+    :author: Albert Ferguson
+    :param  df: a dataframe containing all the relevant columns that contain unique values that are to be dropped. 
+    :return: the dataframe with filtered unique values
+    :rtype: pandas.DataFrame
+    """
+	
 	# 1. Determine number of unique values in a column, mask for 1
 	dataUnique_boolarr = df.nunique().isin([1])
 
@@ -74,6 +84,15 @@ def dropConstantColumns(df):
 	return True
 
 def dropHighNaNCols(df):
+	"""
+    Dropping the NaN values from the dataframe, and determines the total number of NaN values present. 
+
+    :author: Albert Ferguson
+    :param  df: a dataframe containing all the relevant columns that relevant data passed through the function to be processed
+    :return: true and false for the high number NaN columns that are dropped.
+    :rtype: true and false
+    """
+	
 	# 1. Get the total sum of NaN values (sum of fields and sum of sums)
 	NaNCount = df.isna().sum().sum()
 
@@ -98,6 +117,15 @@ def dropHighNaNCols(df):
 	return False
 
 def imputateNaNs(df):
+	"""
+	Imputes NaN data in columns that contain NaN data. 
+
+    :author: Albert Ferguson
+    :param  df: a dataframe containing all the relevant columns that relevant data passed through the function to be processed. This method imputes columns that contain NaN data or data of similar types.
+    :return:  for helping the imputate process to determine which NaN values in columns are to be imputed. 
+    :rtype: true and false
+	"""
+
 	# A. pre, return immediately if no NaNs in df.
 	if df.isna().sum().sum() is 0:
 		return True
@@ -142,7 +170,7 @@ def imputateNaNs(df):
 			except ValueError:
 				pass
 		
-	if DEBUG:
+	if DEBUG == True:
 		print("imputateNaNs: Constant adjustments completed")
 
 	# 1. Select the cols with NaN data, where dtype is integer/
@@ -157,7 +185,7 @@ def imputateNaNs(df):
 		if nanValCheck_boolarr.sum() > 0:
 			df[col] = nanImp.fit_transform(df[[col]])
 	
-	if DEBUG:
+	if DEBUG == True:
 		print("imputateNaNs: imputation completed")
 		print("imputateNaNs:\n{}".format(df.head()))
 		print("imputateNaNs:\n{}".format(df.dtypes))
@@ -174,7 +202,7 @@ def splitGlobalStats(df):
 			# 2. retrieve indexes of GLOBAL stats
 			globals_df = df[globalCheck_boolarr]
 			
-			if DEBUG:
+			if DEBUG == True:
 				print("splitGlobalStats: dropped and added global dat\n")
 				print("\t###\n")
 
@@ -209,7 +237,7 @@ def binaryPreProcessor(df):
 	binaryCols_boolarr = df.nunique() == 2
 	binaryCols_list = df.columns[binaryCols_boolarr]
 	
-	if DEBUG:
+	if DEBUG == True:
 		print("binaryPreProcessor:\n{}\n".format(df.nunique()))
 		print("binaryPreProcessor: binary columns to adjust\n{}\n\n".format(binaryCols_boolarr))
 
@@ -228,7 +256,7 @@ def binaryPreProcessor(df):
 			new_col = col + '_binary_encoding'
 			df[new_col] = ordinalEncoder.fit_transform(df[[col]]).astype('bool')
 
-			if DEBUG:
+			if DEBUG == True:
 				print("binaryPreProcessor:\n{}\n".format(df[[col]]))
 				print("\t###\n")
 
@@ -251,7 +279,7 @@ def encodeCategoricals(df):
 	#		as they may assume continuous when these are arbitrarily ordered!
 	ordinalEncoder = pre.OrdinalEncoder()
 
-	if DEBUG:
+	if DEBUG == True:
 		print("encodeCategoricals: categorical columns\n{}".format(categoricalCols_df.head()))
 
 	for col in categoricalCols_df.columns:
@@ -259,7 +287,7 @@ def encodeCategoricals(df):
 			continue
 
 		try:
-			if DEBUG:
+			if DEBUG == True:
 				print("encodeCategoricals: attempting\n{}".format(col))
 			# df[[col]] = ordinalEncoder.fit_transform(df[[col]])
 			# Append the encoded rather than over writing
@@ -302,7 +330,7 @@ def runPreChecks():
 	
 	i = 1
 	for raw_df in RAW_DF_LIST:
-		if DEBUG:
+		if DEBUG == True:
 			print("\n\n#################################################################################")
 			print("CURRENT FRAME:", i)
 			#print("Source Name:\t", list(ATTRIBUTES.values())[i])
@@ -345,7 +373,7 @@ def runPreChecks():
 		globalDataRes = splitGlobalStats(raw_df)
 		if type(globalDataRes) is pd.DataFrame:
 			# add the global data to its own list
-			if DEBUG:
+			if DEBUG == True:
 				print("runPreChecks: GLOBAL DF DESCRIBE:\n{}\n".format(globalDataRes.head()))
 			
 			RAWGLOBAL_DF_LIST.append(globalDataRes)
@@ -369,14 +397,14 @@ def runPreChecks():
 		#    correct type and remove erroneous string content.
 		####
 		if "Display Value" in raw_df.columns and raw_df["Display Value"].dtype == np.object:
-			if DEBUG:
+			if DEBUG == True:
 				print("\nrunPreChecks: Adjusting Display Value type.\n")
 			raw_df["Display Value"] = numericaliseDisplayValueDimension(raw_df["Display Value"])
 			
 			try:
 				raw_df["Display Value"] = raw_df["Display Value"].astype("float64")
 			except ValueError as e:
-				if DEBUG:
+				if DEBUG == True:
 					print("\n###\nrunPreChecks:", e, "\n###\n")
 
 		####
@@ -385,7 +413,7 @@ def runPreChecks():
 		encodeCategoricals(raw_df)
 
 		# debug prints and counter update
-		if DEBUG:
+		if DEBUG == True:
 			print(raw_df.head())
 			input()
 
@@ -394,7 +422,7 @@ def runPreChecks():
 # run prechecks
 runPreChecks()
 
-if DEBUG:
+if DEBUG == True:
 	print("\t###\n")
 	print("\tWRITING TO BINARY DUMP...")
 	print("\t###\n")
