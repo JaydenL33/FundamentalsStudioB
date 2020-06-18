@@ -8,9 +8,9 @@ import BarChart from './BarChart';
 class Display extends Component {
     render () {
         return (
-            <ScrollAnimation animateIn={this.props.animation} initiallyVisible="false" offset="700" 
-            delay="1" animatePreScroll="false" animateOnce="false" animateOut="fadeOut"
-            duration="2.5">
+            <ScrollAnimation animateIn={this.props.animation} initiallyVisible={false} offset={200}
+            delay={20} animatePreScroll={true} animateOnce={true} animateOut="fadeOut"
+            duration={2} className="animated-FadeIn">
             <section className="display-wrapper">
                 <div className="media-wrapper">
                     <BarChart> </BarChart>
@@ -38,7 +38,7 @@ class Display extends Component {
 
   // Set default props
 Display.defaultProps = {
-    animation: "fadeInDown",
+    animation: "fadeIn",
     animateOnce: "false"
 }
 

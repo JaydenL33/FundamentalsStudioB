@@ -1,9 +1,9 @@
 
 
 .display-wrapper {
-    height: 700px;
-    margin-bottom: 8rem;
-    margin-top: 10rem;
+    height: 600px;
+    margin-bottom: 13rem;
+    margin-top: 8rem;
 }
 
 
@@ -12,6 +12,7 @@
     height: 600px;
     width: 600px;
     padding-left: 76px;
+    padding-top: 4rem;
 }
 
 
@@ -26,7 +27,7 @@
     padding-top: 200px;
     padding-right: 30px;
     font-family: Montserrat, sans-serif;
-    font-size: 16px
+    font-size: 16px;
 } 
 
 .content-wrapper {
